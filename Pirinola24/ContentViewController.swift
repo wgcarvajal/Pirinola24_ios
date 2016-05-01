@@ -26,48 +26,6 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         self.subcategoria.text = self.subcategoriaTitulo
         
-        
-        /*let jeremyGif = UIImage.gifWithName("carga")
-        let imageView = UIImageView(image: jeremyGif)
-        
-        
-        imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        
-        imagen.addSubview(imageView)
-        
-       
-        
-        let url = "https://api.backendless.com/B53B1BEE-A372-0051-FF78-52D40FC4F000/v1/files/imgproductos/farmacia/dolex_forte.png"
-        
-            NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: url )!,completionHandler: {(data, response, error) -> Void in
-                
-                
-                if error != nil
-                {
-                    print(error)
-                    return
-                }
-                
-                let image = UIImage(data: data!)
-                
-               
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    
-                    
-                    imageView.hidden = true
-                    self.imagen.image = image
-                    
-                })
-                
-                
-            }).resume()*/
-            
-       
-
-        
-        
-        
         // Do any additional setup after loading the view.
     }
 
@@ -152,18 +110,19 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         
-        return UIEdgeInsetsMake(5.0, 5.0, 3.0, 5.0)
+        
+        return UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0)
         
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
         
         
-        return 0
+        return 5
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 0
+        return 5
     }
     
     

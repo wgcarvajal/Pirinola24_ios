@@ -13,6 +13,7 @@
 		1B0F28211CD15C24007A5485 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B0F28201CD15C24007A5485 /* Assets.xcassets */; };
 		1B0F28241CD15C24007A5485 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B0F28221CD15C24007A5485 /* LaunchScreen.storyboard */; };
 		1B9D8DC41CD1D3D100BB7AD0 /* matura_mt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B9D8DC31CD1D3D100BB7AD0 /* matura_mt.ttf */; };
+		1BDD585E1CD5865A00228EE7 /* Gradiante_Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDD585D1CD5865A00228EE7 /* Gradiante_Layer.swift */; };
 		1BF975D21CD15E410042C585 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF975D11CD15E410042C585 /* ContentViewController.swift */; };
 		1BF975D41CD190CF0042C585 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BF975D31CD190CF0042C585 /* SystemConfiguration.framework */; };
 		1BF975D61CD190E60042C585 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BF975D51CD190E60042C585 /* libsqlite3.tbd */; };
@@ -48,6 +49,7 @@
 		1B0F28231CD15C24007A5485 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B0F28251CD15C24007A5485 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B9D8DC31CD1D3D100BB7AD0 /* matura_mt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = matura_mt.ttf; sourceTree = "<group>"; };
+		1BDD585D1CD5865A00228EE7 /* Gradiante_Layer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gradiante_Layer.swift; sourceTree = "<group>"; };
 		1BF975D11CD15E410042C585 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		1BF975D31CD190CF0042C585 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1BF975D51CD190E60042C585 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -697,6 +699,7 @@
 			isa = PBXGroup;
 			children = (
 				1BF976B61CD1A5840042C585 /* AppUtil.swift */,
+				1BDD585D1CD5865A00228EE7 /* Gradiante_Layer.swift */,
 			);
 			name = util;
 			sourceTree = "<group>";
@@ -790,6 +793,7 @@
 				1BF9DC591CD467A7000609C3 /* CollectionViewCell.swift in Sources */,
 				1BF9DC4F1CD456FB000609C3 /* UIImage+Gif.swift in Sources */,
 				1BF975D21CD15E410042C585 /* ContentViewController.swift in Sources */,
+				1BDD585E1CD5865A00228EE7 /* Gradiante_Layer.swift in Sources */,
 				1BF976B71CD1A5840042C585 /* AppUtil.swift in Sources */,
 				1BF976B41CD1A4310042C585 /* Subcategoria.swift in Sources */,
 				1B0F281A1CD15C24007A5485 /* AppDelegate.swift in Sources */,

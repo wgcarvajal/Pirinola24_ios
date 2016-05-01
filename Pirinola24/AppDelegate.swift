@@ -28,9 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         backendless.initApp(APP_ID, secret:SECRET_KEY, version:VERSION_NUM)
         
         let pageController = UIPageControl.appearance()
-        pageController.pageIndicatorTintColor = UIColor.grayColor()
-        pageController.currentPageIndicatorTintColor = UIColor.whiteColor()
-        pageController.backgroundColor = UIColor.redColor()   
+        pageController.pageIndicatorTintColor = UIColor.whiteColor()
+        pageController.currentPageIndicatorTintColor = UIColor.blackColor()
+        
+        let colorBackground = UIColor(red: 234/255, green: 28/255, blue: 36/255 , alpha: 1)
+        pageController.backgroundColor = colorBackground
         
                 
         return true

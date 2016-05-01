@@ -20,12 +20,11 @@ class ViewController: UIViewController, UIPageViewControllerDataSource
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        let background = CAGradientLayer().amarilloDegradado()
         
+        background.frame = self.view.bounds
         
-        let memoryCapacity = 500 * 1024 * 1024
-        let diskCapacity = 500 * 1024 * 1024
-        let urlCache = NSURLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: "myDiskPath")
-        NSURLCache.setSharedURLCache(urlCache)
+        self.view.layer.insertSublayer(background, atIndex: 0)
         
         loadDatosRemotos()
         
@@ -198,6 +197,10 @@ class ViewController: UIViewController, UIPageViewControllerDataSource
     
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
         return 0
+    }
+    
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
     }
 
 
