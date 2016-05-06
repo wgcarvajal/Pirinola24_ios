@@ -8,10 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPageViewControllerDataSource
+class ViewController: UIViewController, UIPageViewControllerDataSource,ComunicacionControllerPrincipal
 {
     var pageViewController : UIPageViewController!
     var pageTitles : NSArray!
+    var sideBar : SideBar = SideBar()
     
     var backendless = Backendless.sharedInstance()
     
@@ -20,6 +21,8 @@ class ViewController: UIViewController, UIPageViewControllerDataSource
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        
         let background = CAGradientLayer().amarilloDegradado()
         
         background.frame = self.view.bounds
@@ -27,7 +30,6 @@ class ViewController: UIViewController, UIPageViewControllerDataSource
         self.view.layer.insertSublayer(background, atIndex: 0)
         
         loadDatosRemotos()
-        
     }
     
     func loadDatosRemotos()
@@ -113,6 +115,12 @@ class ViewController: UIViewController, UIPageViewControllerDataSource
         
         self.pageViewController.view.frame = CGRectMake(0, 0, self.pageViewController.view.frame.width, self.view.frame.height)
         
+        let anchoM = self.view.frame.size.width - 50
+        let altoL = ((self.view.frame.size.width - 50)/3) + 30
+        
+        
+        sideBar = SideBar(sourceView: self.view, menuItems: ["Logo", "Tu Pedido", "Contáctenos"], anchoMenu: anchoM, altoEspacioLogo: altoL)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -131,25 +139,12 @@ class ViewController: UIViewController, UIPageViewControllerDataSource
         
         let vc: ContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ContentViewController") as! ContentViewController
         
-        
-        
-        
         vc.pageIndex = index
         vc.subcategoriaTitulo = AppUtil.listaSubcategorias[index].subcatnombre
         vc.tipoFrament = AppUtil.listaSubcategorias[index].tipoFragment
-        
-
-        for producto in AppUtil.data
-        {
-            if(producto.subcategoria == AppUtil.listaSubcategorias[index].objectId)
-            {
-                vc.listaProductos.append(producto)
-            }
-            
-        }       
-        
-        return vc
-        
+        vc.comunicacionControllerPrincipal = self
+        vc.subcategoriaId = AppUtil.listaSubcategorias[index].objectId
+        return vc        
     }
     
     
@@ -202,7 +197,23 @@ class ViewController: UIViewController, UIPageViewControllerDataSource
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.Portrait
     }
-
+    
+    
+    func abrirMenuPrincipal()
+    {
+        
+        sideBar.showSideBar(true)
+      
+    }
+    
+    func irPedido()
+    {
+        print ("entrando a la vista pedido")
+        self.performSegueWithIdentifier("irPedido", sender: self)
+        
+    }
+    
+    
 
 }
 

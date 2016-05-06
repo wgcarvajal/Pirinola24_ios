@@ -10,15 +10,16 @@ extension CAGradientLayer
 {
     func rojoDegradado() -> CAGradientLayer
     {
-        let topColor = UIColor(red: 155/255, green: 3/255, blue: 16/255 , alpha: 1)
-        let bottomColor = UIColor(red: 234/255, green: 28/255, blue: 36/255 , alpha: 1)
-        
+        let topColor = UIColor(red: 234/255, green: 28/255, blue: 36/255 , alpha: 1)
+        let bottomColor = UIColor(red: 155/255, green: 3/255, blue: 16/255 , alpha: 1)
         let gradientColor:[CGColor] = [topColor.CGColor,bottomColor.CGColor]
-        let gradientLocation : [Float] = [0.5 , 0.0]
+        //let gradientLocation : [Float] = [0.5 , 0.0]
         
         let gradientLayer :CAGradientLayer = CAGradientLayer()
         gradientLayer.colors = gradientColor
-        gradientLayer.locations = gradientLocation
+        gradientLayer.type = kCAGradientLayerAxial
+        gradientLayer.startPoint = CGPointMake(1,1)
+        gradientLayer.endPoint = CGPointZero
         
         return gradientLayer
     }

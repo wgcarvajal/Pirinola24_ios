@@ -8,35 +8,127 @@
 
 import UIKit
 
+protocol ComunicacionControllerPrincipal
+{
+    func abrirMenuPrincipal()
+    func irPedido()
+}
+
 class ContentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource
 {
+   
     
-    @IBOutlet weak var subcategoria: UILabel!    
+    @IBOutlet weak var subcategoria: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var pageIndex: Int!
     var subcategoriaTitulo : String?
+    var subcategoriaId : String?
     var listaProductos = Array<Producto>()
     var tipoFrament : Int!
     var anchoCelda : CGFloat!
     var altoCelda : CGFloat!
-
+    var comunicacionControllerPrincipal: ComunicacionControllerPrincipal!
+    var tamanoCelda : CGSize?
+    var imagenPlaceholder : UIImage?
+    var espacioEntreceldas : UIEdgeInsets?
+    var tamBotoncelda : CGFloat?
+    var espacioBotonCelda : CGFloat?
+    
+    
+    
+    
+    // MARK: - funciones propias del controlador
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        let background = CAGradientLayer().rojoDegradado()
+        background.frame = CGRect(x: 0, y: 20, width: self.view.frame.width, height: self.subcategoria.frame.height)
+        
+        self.view.layer.insertSublayer(background, atIndex:0 )
         self.subcategoria.text = self.subcategoriaTitulo
+        self.subcategoria.backgroundColor = UIColor.clearColor()
+        self.imagenPlaceholder = UIImage.gifWithName("carga")
+        self.cargarDatos()
+        self.fijar_tamanoCelda()
+        self.fijar_espacio_entre_celdas()
+        self.fijar_tamano_boton_celda()
         
         // Do any additional setup after loading the view.
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+     // MARK: - funciones de la logica de negocio
     
+    func cargarDatos()
+    {
+        
+        for producto in AppUtil.data
+        {
+            if(producto.subcategoria == self.subcategoriaId)
+            {
+                self.listaProductos.append(producto)
+            }
+        }
+        
+    }
     
+    func fijar_tamanoCelda()
+    {
+        let totalHeight: CGFloat
+        let totalWidth: CGFloat
     
+        if self.tipoFrament == 1
+        {
+            totalHeight = (self.view.frame.height / 2.5)
+            totalWidth = (self.view.frame.width / 2)
+        }
+    
+        else
+        {
+            if self.tipoFrament == 2
+            {
+                totalHeight = (self.view.frame.height / 3)
+                totalWidth = (self.view.frame.width / 3)
+            }
+            else
+            {
+                totalHeight = (5.0)
+                totalWidth = (5.0)
+            }
+        }
+        self.anchoCelda = totalWidth-8
+        self.altoCelda = totalHeight-10
+        self.tamanoCelda = CGSizeMake(totalWidth-8, totalHeight-10)
+    }
+    
+    func fijar_espacio_entre_celdas()
+    {
+        self.espacioEntreceldas = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0)
+    }
+    
+    func fijar_tamano_boton_celda()
+    {
+        if self.tipoFrament==1
+        {
+           self.tamBotoncelda = self.anchoCelda/5
+           self.espacioBotonCelda = (self.anchoCelda / 5)-3
+        }
+        else
+        {
+            self.tamBotoncelda = self.anchoCelda/4
+            self.espacioBotonCelda = (self.anchoCelda / 8)-3
+        }
+    }
+    
+     // MARK: - funciones del collectionview
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
@@ -48,9 +140,12 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
     {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! CollectionViewCell
         
+        cell.nombreProducto = listaProductos[indexPath.row].prodnombre
+        cell.objectId = listaProductos[indexPath.row].objectId
         
-        let pirinolaCarga = UIImage.gifWithName("carga")
-        let cargandoProducto = UIImageView(image: pirinolaCarga)
+        
+        
+        let cargandoProducto = UIImageView(image: self.imagenPlaceholder)
         
         let tamCargandoProducto = self.altoCelda/4
         
@@ -58,51 +153,42 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         cell.addSubview(cargandoProducto)
         
-        let url = listaProductos[indexPath.row].imgFile
-        
-        if let image = AppUtil.imagenCache.objectForKey(url!) as? UIImage
-        {
+        let urlaux = NSURL(string: listaProductos[indexPath.row].imgFile!)
+        let url = urlaux
+        if let image = url!.cachedImage {
+            // Cached: set immediately.
+            cargandoProducto.image = nil
             cargandoProducto.hidden = true
-            cell.imagen?.image = image
-        }
-        else
-        {
-            NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: url! )!,completionHandler: {(data, response, error) -> Void in
-                
-                
-                if error != nil
-                {
-                    print(error)
-                    return
-                }
-                
-                let image = UIImage(data: data!)
-                
-                AppUtil.imagenCache.setObject(image!, forKey: url!)
-                
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                   
-                    cargandoProducto.hidden = true
-                    cell.imagen?.image = image
+            cell.imagen.image = image
+            cell.imagen.alpha = 1
+            cell.iniciarBotones(self.tamBotoncelda!,ubicacionInicial: (self.altoCelda-(self.tamBotoncelda! * 2)), espacio: self.espacioBotonCelda!)
+        } else {
+            // Not cached, so load then fade it in.
+            cell.imagen.alpha = 0
+            url!.fetchImage { image in
+                // Check the cell hasn't recycled while loading.
+                if url == urlaux {
                     
-                })
-                
-                
-            }).resume()
-            
+                    cell.imagen.image = image
+                    UIView.animateWithDuration(0.3) {
+                        cargandoProducto.image = nil
+                        cargandoProducto.hidden = true
+                        cell.imagen.alpha = 1
+                        cell.iniciarBotones(self.tamBotoncelda!,ubicacionInicial: (self.altoCelda-(self.tamBotoncelda! * 2)), espacio: self.espacioBotonCelda!)
+                    }
+                }
+            }
         }
+        
+        
         
         return cell
-        
-        
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
         
-        //self.performSegueWithIdentifier("showImage", sender: self)
-        
+        print("selecionamos"+listaProductos[indexPath.row].prodnombre!)
         
     }
     
@@ -111,7 +197,7 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         
         
-        return UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0)
+        return self.espacioEntreceldas!
         
     }
     
@@ -126,40 +212,23 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
+    {
         
-        let totalHeight: CGFloat
-        let totalWidth: CGFloat
-        
-        if self.tipoFrament == 1
-        {
-            totalHeight = (self.view.frame.height / 2.5)
-            totalWidth = (self.view.frame.width / 2)
-
-        }
-        
-        else
-        {
-            if self.tipoFrament == 2
-            {
-                totalHeight = (self.view.frame.height / 3)
-                totalWidth = (self.view.frame.width / 3)
-            }
-            else
-            {
-                totalHeight = (5.0)
-                totalWidth = (5.0)
-            }
-        }
-        
-        print(totalWidth) // this prints 106.666666667
-        
-        self.anchoCelda = totalWidth-8
-        self.altoCelda = totalHeight-10
-        return CGSizeMake(totalWidth-8, totalHeight-10)
-        
+        return self.tamanoCelda!
     }
 
     
+   
+     // MARK: - funciones de interfaces
+    @IBAction func menuPrincipal(sender: AnyObject)
+    {
+         self.comunicacionControllerPrincipal!.abrirMenuPrincipal()
+    }
+    
+    @IBAction func clickIrPedido(sender: AnyObject)
+    {
+        self.comunicacionControllerPrincipal!.irPedido()
+    }
 
 }
