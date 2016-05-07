@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPageViewControllerDataSource,ComunicacionControllerPrincipal
+class ViewController: UIViewController, UIPageViewControllerDataSource,ComunicacionControllerPrincipal , SideBarDelegate
 {
     var pageViewController : UIPageViewController!
     var pageTitles : NSArray!
@@ -121,6 +121,8 @@ class ViewController: UIViewController, UIPageViewControllerDataSource,Comunicac
         
         sideBar = SideBar(sourceView: self.view, menuItems: ["Logo", "Tu Pedido", "Contáctenos"], anchoMenu: anchoM, altoEspacioLogo: altoL)
         
+        sideBar.delegate = self
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -208,9 +210,29 @@ class ViewController: UIViewController, UIPageViewControllerDataSource,Comunicac
     
     func irPedido()
     {
-        print ("entrando a la vista pedido")
-        self.performSegueWithIdentifier("irPedido", sender: self)
+        irApedido()
         
+    }
+    //MARK: - funciones logica de negocio
+    
+    func irApedido()
+    {
+        self.performSegueWithIdentifier("irPedido", sender: self)
+    }
+    
+    // MARK: - funciones interface menu drawer
+    
+    func sideBarDidSelectButtonAtIndex(index: Int)
+    {
+        switch index
+        {
+            case 1:
+                sideBar.showSideBar(false)
+                irApedido()
+            break
+            default:
+            break
+        }
     }
     
     

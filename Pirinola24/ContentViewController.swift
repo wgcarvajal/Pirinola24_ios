@@ -142,6 +142,8 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         cell.nombreProducto = listaProductos[indexPath.row].prodnombre
         cell.objectId = listaProductos[indexPath.row].objectId
+        cell.precio = listaProductos[indexPath.row].precio
+        cell.urlimagen = listaProductos[indexPath.row].imgFile
         
         
         

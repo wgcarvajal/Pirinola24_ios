@@ -15,6 +15,8 @@ class CollectionViewCell: UICollectionViewCell
     
     
     var objectId : String?
+    var precio : Int = 0
+    var urlimagen : String?
     var nombreProducto : String?
     var agregarBtn : UIButton?
     var conteo : UIButton?
@@ -85,6 +87,8 @@ class CollectionViewCell: UICollectionViewCell
             let ic : ItemCarrito = ItemCarrito()
             ic.objectId = self.objectId
             ic.cantidad = 1
+            ic.precio = self.precio
+            ic.imagen = self.urlimagen
             AppUtil.listaCarro.append(ic)
             conteo!.setTitle(String(ic.cantidad), forState: UIControlState.Normal)
             conteo!.hidden = false

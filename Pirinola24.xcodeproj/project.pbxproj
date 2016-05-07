@@ -16,6 +16,8 @@
 		1B53F9371CDC5FAC007471CF /* sonido_click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1B53F9361CDC5FAC007471CF /* sonido_click.mp3 */; };
 		1B53F9391CDC702C007471CF /* PedidoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B53F9381CDC702C007471CF /* PedidoViewController.swift */; };
 		1B68C4BC1CDBCE5500709F4D /* ItemCarrito.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B68C4BB1CDBCE5500709F4D /* ItemCarrito.swift */; };
+		1B759EE01CDD51F600DF5F3B /* flecha_atras.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B759EDF1CDD51F600DF5F3B /* flecha_atras.png */; };
+		1B759EE21CDD61B100DF5F3B /* CollectionViewCellPedido.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B759EE11CDD61B100DF5F3B /* CollectionViewCellPedido.swift */; };
 		1B9D8DC41CD1D3D100BB7AD0 /* matura_mt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B9D8DC31CD1D3D100BB7AD0 /* matura_mt.ttf */; };
 		1BA742311CD9162C00523F57 /* SideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA7422F1CD9162C00523F57 /* SideBar.swift */; };
 		1BA742321CD9162C00523F57 /* SideBarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA742301CD9162C00523F57 /* SideBarTableViewController.swift */; };
@@ -59,6 +61,8 @@
 		1B53F9361CDC5FAC007471CF /* sonido_click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sonido_click.mp3; sourceTree = "<group>"; };
 		1B53F9381CDC702C007471CF /* PedidoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PedidoViewController.swift; sourceTree = "<group>"; };
 		1B68C4BB1CDBCE5500709F4D /* ItemCarrito.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCarrito.swift; sourceTree = "<group>"; };
+		1B759EDF1CDD51F600DF5F3B /* flecha_atras.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flecha_atras.png; sourceTree = "<group>"; };
+		1B759EE11CDD61B100DF5F3B /* CollectionViewCellPedido.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCellPedido.swift; sourceTree = "<group>"; };
 		1B9D8DC31CD1D3D100BB7AD0 /* matura_mt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = matura_mt.ttf; sourceTree = "<group>"; };
 		1BA7422F1CD9162C00523F57 /* SideBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBar.swift; sourceTree = "<group>"; };
 		1BA742301CD9162C00523F57 /* SideBarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewController.swift; sourceTree = "<group>"; };
@@ -316,6 +320,7 @@
 				1B0F281B1CD15C24007A5485 /* ViewController.swift */,
 				1BA7422F1CD9162C00523F57 /* SideBar.swift */,
 				1BA742301CD9162C00523F57 /* SideBarTableViewController.swift */,
+				1B759EE11CDD61B100DF5F3B /* CollectionViewCellPedido.swift */,
 				1BF9DC581CD467A7000609C3 /* CollectionViewCell.swift */,
 				1BF975D11CD15E410042C585 /* ContentViewController.swift */,
 				1B53F9381CDC702C007471CF /* PedidoViewController.swift */,
@@ -334,6 +339,7 @@
 				1BF9DC521CD45DB6000609C3 /* carrocompras.png */,
 				1BF9DC501CD458A3000609C3 /* carga.gif */,
 				1BF05CD71CD94BC6008FA820 /* pirinola_icono.png */,
+				1B759EDF1CDD51F600DF5F3B /* flecha_atras.png */,
 				1BF9DC541CD45DC6000609C3 /* menuprinciapal.png */,
 				1B9D8DC31CD1D3D100BB7AD0 /* matura_mt.ttf */,
 				1B53F9361CDC5FAC007471CF /* sonido_click.mp3 */,
@@ -800,6 +806,7 @@
 				1BF05CD81CD94BC6008FA820 /* pirinola_icono.png in Resources */,
 				1B0F281F1CD15C24007A5485 /* Main.storyboard in Resources */,
 				1B9D8DC41CD1D3D100BB7AD0 /* matura_mt.ttf in Resources */,
+				1B759EE01CDD51F600DF5F3B /* flecha_atras.png in Resources */,
 				1BF9DC531CD45DB6000609C3 /* carrocompras.png in Resources */,
 				1B53F9371CDC5FAC007471CF /* sonido_click.mp3 in Resources */,
 			);
@@ -817,6 +824,7 @@
 				1BF976B21CD199AA0042C585 /* Producto.swift in Sources */,
 				1BF9DC591CD467A7000609C3 /* CollectionViewCell.swift in Sources */,
 				1BF9DC4F1CD456FB000609C3 /* UIImage+Gif.swift in Sources */,
+				1B759EE21CDD61B100DF5F3B /* CollectionViewCellPedido.swift in Sources */,
 				1BA742321CD9162C00523F57 /* SideBarTableViewController.swift in Sources */,
 				1BF975D21CD15E410042C585 /* ContentViewController.swift in Sources */,
 				1B68C4BC1CDBCE5500709F4D /* ItemCarrito.swift in Sources */,

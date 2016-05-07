@@ -8,6 +8,7 @@
     <customFonts key="customFonts">
         <mutableArray key="matura_mt.ttf">
             <string>MaturaMTScriptCapitals</string>
+            <string>MaturaMTScriptCapitals</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -44,8 +45,139 @@
                     <view key="view" contentMode="scaleToFill" id="VZs-zd-Ye7">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tu Pedido" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kEG-DL-Jma">
+                                <rect key="frame" x="0.0" y="20" width="600" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="6Vj-ko-RFp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="MaturaMTScriptCapitals" family="Matura MT Script Capitals" pointSize="21"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdU-4w-BW1">
+                                <rect key="frame" x="20" y="28" width="24" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="dnF-hp-zlK"/>
+                                    <constraint firstAttribute="height" constant="26" id="zoP-SH-ebo"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="menuprinciapal"/>
+                                <connections>
+                                    <action selector="abrirMenuPrincipal:" destination="Srm-fu-1oh" eventType="touchUpInside" id="Cgw-Du-1ju"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="taI-8X-G3Z">
+                                <rect key="frame" x="20" y="28" width="24" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="F6T-2j-PDd"/>
+                                    <constraint firstAttribute="width" constant="24" id="rmT-La-tg6"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="flecha_atras.png"/>
+                                <connections>
+                                    <action selector="atrasAction:" destination="Srm-fu-1oh" eventType="touchUpInside" id="XoG-fo-A1K"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2C1-jw-XeS">
+                                <rect key="frame" x="20" y="68" width="560" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="njl-h6-44L"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$45.000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdo-rc-oA8">
+                                <rect key="frame" x="20" y="68" width="560" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="KKG-Kq-nBz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Domicilio incluido $2.000)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3u-yf-wCS">
+                                <rect key="frame" x="20" y="110" width="560" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="lPV-oQ-vUS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5Lp-WW-vYf">
+                                <rect key="frame" x="0.0" y="148" width="600" height="384"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ras-ZD-1e9">
+                                    <size key="itemSize" width="154" height="133"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellpedido" id="8cw-xB-OJe" customClass="CollectionViewCellPedido" customModule="Pirinola24" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="154" height="133"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="154" height="133"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aBP-cb-93D">
+                                                    <rect key="frame" x="0.0" y="0.0" width="154" height="133"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailingMargin" secondItem="aBP-cb-93D" secondAttribute="trailing" constant="-8" id="MeX-6H-cfa"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="aBP-cb-93D" secondAttribute="bottom" constant="-8" id="RVo-A6-X6l"/>
+                                            <constraint firstItem="aBP-cb-93D" firstAttribute="leading" secondItem="8cw-xB-OJe" secondAttribute="leadingMargin" constant="-8" id="cJQ-oS-Br1"/>
+                                            <constraint firstItem="aBP-cb-93D" firstAttribute="top" secondItem="8cw-xB-OJe" secondAttribute="topMargin" constant="-8" id="uYc-QZ-sr4"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imagen" destination="aBP-cb-93D" id="fXF-36-uK3"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Srm-fu-1oh" id="DG8-gM-S45"/>
+                                    <outlet property="delegate" destination="Srm-fu-1oh" id="9Il-uW-aIh"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQw-sz-Qd7">
+                                <rect key="frame" x="154" y="551" width="293" height="41"/>
+                                <state key="normal" title="Realizar Pedido"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="5Lp-WW-vYf" secondAttribute="trailing" constant="-20" id="31s-SG-Vya"/>
+                            <constraint firstItem="kEG-DL-Jma" firstAttribute="leading" secondItem="VZs-zd-Ye7" secondAttribute="leadingMargin" constant="-20" id="5gs-lY-JyW"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="2C1-jw-XeS" secondAttribute="leading" id="6Rl-dT-b7o"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="hdo-rc-oA8" secondAttribute="leading" id="8DR-dH-8H1"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Y3u-yf-wCS" secondAttribute="leading" id="97p-Lq-x9d"/>
+                            <constraint firstItem="OF6-Ne-ieN" firstAttribute="top" secondItem="5Lp-WW-vYf" secondAttribute="bottom" constant="68" id="ADj-XM-dhK"/>
+                            <constraint firstItem="2C1-jw-XeS" firstAttribute="top" secondItem="PDJ-77-Ku4" secondAttribute="bottom" constant="48" id="AvH-co-C38"/>
+                            <constraint firstItem="kEG-DL-Jma" firstAttribute="top" secondItem="PDJ-77-Ku4" secondAttribute="bottom" id="Cq6-Pf-j0j"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="MdU-4w-BW1" secondAttribute="leading" id="Dlg-j6-EJh"/>
+                            <constraint firstItem="taI-8X-G3Z" firstAttribute="top" secondItem="PDJ-77-Ku4" secondAttribute="bottom" constant="8" id="MVL-5r-lqA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kEG-DL-Jma" secondAttribute="trailing" constant="-20" id="PFa-dq-39U"/>
+                            <constraint firstItem="5Lp-WW-vYf" firstAttribute="top" secondItem="PDJ-77-Ku4" secondAttribute="bottom" constant="128" id="WB6-3H-6XC"/>
+                            <constraint firstItem="5Lp-WW-vYf" firstAttribute="leading" secondItem="VZs-zd-Ye7" secondAttribute="leadingMargin" constant="-20" id="csw-3g-5fF"/>
+                            <constraint firstItem="MdU-4w-BW1" firstAttribute="top" secondItem="PDJ-77-Ku4" secondAttribute="bottom" constant="8" id="feR-gX-Eqe"/>
+                            <constraint firstItem="Y3u-yf-wCS" firstAttribute="top" secondItem="PDJ-77-Ku4" secondAttribute="bottom" constant="90" id="j4A-Kk-X1X"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="taI-8X-G3Z" secondAttribute="leading" id="kOX-69-1lk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Y3u-yf-wCS" secondAttribute="trailing" id="m87-gT-0nZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2C1-jw-XeS" secondAttribute="trailing" id="osd-L7-jZf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hdo-rc-oA8" secondAttribute="trailing" id="qxZ-4Z-dv4"/>
+                            <constraint firstItem="hdo-rc-oA8" firstAttribute="top" secondItem="PDJ-77-Ku4" secondAttribute="bottom" constant="48" id="tnr-5q-hLd"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="botonAtras" destination="taI-8X-G3Z" id="c0c-z7-e71"/>
+                        <outlet property="botonMenuPrincipal" destination="MdU-4w-BW1" id="U9F-XB-Q0K"/>
+                        <outlet property="tuPedidoLabel" destination="kEG-DL-Jma" id="MpU-Yu-NSX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9W-Nv-RRl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -72,10 +204,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2S-DM-fv4">
-                                <rect key="frame" x="20" y="28" width="24" height="26"/>
+                                <rect key="frame" x="20" y="28" width="24" height="25"/>
                                 <state key="normal" backgroundImage="menuprinciapal"/>
                                 <connections>
                                     <action selector="menuPrincipal:" destination="YtR-Of-YxM" eventType="touchUpInside" id="QFN-Fl-YHS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYK-CD-duB">
+                                <rect key="frame" x="556" y="27" width="24" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="ZvB-wm-oLn"/>
+                                    <constraint firstAttribute="height" constant="26" id="gs1-hb-vgd"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="carrocompras"/>
+                                <connections>
+                                    <action selector="clickIrPedido:" destination="YtR-Of-YxM" eventType="touchUpInside" id="EYD-PR-3oL"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subcategoria" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPP-jX-T3l">
@@ -127,17 +270,6 @@
                                     <outlet property="delegate" destination="YtR-Of-YxM" id="MUb-Yv-kfT"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYK-CD-duB">
-                                <rect key="frame" x="556" y="27" width="24" height="26"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="24" id="ZvB-wm-oLn"/>
-                                    <constraint firstAttribute="height" constant="26" id="gs1-hb-vgd"/>
-                                </constraints>
-                                <state key="normal" backgroundImage="carrocompras"/>
-                                <connections>
-                                    <action selector="clickIrPedido:" destination="YtR-Of-YxM" eventType="touchUpInside" id="EYD-PR-3oL"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -182,6 +314,7 @@
     </scenes>
     <resources>
         <image name="carrocompras" width="512" height="512"/>
+        <image name="flecha_atras.png" width="512" height="512"/>
         <image name="menuprinciapal" width="512" height="512"/>
     </resources>
 </document>
