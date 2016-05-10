@@ -5,12 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="matura_mt.ttf">
-            <string>MaturaMTScriptCapitals</string>
-            <string>MaturaMTScriptCapitals</string>
-        </mutableArray>
-    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -46,16 +40,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tu Pedido" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kEG-DL-Jma">
-                                <rect key="frame" x="0.0" y="20" width="600" height="40"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="6Vj-ko-RFp"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="MaturaMTScriptCapitals" family="Matura MT Script Capitals" pointSize="21"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdU-4w-BW1">
                                 <rect key="frame" x="20" y="28" width="24" height="26"/>
                                 <constraints>
@@ -79,34 +63,25 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2C1-jw-XeS">
-                                <rect key="frame" x="20" y="68" width="560" height="45"/>
+                                <rect key="frame" x="20" y="52" width="560" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="njl-h6-44L"/>
+                                    <constraint firstAttribute="height" constant="45" id="PSj-Lh-pXO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$45.000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdo-rc-oA8">
-                                <rect key="frame" x="20" y="68" width="560" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="KKG-Kq-nBz"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Domicilio incluido $2.000)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3u-yf-wCS">
-                                <rect key="frame" x="20" y="110" width="560" height="30"/>
+                                <rect key="frame" x="20" y="80" width="560" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="lPV-oQ-vUS"/>
+                                    <constraint firstAttribute="height" constant="35" id="IHQ-o5-7F3"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5Lp-WW-vYf">
-                                <rect key="frame" x="0.0" y="148" width="600" height="384"/>
+                                <rect key="frame" x="0.0" y="120" width="600" height="420"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ras-ZD-1e9">
                                     <size key="itemSize" width="154" height="133"/>
@@ -144,38 +119,67 @@
                                     <outlet property="delegate" destination="Srm-fu-1oh" id="9Il-uW-aIh"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQw-sz-Qd7">
-                                <rect key="frame" x="154" y="551" width="293" height="41"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQw-sz-Qd7">
+                                <rect key="frame" x="155" y="552" width="290" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="4xT-ph-ROK"/>
+                                    <constraint firstAttribute="width" constant="290" id="reF-CA-XXz"/>
+                                </constraints>
                                 <state key="normal" title="Realizar Pedido"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tu Pedido" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kEG-DL-Jma">
+                                <rect key="frame" x="0.0" y="20" width="600" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="6Vj-ko-RFp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$45.000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C8c-wg-8dW">
+                                <rect key="frame" x="20" y="52" width="560" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="skC-SI-uZt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="5Lp-WW-vYf" secondAttribute="trailing" constant="-20" id="31s-SG-Vya"/>
+                            <constraint firstItem="Y3u-yf-wCS" firstAttribute="top" secondItem="PDJ-77-Ku4" secondAttribute="bottom" constant="60" id="2Du-qD-FF1"/>
                             <constraint firstItem="kEG-DL-Jma" firstAttribute="leading" secondItem="VZs-zd-Ye7" secondAttribute="leadingMargin" constant="-20" id="5gs-lY-JyW"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="2C1-jw-XeS" secondAttribute="leading" id="6Rl-dT-b7o"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="hdo-rc-oA8" secondAttribute="leading" id="8DR-dH-8H1"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="Y3u-yf-wCS" secondAttribute="leading" id="97p-Lq-x9d"/>
-                            <constraint firstItem="OF6-Ne-ieN" firstAttribute="top" secondItem="5Lp-WW-vYf" secondAttribute="bottom" constant="68" id="ADj-XM-dhK"/>
-                            <constraint firstItem="2C1-jw-XeS" firstAttribute="top" secondItem="PDJ-77-Ku4" secondAttribute="bottom" constant="48" id="AvH-co-C38"/>
+                            <constraint firstItem="5Lp-WW-vYf" firstAttribute="leading" secondItem="VZs-zd-Ye7" secondAttribute="leadingMargin" constant="-20" id="CfZ-4H-jCB"/>
                             <constraint firstItem="kEG-DL-Jma" firstAttribute="top" secondItem="PDJ-77-Ku4" secondAttribute="bottom" id="Cq6-Pf-j0j"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Y3u-yf-wCS" secondAttribute="trailing" id="Dgg-1j-g2u"/>
                             <constraint firstAttribute="leadingMargin" secondItem="MdU-4w-BW1" secondAttribute="leading" id="Dlg-j6-EJh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="C8c-wg-8dW" secondAttribute="trailing" id="F46-2j-OU9"/>
+                            <constraint firstItem="5Lp-WW-vYf" firstAttribute="top" secondItem="PDJ-77-Ku4" secondAttribute="bottom" constant="100" id="Lns-aP-bb2"/>
                             <constraint firstItem="taI-8X-G3Z" firstAttribute="top" secondItem="PDJ-77-Ku4" secondAttribute="bottom" constant="8" id="MVL-5r-lqA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kEG-DL-Jma" secondAttribute="trailing" constant="-20" id="PFa-dq-39U"/>
-                            <constraint firstItem="5Lp-WW-vYf" firstAttribute="top" secondItem="PDJ-77-Ku4" secondAttribute="bottom" constant="128" id="WB6-3H-6XC"/>
-                            <constraint firstItem="5Lp-WW-vYf" firstAttribute="leading" secondItem="VZs-zd-Ye7" secondAttribute="leadingMargin" constant="-20" id="csw-3g-5fF"/>
+                            <constraint firstItem="C8c-wg-8dW" firstAttribute="top" secondItem="PDJ-77-Ku4" secondAttribute="bottom" constant="32" id="XCT-zD-Fn0"/>
                             <constraint firstItem="MdU-4w-BW1" firstAttribute="top" secondItem="PDJ-77-Ku4" secondAttribute="bottom" constant="8" id="feR-gX-Eqe"/>
-                            <constraint firstItem="Y3u-yf-wCS" firstAttribute="top" secondItem="PDJ-77-Ku4" secondAttribute="bottom" constant="90" id="j4A-Kk-X1X"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5Lp-WW-vYf" secondAttribute="trailing" constant="-20" id="g4h-W2-Y5g"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Y3u-yf-wCS" secondAttribute="leading" id="jSE-3b-biw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2C1-jw-XeS" secondAttribute="trailing" id="kLf-Rr-t9a"/>
                             <constraint firstAttribute="leadingMargin" secondItem="taI-8X-G3Z" secondAttribute="leading" id="kOX-69-1lk"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Y3u-yf-wCS" secondAttribute="trailing" id="m87-gT-0nZ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="2C1-jw-XeS" secondAttribute="trailing" id="osd-L7-jZf"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hdo-rc-oA8" secondAttribute="trailing" id="qxZ-4Z-dv4"/>
-                            <constraint firstItem="hdo-rc-oA8" firstAttribute="top" secondItem="PDJ-77-Ku4" secondAttribute="bottom" constant="48" id="tnr-5q-hLd"/>
+                            <constraint firstItem="OF6-Ne-ieN" firstAttribute="top" secondItem="5Lp-WW-vYf" secondAttribute="bottom" constant="60" id="kjw-Z0-tMa"/>
+                            <constraint firstItem="OF6-Ne-ieN" firstAttribute="top" secondItem="jQw-sz-Qd7" secondAttribute="bottom" constant="8" id="lwx-qS-kvf"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="2C1-jw-XeS" secondAttribute="leading" id="pjb-Nh-ty0"/>
+                            <constraint firstItem="jQw-sz-Qd7" firstAttribute="centerX" secondItem="VZs-zd-Ye7" secondAttribute="centerX" id="qZL-1p-NQA"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="C8c-wg-8dW" secondAttribute="leading" id="v5T-CB-YxL"/>
+                            <constraint firstItem="2C1-jw-XeS" firstAttribute="top" secondItem="PDJ-77-Ku4" secondAttribute="bottom" constant="32" id="ykZ-nm-49V"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="botonAtras" destination="taI-8X-G3Z" id="c0c-z7-e71"/>
                         <outlet property="botonMenuPrincipal" destination="MdU-4w-BW1" id="U9F-XB-Q0K"/>
+                        <outlet property="collectionView" destination="5Lp-WW-vYf" id="eVL-km-eW7"/>
+                        <outlet property="domicilio" destination="Y3u-yf-wCS" id="gWm-GG-xaH"/>
+                        <outlet property="total" destination="2C1-jw-XeS" id="Qra-a5-CpV"/>
+                        <outlet property="totalValor" destination="C8c-wg-8dW" id="Lz8-ub-hkP"/>
                         <outlet property="tuPedidoLabel" destination="kEG-DL-Jma" id="MpU-Yu-NSX"/>
                     </connections>
                 </viewController>
@@ -221,16 +225,6 @@
                                     <action selector="clickIrPedido:" destination="YtR-Of-YxM" eventType="touchUpInside" id="EYD-PR-3oL"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subcategoria" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPP-jX-T3l">
-                                <rect key="frame" x="0.0" y="20" width="600" height="40"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="RUx-on-FHe"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="MaturaMTScriptCapitals" family="Matura MT Script Capitals" pointSize="21"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Fvm-wB-YuB">
                                 <rect key="frame" x="0.0" y="61" width="600" height="539"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -270,6 +264,16 @@
                                     <outlet property="delegate" destination="YtR-Of-YxM" id="MUb-Yv-kfT"/>
                                 </connections>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subcategoria" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPP-jX-T3l">
+                                <rect key="frame" x="0.0" y="20" width="600" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="RUx-on-FHe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

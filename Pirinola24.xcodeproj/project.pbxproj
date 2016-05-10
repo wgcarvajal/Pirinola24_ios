@@ -13,14 +13,17 @@
 		1B0F28211CD15C24007A5485 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B0F28201CD15C24007A5485 /* Assets.xcassets */; };
 		1B0F28241CD15C24007A5485 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B0F28221CD15C24007A5485 /* LaunchScreen.storyboard */; };
 		1B4721D41CD6842700216DC6 /* NS_URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4721D31CD6842700216DC6 /* NS_URL.swift */; };
-		1B53F9371CDC5FAC007471CF /* sonido_click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1B53F9361CDC5FAC007471CF /* sonido_click.mp3 */; };
 		1B53F9391CDC702C007471CF /* PedidoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B53F9381CDC702C007471CF /* PedidoViewController.swift */; };
 		1B68C4BC1CDBCE5500709F4D /* ItemCarrito.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B68C4BB1CDBCE5500709F4D /* ItemCarrito.swift */; };
+		1B745D7B1CE1B54D0007DB44 /* Stackyard.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B745D7A1CE1B54D0007DB44 /* Stackyard.ttf */; };
+		1B745D7D1CE1B6C90007DB44 /* urwbookmanl.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B745D7C1CE1B6C90007DB44 /* urwbookmanl.ttf */; };
 		1B759EE01CDD51F600DF5F3B /* flecha_atras.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B759EDF1CDD51F600DF5F3B /* flecha_atras.png */; };
 		1B759EE21CDD61B100DF5F3B /* CollectionViewCellPedido.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B759EE11CDD61B100DF5F3B /* CollectionViewCellPedido.swift */; };
+		1B84894E1CDE729A00FD00F6 /* sonido_click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1B84894D1CDE729A00FD00F6 /* sonido_click.wav */; };
 		1B9D8DC41CD1D3D100BB7AD0 /* matura_mt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B9D8DC31CD1D3D100BB7AD0 /* matura_mt.ttf */; };
 		1BA742311CD9162C00523F57 /* SideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA7422F1CD9162C00523F57 /* SideBar.swift */; };
 		1BA742321CD9162C00523F57 /* SideBarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA742301CD9162C00523F57 /* SideBarTableViewController.swift */; };
+		1BD3F9C51CDFBF8C005F6A84 /* Segoe_Print.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3F9C41CDFBF8C005F6A84 /* Segoe_Print.ttf */; };
 		1BDD585E1CD5865A00228EE7 /* Gradiante_Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDD585D1CD5865A00228EE7 /* Gradiante_Layer.swift */; };
 		1BF05CD81CD94BC6008FA820 /* pirinola_icono.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BF05CD71CD94BC6008FA820 /* pirinola_icono.png */; };
 		1BF975D21CD15E410042C585 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF975D11CD15E410042C585 /* ContentViewController.swift */; };
@@ -58,14 +61,17 @@
 		1B0F28231CD15C24007A5485 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B0F28251CD15C24007A5485 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B4721D31CD6842700216DC6 /* NS_URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NS_URL.swift; sourceTree = "<group>"; };
-		1B53F9361CDC5FAC007471CF /* sonido_click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sonido_click.mp3; sourceTree = "<group>"; };
 		1B53F9381CDC702C007471CF /* PedidoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PedidoViewController.swift; sourceTree = "<group>"; };
 		1B68C4BB1CDBCE5500709F4D /* ItemCarrito.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCarrito.swift; sourceTree = "<group>"; };
+		1B745D7A1CE1B54D0007DB44 /* Stackyard.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Stackyard.ttf; sourceTree = "<group>"; };
+		1B745D7C1CE1B6C90007DB44 /* urwbookmanl.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = urwbookmanl.ttf; sourceTree = "<group>"; };
 		1B759EDF1CDD51F600DF5F3B /* flecha_atras.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flecha_atras.png; sourceTree = "<group>"; };
 		1B759EE11CDD61B100DF5F3B /* CollectionViewCellPedido.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCellPedido.swift; sourceTree = "<group>"; };
+		1B84894D1CDE729A00FD00F6 /* sonido_click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sonido_click.wav; sourceTree = "<group>"; };
 		1B9D8DC31CD1D3D100BB7AD0 /* matura_mt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = matura_mt.ttf; sourceTree = "<group>"; };
 		1BA7422F1CD9162C00523F57 /* SideBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBar.swift; sourceTree = "<group>"; };
 		1BA742301CD9162C00523F57 /* SideBarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewController.swift; sourceTree = "<group>"; };
+		1BD3F9C41CDFBF8C005F6A84 /* Segoe_Print.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Segoe_Print.ttf; sourceTree = "<group>"; };
 		1BDD585D1CD5865A00228EE7 /* Gradiante_Layer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gradiante_Layer.swift; sourceTree = "<group>"; };
 		1BF05CD71CD94BC6008FA820 /* pirinola_icono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pirinola_icono.png; sourceTree = "<group>"; };
 		1BF975D11CD15E410042C585 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
@@ -339,10 +345,13 @@
 				1BF9DC521CD45DB6000609C3 /* carrocompras.png */,
 				1BF9DC501CD458A3000609C3 /* carga.gif */,
 				1BF05CD71CD94BC6008FA820 /* pirinola_icono.png */,
+				1B84894D1CDE729A00FD00F6 /* sonido_click.wav */,
 				1B759EDF1CDD51F600DF5F3B /* flecha_atras.png */,
 				1BF9DC541CD45DC6000609C3 /* menuprinciapal.png */,
+				1B745D7C1CE1B6C90007DB44 /* urwbookmanl.ttf */,
+				1B745D7A1CE1B54D0007DB44 /* Stackyard.ttf */,
 				1B9D8DC31CD1D3D100BB7AD0 /* matura_mt.ttf */,
-				1B53F9361CDC5FAC007471CF /* sonido_click.mp3 */,
+				1BD3F9C41CDFBF8C005F6A84 /* Segoe_Print.ttf */,
 			);
 			name = Ressources;
 			sourceTree = "<group>";
@@ -798,17 +807,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B745D7D1CE1B6C90007DB44 /* urwbookmanl.ttf in Resources */,
 				1B0F28241CD15C24007A5485 /* LaunchScreen.storyboard in Resources */,
 				1BF9DC571CD46179000609C3 /* Images.xcassets in Resources */,
 				1BF9DC551CD45DC6000609C3 /* menuprinciapal.png in Resources */,
 				1BF9DC511CD458A3000609C3 /* carga.gif in Resources */,
+				1B745D7B1CE1B54D0007DB44 /* Stackyard.ttf in Resources */,
 				1B0F28211CD15C24007A5485 /* Assets.xcassets in Resources */,
+				1B84894E1CDE729A00FD00F6 /* sonido_click.wav in Resources */,
+				1BD3F9C51CDFBF8C005F6A84 /* Segoe_Print.ttf in Resources */,
 				1BF05CD81CD94BC6008FA820 /* pirinola_icono.png in Resources */,
 				1B0F281F1CD15C24007A5485 /* Main.storyboard in Resources */,
 				1B9D8DC41CD1D3D100BB7AD0 /* matura_mt.ttf in Resources */,
 				1B759EE01CDD51F600DF5F3B /* flecha_atras.png in Resources */,
 				1BF9DC531CD45DB6000609C3 /* carrocompras.png in Resources */,
-				1B53F9371CDC5FAC007471CF /* sonido_click.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,7 +16,11 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
     @IBOutlet weak var tuPedidoLabel: UILabel!
     @IBOutlet weak var botonAtras: UIButton!
     @IBOutlet weak var botonMenuPrincipal: UIButton!
+    @IBOutlet weak var total: UILabel!
+    @IBOutlet weak var totalValor: UILabel!
+    @IBOutlet weak var domicilio: UILabel!
     
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var anchoCelda : CGFloat!
     var altoCelda : CGFloat!
@@ -34,6 +38,17 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         background.frame = CGRect(x: 0, y: 20, width: self.view.frame.width, height: self.tuPedidoLabel.frame.height)
         
         self.tuPedidoLabel.backgroundColor = UIColor.clearColor()
+        self.tuPedidoLabel.font = UIFont(name: "Matura MT Script Capitals", size: AppUtil.sizeTituloSubcategoria)
+        
+        let colorRojo : UIColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
+        self.total.textColor = colorRojo
+        self.total.font = UIFont(name: "Stackyard PERSONAL USE", size: 24)
+        
+        self.totalValor.textColor = colorRojo
+        self.totalValor.font = UIFont(name: "URW Bookman L", size: 25)
+        
+        self.domicilio.textColor = colorRojo
+        self.domicilio.font = UIFont(name: "Segoe Print", size: 12)
         
         self.view.layer.insertSublayer(background, atIndex: 0)
         
@@ -71,7 +86,7 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
             
         self.anchoCelda = totalWidth-8
         self.altoCelda = totalHeight-10
-        self.tamanoCelda = CGSizeMake(totalWidth-8, totalHeight-10)
+        self.tamanoCelda = CGSizeMake(self.anchoCelda, self.altoCelda)
     }
     
     
@@ -96,8 +111,10 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
+        let itemCarrito = AppUtil.listaCarro[indexPath.row]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cellpedido", forIndexPath: indexPath) as! CollectionViewCellPedido
         
+        cell.urlimagen = itemCarrito.imagen
         let cargandoProducto = UIImageView(image: self.imagenPlaceholder)
         
         let tamCargandoProducto = self.altoCelda/4
@@ -105,23 +122,21 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         cargandoProducto.frame = CGRect(x: (self.anchoCelda/2)-(tamCargandoProducto/2), y: (self.altoCelda/2)-(tamCargandoProducto/2), width: tamCargandoProducto, height: tamCargandoProducto)
         
         cell.addSubview(cargandoProducto)
-        
-        let urlaux = NSURL(string: AppUtil.listaCarro[indexPath.row].imagen!)
-        let url = urlaux
-        if let image = url!.cachedImage {
+       
+        if let image = itemCarrito.imagen!.cachedImage {
             // Cached: set immediately.
             cargandoProducto.image = nil
             cargandoProducto.hidden = true
-            cell.imagen.image = image
+            cell.imagen.image = UIImage(data: image)
             cell.imagen.alpha = 1
         } else {
             // Not cached, so load then fade it in.
             cell.imagen.alpha = 0
-            url!.fetchImage { image in
+            itemCarrito.imagen!.fetchImage { image in
                 // Check the cell hasn't recycled while loading.
-                if url == urlaux {
+                if cell.urlimagen == itemCarrito.imagen {
                     
-                    cell.imagen.image = image
+                    cell.imagen.image = UIImage(data:image)
                     UIView.animateWithDuration(0.3) {
                         cargandoProducto.image = nil
                         cargandoProducto.hidden = true

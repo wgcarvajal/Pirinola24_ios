@@ -12,4 +12,7 @@ class CollectionViewCellPedido: UICollectionViewCell
 {
     
     @IBOutlet weak var imagen: UIImageView!
+    
+    var urlimagen : NSURL?
+    
 }

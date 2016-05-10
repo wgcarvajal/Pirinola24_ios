@@ -14,8 +14,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource,Comunicac
     var pageTitles : NSArray!
     var sideBar : SideBar = SideBar()
     
-    var backendless = Backendless.sharedInstance()
-    
+    var backendless = Backendless.sharedInstance()    
     
     
     override func viewDidLoad()
@@ -28,8 +27,35 @@ class ViewController: UIViewController, UIPageViewControllerDataSource,Comunicac
         background.frame = self.view.bounds
         
         self.view.layer.insertSublayer(background, atIndex: 0)
-        
+        calcularTamanos()
         loadDatosRemotos()
+    }
+    
+    
+    func calcularTamanos()
+    {
+        switch UIDevice.currentDevice().userInterfaceIdiom
+        {
+            case .Phone:
+                
+                print("es iphone")
+                AppUtil.sizeTituloSubcategoria = 21.0
+                AppUtil.sizeOpcionMenu = 21.0
+                AppUtil.altoCeldaOpcionMenu = 40.0
+            
+            break
+        
+            case .Pad:
+                AppUtil.sizeTituloSubcategoria = 30.0
+                AppUtil.sizeOpcionMenu = 45.0
+                AppUtil.altoCeldaOpcionMenu = 70.0
+
+            break
+            
+            default:
+                
+            break
+        }
     }
     
     func loadDatosRemotos()

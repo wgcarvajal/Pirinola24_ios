@@ -10,13 +10,13 @@ import UIKit
 
 extension NSURL
 {
-    typealias ImageCacheCompletion = UIImage -> Void
+    typealias ImageCacheCompletion = NSData -> Void
     
     /// Retrieves a pre-cached image, or nil if it isn't cached.
     /// You should call this before calling fetchImage.
-    var cachedImage: UIImage? {
-        return AppUtil.imagenCache.objectForKey(
-            absoluteString) as? UIImage
+    var cachedImage: NSData? {
+        return AppUtil.cache.objectForKey(
+            absoluteString) as? NSData
     }
     
     /// Fetches the image from the network.
@@ -27,14 +27,14 @@ extension NSURL
         let task = NSURLSession.sharedSession().dataTaskWithURL(self) {
             data, response, error in
             if error == nil {
-                if let  data = data,
-                    image = UIImage(data: data) {
-                    AppUtil.imagenCache.setObject(
-                        image,
+                if let  data = data
+                {
+                    AppUtil.cache.setObject(
+                        data,
                         forKey: self.absoluteString,
                         cost: data.length)
                     dispatch_async(dispatch_get_main_queue()) {
-                        completion(image)
+                        completion(data)
                     }
                 }
             }

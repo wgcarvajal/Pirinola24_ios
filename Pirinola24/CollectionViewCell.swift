@@ -16,52 +16,62 @@ class CollectionViewCell: UICollectionViewCell
     
     var objectId : String?
     var precio : Int = 0
-    var urlimagen : String?
+    var urlimagen : NSURL?
     var nombreProducto : String?
     var agregarBtn : UIButton?
     var conteo : UIButton?
     var disminuirBtn : UIButton?
-    var audioPlayer = AVAudioPlayer()
+    var placeholder : UIImageView!
+    
+    
+    func agregarPlaceholder(ph:UIImageView)
+    {
+        self.placeholder = ph
+        self.addSubview(self.placeholder!)
+    }
     
     func iniciarBotones(widthBoton:CGFloat,ubicacionInicial:CGFloat , espacio: CGFloat)
     {
-        if agregarBtn == nil
+        if self.agregarBtn == nil
         {
-            agregarBtn = UIButton(type: .Custom)
-            agregarBtn!.layer.cornerRadius = 0.5 * widthBoton
-            agregarBtn!.frame = CGRectMake(0, ubicacionInicial, widthBoton, widthBoton)
-            agregarBtn!.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 187/255)
-            agregarBtn!.addTarget(self, action: #selector(clickAgregar), forControlEvents: .TouchUpInside)
-            agregarBtn!.setTitle("+", forState: UIControlState.Normal)
-            agregarBtn!.setTitleColor(UIColor.yellowColor(), forState: UIControlState.Normal)
-            addSubview(agregarBtn!)
-        }
-        
-        if conteo == nil
-        {
-            conteo = UIButton(type: .Custom)
-            conteo!.layer.cornerRadius = 0.5 * widthBoton
-            conteo!.frame = CGRectMake(widthBoton + espacio, ubicacionInicial, widthBoton, widthBoton)
-            conteo!.backgroundColor = UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 187/255)
-            conteo!.setTitleColor(UIColor.yellowColor(), forState:  UIControlState.Normal)
-            conteo!.hidden = true
-            addSubview(conteo!)
+            self.agregarBtn = UIButton(type: .Custom)
+            self.agregarBtn!.layer.cornerRadius = 0.5 * widthBoton
+            self.agregarBtn!.frame = CGRectMake(0, ubicacionInicial, widthBoton, widthBoton)
+            self.agregarBtn!.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 187/255)
+            self.agregarBtn!.addTarget(self, action: #selector(clickAgregar), forControlEvents: .TouchUpInside)
+            self.agregarBtn!.setTitle("+", forState: UIControlState.Normal)
+            self.agregarBtn!.setTitleColor(UIColor.yellowColor(), forState: UIControlState.Normal)
             
         }
         
-        if disminuirBtn == nil
+        if self.conteo == nil
         {
-            disminuirBtn = UIButton(type: .Custom)
-            disminuirBtn!.layer.cornerRadius = 0.5 * widthBoton
-            disminuirBtn!.frame = CGRectMake((widthBoton * 2) + (espacio * 2), ubicacionInicial, widthBoton, widthBoton)
-            disminuirBtn!.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 187/255)
-            disminuirBtn!.addTarget(self, action: #selector(clickDisminuir), forControlEvents: .TouchUpInside)
-            disminuirBtn!.setTitle("-", forState: UIControlState.Normal)
-            disminuirBtn!.setTitleColor(UIColor.yellowColor(), forState: UIControlState.Normal)
-            disminuirBtn!.hidden = true
-            addSubview(disminuirBtn!)
+            self.conteo = UIButton(type: .Custom)
+            self.conteo!.layer.cornerRadius = 0.5 * widthBoton
+            self.conteo!.frame = CGRectMake(widthBoton + espacio, ubicacionInicial, widthBoton, widthBoton)
+            self.conteo!.backgroundColor = UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 187/255)
+            self.conteo!.setTitleColor(UIColor.yellowColor(), forState:  UIControlState.Normal)
+            
+            
         }
         
+        if self.disminuirBtn == nil
+        {
+            self.disminuirBtn = UIButton(type: .Custom)
+            self.disminuirBtn!.layer.cornerRadius = 0.5 * widthBoton
+            self.disminuirBtn!.frame = CGRectMake((widthBoton * 2) + (espacio * 2), ubicacionInicial, widthBoton, widthBoton)
+            self.disminuirBtn!.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 187/255)
+            self.disminuirBtn!.addTarget(self, action: #selector(clickDisminuir), forControlEvents: .TouchUpInside)
+            self.disminuirBtn!.setTitle("-", forState: UIControlState.Normal)
+            self.disminuirBtn!.setTitleColor(UIColor.yellowColor(), forState: UIControlState.Normal)
+            
+        }
+        self.conteo!.hidden = true
+        self.disminuirBtn!.hidden = true
+        addSubview(self.disminuirBtn!)
+        addSubview(self.conteo!)
+        addSubview(self.agregarBtn!)
+        self.inicializarContadores()
         
     }
     
@@ -125,19 +135,36 @@ class CollectionViewCell: UICollectionViewCell
     
     func reproducirSonidoClick()
     {
-        let pianoSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("sonido_click", ofType: "mp3")!)
+        AppUtil.audioPlayer.numberOfLoops = 1
+        AppUtil.audioPlayer.prepareToPlay()
+        AppUtil.audioPlayer.play()
+    }
+    
+    func inicializarContadores()
+    {
         
-        do{
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+           
+            var cantidad : Int = 0
+            for itemCarrito  in  AppUtil.listaCarro
+            {
+                if itemCarrito.objectId == self.objectId
+                {
+                    cantidad = itemCarrito.cantidad
+                    break
+                }
+            }
             
-           try audioPlayer =  AVAudioPlayer(contentsOfURL: pianoSound)
+            dispatch_async(dispatch_get_main_queue()) {
+                if cantidad > 0
+                {
+                    self.conteo?.setTitle(String(cantidad), forState: UIControlState.Normal)
+                    self.disminuirBtn?.hidden = false
+                    self.conteo?.hidden = false
+                }
+            }
         }
-        catch
-        {
-            print("error archivo")
-        }
-        
-        self.audioPlayer.prepareToPlay()
-        self.audioPlayer.play()
+
     }
     
     

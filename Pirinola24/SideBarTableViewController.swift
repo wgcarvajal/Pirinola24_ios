@@ -52,9 +52,6 @@ class SideBarTableViewController: UITableViewController {
             cell!.selectedBackgroundView = selectedView
         }
         
-        
-        
-        
         if(indexPath.row == 0)
         {
             let logo = UIImage(named: "pirinola_icono.png")
@@ -79,7 +76,7 @@ class SideBarTableViewController: UITableViewController {
         else
         {
             cell!.textLabel!.text = tableData[indexPath.row]
-            cell!.textLabel?.font = UIFont(name: "Matura MT Script Capitals", size: 20.0)
+            cell!.textLabel?.font = UIFont(name: "Matura MT Script Capitals", size: AppUtil.sizeOpcionMenu)
             cell!.textLabel!.textColor = UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1)
         }
         
@@ -93,7 +90,7 @@ class SideBarTableViewController: UITableViewController {
             return self.altoLogo
         }
         
-        return 45.0
+        return AppUtil.altoCeldaOpcionMenu
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
