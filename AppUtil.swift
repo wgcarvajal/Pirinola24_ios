@@ -9,6 +9,7 @@ struct AppUtil
     static var altoCeldaOpcionMenu : CGFloat = 0.0
     static var data = Array<Producto>()
     static var listaSubcategorias = Array<Subcategoria>()
+    static var listaAnuncios = Array<Anuncio>()
     static var listaCarro = Array<ItemCarrito>()
     static var audioPlayer : AVAudioPlayer = {
         

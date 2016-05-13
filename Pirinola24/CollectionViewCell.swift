@@ -32,8 +32,7 @@ class CollectionViewCell: UICollectionViewCell
     
     func iniciarBotones(widthBoton:CGFloat,ubicacionInicial:CGFloat , espacio: CGFloat)
     {
-        if self.agregarBtn == nil
-        {
+            print("entro")
             self.agregarBtn = UIButton(type: .Custom)
             self.agregarBtn!.layer.cornerRadius = 0.5 * widthBoton
             self.agregarBtn!.frame = CGRectMake(0, ubicacionInicial, widthBoton, widthBoton)
@@ -41,22 +40,18 @@ class CollectionViewCell: UICollectionViewCell
             self.agregarBtn!.addTarget(self, action: #selector(clickAgregar), forControlEvents: .TouchUpInside)
             self.agregarBtn!.setTitle("+", forState: UIControlState.Normal)
             self.agregarBtn!.setTitleColor(UIColor.yellowColor(), forState: UIControlState.Normal)
-            
-        }
+            addSubview(self.agregarBtn!)
         
-        if self.conteo == nil
-        {
+        
+    
             self.conteo = UIButton(type: .Custom)
             self.conteo!.layer.cornerRadius = 0.5 * widthBoton
             self.conteo!.frame = CGRectMake(widthBoton + espacio, ubicacionInicial, widthBoton, widthBoton)
             self.conteo!.backgroundColor = UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 187/255)
             self.conteo!.setTitleColor(UIColor.yellowColor(), forState:  UIControlState.Normal)
+            addSubview(self.conteo!)
             
-            
-        }
-        
-        if self.disminuirBtn == nil
-        {
+       
             self.disminuirBtn = UIButton(type: .Custom)
             self.disminuirBtn!.layer.cornerRadius = 0.5 * widthBoton
             self.disminuirBtn!.frame = CGRectMake((widthBoton * 2) + (espacio * 2), ubicacionInicial, widthBoton, widthBoton)
@@ -64,15 +59,27 @@ class CollectionViewCell: UICollectionViewCell
             self.disminuirBtn!.addTarget(self, action: #selector(clickDisminuir), forControlEvents: .TouchUpInside)
             self.disminuirBtn!.setTitle("-", forState: UIControlState.Normal)
             self.disminuirBtn!.setTitleColor(UIColor.yellowColor(), forState: UIControlState.Normal)
+            addSubview(self.disminuirBtn!)
             
-        }
+            
+       
         self.conteo!.hidden = true
         self.disminuirBtn!.hidden = true
-        addSubview(self.disminuirBtn!)
-        addSubview(self.conteo!)
-        addSubview(self.agregarBtn!)
         self.inicializarContadores()
         
+    }
+    
+    func finalizarBotones()
+    {
+        if(self.agregarBtn != nil)
+        {
+            self.agregarBtn?.removeFromSuperview()
+            self.disminuirBtn?.removeFromSuperview()
+            self.conteo?.removeFromSuperview()
+        }
+        self.agregarBtn = nil
+        self.disminuirBtn = nil
+        self.conteo = nil
     }
     
     func clickAgregar(sender: AnyObject)

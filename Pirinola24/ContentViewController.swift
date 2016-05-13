@@ -12,14 +12,13 @@ protocol ComunicacionControllerPrincipal
 {
     func abrirMenuPrincipal()
     func irPedido()
+    func mostrarDescripcionProducto(nombreProducto:String,descripcionProducto:String)
 }
 
 class ContentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource
 {
-   
-    
-    @IBOutlet weak var subcategoria: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet  var subcategoria: UILabel!
+    @IBOutlet  var collectionView: UICollectionView!
     
     var pageIndex: Int!
     var subcategoriaTitulo : String?
@@ -35,19 +34,12 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
     var tamBotoncelda : CGFloat?
     var espacioBotonCelda : CGFloat?
     
-    var alertView: UIView!
-    var cerrar_button: UIButton!
-    var cancel_button: UIButton!
-    var tituProducto : UILabel!
-    var descripcion:UILabel!
-    
-    
+    var imagenpublicidad : UIImageView?
     
     // MARK: - funciones propias del controlador
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         let background = CAGradientLayer().rojoDegradado()
         background.frame = CGRect(x: 0, y: 20, width: self.view.frame.width, height: self.subcategoria.frame.height)        
@@ -58,12 +50,20 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.subcategoria.font = UIFont(name: "Matura MT Script Capitals", size: AppUtil.sizeTituloSubcategoria)
 
         self.subcategoria.backgroundColor = UIColor.clearColor()
-        self.imagenPlaceholder = UIImage.gifWithName("carga")
-        self.cargarDatos()
-        self.fijar_tamanoCelda()
-        self.fijar_espacio_entre_celdas()
-        self.fijar_tamano_boton_celda()
-        self.creandoDialogDescripcionProducto()
+        
+        if self.tipoFrament == 3
+        {
+            self.iniciarVistaPubicitaria()
+        }
+        else
+        {
+            self.imagenPlaceholder = UIImage.gifWithName("carga")
+            self.cargarDatos()
+            self.fijar_tamanoCelda()
+            self.fijar_espacio_entre_celdas()
+            self.fijar_tamano_boton_celda()
+        }   
+        
         
         // Do any additional setup after loading the view.
         
@@ -75,6 +75,131 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
      // MARK: - funciones de la logica de negocio
+    
+    func iniciarVistaPubicitaria()
+    {
+        self.imagenpublicidad = UIImageView(frame : CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 95))
+        
+        
+        self.collectionView.removeFromSuperview()
+        self.collectionView = nil
+        
+        self.view.addSubview(imagenpublicidad!)
+        
+        self.cargarAnuncio()
+        
+    }
+    
+    func cargarAnuncio()
+    {
+        var anuncio : Anuncio?
+        for a in AppUtil.listaAnuncios
+        {
+            if a.subcategoria == self.subcategoriaId
+            {
+                anuncio = a
+                break
+            }
+        }
+        
+        if anuncio == nil
+        {
+            
+            self.cargarAnuncioBackendless()
+            
+        }
+        else
+        {
+            if let image =  NSURL(string: (anuncio?.urlImagen)!)?.cachedImage
+            {
+                self.imagenpublicidad?.image = UIImage(data: image)
+                self.imagenpublicidad?.alpha = 1
+            }
+            else
+            {
+                self.imagenpublicidad?.alpha = 0
+                NSURL(string: (anuncio?.urlImagen)!)?.fetchImage { image in
+                 
+                    self.imagenpublicidad?.image = UIImage(data: image)
+                    UIView.animateWithDuration(0.3)
+                    {
+                        
+                        self.imagenpublicidad?.alpha = 1
+                        
+                    }
+                    
+                }
+            }
+            
+        }
+        
+        
+        
+    }
+    
+    func cargarAnuncioBackendless()
+    {
+        let backendless = Backendless.sharedInstance()
+        var anuncioSelect = Array<String>()
+        anuncioSelect.append("objectId")
+        anuncioSelect.append("urlImagen")
+        anuncioSelect.append("subcategoria")
+        
+        
+        let dataQueryAnuncio = BackendlessDataQuery()
+        let queryOptionAnuncio = BackendlessDataQuery().queryOptions
+        dataQueryAnuncio.properties = anuncioSelect
+        
+        queryOptionAnuncio.pageSize = 100
+        dataQueryAnuncio.queryOptions = queryOptionAnuncio
+        
+        
+        let queryAnuncio = backendless.data.of(Anuncio.ofClass())
+        
+        queryAnuncio.find(dataQueryAnuncio,
+                    response: { (result: BackendlessCollection!) -> Void in
+                        
+                    if(result.getCurrentPage().count > 0)
+                    {
+                        let anuncio : Anuncio? = result.getCurrentPage()[0] as? Anuncio
+                        AppUtil.listaAnuncios.append(anuncio!)
+                        
+                        
+                        if let image =  NSURL(string: (anuncio!.urlImagen)!)?.cachedImage
+                        {
+                            self.imagenpublicidad?.image = UIImage(data: image)
+                            self.imagenpublicidad?.alpha = 1
+                        }
+                        else
+                        {
+                            self.imagenpublicidad?.alpha = 0
+                            NSURL(string: (anuncio?.urlImagen)!)?.fetchImage { image in
+                                
+                                self.imagenpublicidad?.image = UIImage(data: image)
+                                UIView.animateWithDuration(0.3)
+                                {
+                                    
+                                    self.imagenpublicidad?.alpha = 1
+                                    
+                                }
+                                
+                            }
+                        }
+
+                        
+                    }
+                        
+                        
+                    
+            },
+            error: { (fault: Fault!) -> Void in
+            print("Server reported an error: \(fault)")
+                
+        })
+
+        
+        
+    }
     
     func cargarDatos()
     {
@@ -137,72 +262,8 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
     }
     
-    func creandoDialogDescripcionProducto()
-    {
-        alertView = UIView(frame: CGRect(x: self.view.center.x - ((self.view.frame.width - 60) / 2), y: self.view.center.y - ((self.view.frame.width - 60) / 2), width: self.view.frame.width - 60, height: self.view.frame.width - 60))
-        
-        alertView.backgroundColor = UIColor.whiteColor()
-        
-        tituProducto = UILabel(frame: CGRect(x: 0 , y: 0, width: alertView.frame.width, height: 30))
-        tituProducto.backgroundColor = UIColor.clearColor()
-        tituProducto.textAlignment = NSTextAlignment.Center
-        tituProducto.font = UIFont(name:"Matura MT Script Capitals", size: 21)
-        tituProducto.textColor = UIColor.whiteColor()
-        
-        
-        let fondotituloproducto = CAGradientLayer().rojoDegradado()
-        fondotituloproducto.frame = CGRect(x: 0, y: 0, width: alertView.frame.width, height: 30)
-        
-
-        descripcion = UILabel(frame: CGRect(x: 5, y: 30, width: alertView.frame.width-10, height: alertView.frame.height-30 - 35))
-        descripcion.textColor = UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1)
-        descripcion.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        descripcion.numberOfLines = 7
-        descripcion.textAlignment = NSTextAlignment.Center
-        descripcion.backgroundColor = UIColor.clearColor()
-        descripcion.font = UIFont(name: "Segoe Print",size: 14)
-        
-        
-        let fondoBoton = CAGradientLayer().amarilloDegradado()
-        fondoBoton.frame =  CGRect(x: 0, y: 0, width: 60, height: 30)
-        cerrar_button = UIButton(frame: CGRect(x: (alertView.frame.width / 2) - 30, y: alertView.frame.height - 35, width: 60, height: 30))
-        cerrar_button.backgroundColor = UIColor.clearColor()
-        cerrar_button.setTitle("Cerrar", forState: UIControlState.Normal)
-        cerrar_button.titleLabel?.font = UIFont(name:"Matura MT Script Capitals",size: 14.0)
-        cerrar_button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        cerrar_button.addTarget(self, action: #selector(onClick_cerrar), forControlEvents: UIControlEvents.TouchUpInside)
-        cerrar_button.layer.insertSublayer(fondoBoton, atIndex: 0)
-        
-        
-        
-        
-        alertView.layer.insertSublayer(fondotituloproducto, atIndex: 0)
-        alertView.addSubview(tituProducto)
-        alertView.addSubview(descripcion)
-        alertView.addSubview(cerrar_button)
-        
-        
-        
-    }
     
-    func onClick_cerrar()
-    {
-        cerrar_button.alpha = 0.5
-        
-        UIView.animateWithDuration(0.5, animations:{ ()-> Void in
-            
-            self.alertView.alpha = 0
-            self.tituProducto.alpha = 0
-            self.cerrar_button.alpha = 0
-            self.descripcion.alpha = 0
-            
-        }){ (Bool) -> Void in
-         
-            self.alertView.removeFromSuperview()
-            
-        }
-        
-    }
+    
     
      // MARK: - funciones del collectionview
     
@@ -213,8 +274,7 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
-    {
-        
+    {        
         let producto = listaProductos[indexPath.row]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! CollectionViewCell
         
@@ -222,6 +282,7 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         cell.objectId = producto.objectId
         cell.precio = producto.precio
         cell.urlimagen = NSURL(string: producto.imgFile!)
+        cell.finalizarBotones()
         cell.iniciarBotones(self.tamBotoncelda!,ubicacionInicial: (self.altoCelda-(self.tamBotoncelda! * 2)), espacio: self.espacioBotonCelda!)
         
         if cell.placeholder == nil
@@ -278,33 +339,9 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
         
-        if !alertView.isDescendantOfView(self.view)
-        {
-            tituProducto.text = listaProductos[indexPath.row].prodnombre!
-            descripcion.text = listaProductos[indexPath.row].proddescripcion!
-            self.alertView.alpha = 1
-            self.tituProducto.alpha = 1
-            self.cerrar_button.alpha = 1
-            self.descripcion.alpha = 1
-            self.view.addSubview(alertView)
-            
-        }
-        else
-        {
-            UIView.animateWithDuration(0.5, animations:{ ()-> Void in
-                
-                self.alertView.alpha = 0
-                self.tituProducto.alpha = 0
-                self.cerrar_button.alpha = 0
-                self.descripcion.alpha = 0
-                
-            }){ (Bool) -> Void in
-                
-                self.alertView.removeFromSuperview()
-                
-            }
-        }
-        
+            let nombre = listaProductos[indexPath.row].prodnombre!
+            let descripcion = listaProductos[indexPath.row].proddescripcion!
+            self.comunicacionControllerPrincipal.mostrarDescripcionProducto(nombre, descripcionProducto: descripcion)        
     }
     
     
@@ -346,5 +383,11 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.comunicacionControllerPrincipal!.irPedido()
     }
     
-
+    override func viewWillAppear(animated: Bool) {
+        if collectionView != nil
+        {
+            collectionView.reloadData()
+        }
+        
+    }
 }

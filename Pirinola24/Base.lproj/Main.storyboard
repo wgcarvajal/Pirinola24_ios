@@ -9,7 +9,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Pirinola24" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Pirinola24" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -26,7 +26,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1058" y="255"/>
+            <point key="canvasLocation" x="1870" y="255"/>
         </scene>
         <!--Pedido View Controller-->
         <scene sceneID="TbW-aH-w9j">
@@ -178,6 +178,7 @@
                         <outlet property="botonMenuPrincipal" destination="MdU-4w-BW1" id="U9F-XB-Q0K"/>
                         <outlet property="collectionView" destination="5Lp-WW-vYf" id="eVL-km-eW7"/>
                         <outlet property="domicilio" destination="Y3u-yf-wCS" id="gWm-GG-xaH"/>
+                        <outlet property="realizarPedido" destination="jQw-sz-Qd7" id="EBF-PP-ANf"/>
                         <outlet property="total" destination="2C1-jw-XeS" id="Qra-a5-CpV"/>
                         <outlet property="totalValor" destination="C8c-wg-8dW" id="Lz8-ub-hkP"/>
                         <outlet property="tuPedidoLabel" destination="kEG-DL-Jma" id="MpU-Yu-NSX"/>
@@ -193,7 +194,7 @@
                 <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="IMf-vC-aGK" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oZ6-qJ-aWf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1886" y="241"/>
+            <point key="canvasLocation" x="2698" y="241"/>
         </scene>
         <!--Content View Controller-->
         <scene sceneID="sIH-bV-SKk">
@@ -313,7 +314,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ugb-jG-BVo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="286" y="249"/>
+            <point key="canvasLocation" x="1098" y="249"/>
         </scene>
     </scenes>
     <resources>

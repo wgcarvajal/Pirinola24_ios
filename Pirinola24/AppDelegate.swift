@@ -34,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let colorBackground = UIColor(red: 155/255, green: 3/255, blue: 16/255 , alpha: 1)
         pageController.backgroundColor = colorBackground
         
+        
+        
                 
         return true
     }
