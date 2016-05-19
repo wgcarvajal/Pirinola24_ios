@@ -161,10 +161,9 @@ class CollectionViewCellPedido: UICollectionViewCell
     
     func reproducirSonidoClick()
     {
-        let audioPlayer =  try! AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("sonido_click", ofType: "wav")!))
-        audioPlayer.numberOfLoops = 1
-        audioPlayer.prepareToPlay()
-        audioPlayer.play()
+        AppUtil.audioPlayer.numberOfLoops = 1
+        AppUtil.audioPlayer.prepareToPlay()
+        AppUtil.audioPlayer.play()
     }
 
     
