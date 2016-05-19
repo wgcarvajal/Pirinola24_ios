@@ -20,8 +20,12 @@
 		1B757C001CE40DEF00B5DE51 /* HRToast+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B757BFF1CE40DEF00B5DE51 /* HRToast+UIView.swift */; };
 		1B759EE01CDD51F600DF5F3B /* flecha_atras.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B759EDF1CDD51F600DF5F3B /* flecha_atras.png */; };
 		1B759EE21CDD61B100DF5F3B /* CollectionViewCellPedido.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B759EE11CDD61B100DF5F3B /* CollectionViewCellPedido.swift */; };
+		1B75F4D31CEBF9F8009019BF /* ContactoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B75F4D11CEBF9F8009019BF /* ContactoViewController.swift */; };
+		1B75F4D61CEC0A7B009019BF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B75F4D51CEC0A7B009019BF /* LoginViewController.swift */; };
 		1B78671D1CE3B3BD00053359 /* pirinola_introgif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1B78671C1CE3B3BD00053359 /* pirinola_introgif.gif */; };
+		1B78B3FF1CE96CE800B7DC7D /* UITextViewScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B78B3FE1CE96CE500B7DC7D /* UITextViewScroll.swift */; };
 		1B84894E1CDE729A00FD00F6 /* sonido_click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1B84894D1CDE729A00FD00F6 /* sonido_click.wav */; };
+		1B8B34FB1CEABE230066E585 /* Contacto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8B34FA1CEABE230066E585 /* Contacto.swift */; };
 		1B9D8DC41CD1D3D100BB7AD0 /* matura_mt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B9D8DC31CD1D3D100BB7AD0 /* matura_mt.ttf */; };
 		1BA742311CD9162C00523F57 /* SideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA7422F1CD9162C00523F57 /* SideBar.swift */; };
 		1BA742321CD9162C00523F57 /* SideBarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA742301CD9162C00523F57 /* SideBarTableViewController.swift */; };
@@ -72,8 +76,12 @@
 		1B757BFF1CE40DEF00B5DE51 /* HRToast+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HRToast+UIView.swift"; sourceTree = "<group>"; };
 		1B759EDF1CDD51F600DF5F3B /* flecha_atras.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flecha_atras.png; sourceTree = "<group>"; };
 		1B759EE11CDD61B100DF5F3B /* CollectionViewCellPedido.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCellPedido.swift; sourceTree = "<group>"; };
+		1B75F4D11CEBF9F8009019BF /* ContactoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactoViewController.swift; sourceTree = "<group>"; };
+		1B75F4D51CEC0A7B009019BF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1B78671C1CE3B3BD00053359 /* pirinola_introgif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = pirinola_introgif.gif; sourceTree = "<group>"; };
+		1B78B3FE1CE96CE500B7DC7D /* UITextViewScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextViewScroll.swift; sourceTree = "<group>"; };
 		1B84894D1CDE729A00FD00F6 /* sonido_click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sonido_click.wav; sourceTree = "<group>"; };
+		1B8B34FA1CEABE230066E585 /* Contacto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacto.swift; sourceTree = "<group>"; };
 		1B9D8DC31CD1D3D100BB7AD0 /* matura_mt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = matura_mt.ttf; sourceTree = "<group>"; };
 		1BA7422F1CD9162C00523F57 /* SideBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBar.swift; sourceTree = "<group>"; };
 		1BA742301CD9162C00523F57 /* SideBarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewController.swift; sourceTree = "<group>"; };
@@ -331,6 +339,8 @@
 			isa = PBXGroup;
 			children = (
 				1B0F28191CD15C24007A5485 /* AppDelegate.swift */,
+				1B75F4D11CEBF9F8009019BF /* ContactoViewController.swift */,
+				1B75F4D51CEC0A7B009019BF /* LoginViewController.swift */,
 				1B0F281B1CD15C24007A5485 /* ViewController.swift */,
 				1BA7422F1CD9162C00523F57 /* SideBar.swift */,
 				1BA742301CD9162C00523F57 /* SideBarTableViewController.swift */,
@@ -737,6 +747,7 @@
 				1BF976B31CD1A4300042C585 /* Subcategoria.swift */,
 				1B68C4BB1CDBCE5500709F4D /* ItemCarrito.swift */,
 				1BC1723D1CE4CBD0006765D6 /* Anuncio.swift */,
+				1B8B34FA1CEABE230066E585 /* Contacto.swift */,
 			);
 			name = modelo;
 			sourceTree = "<group>";
@@ -748,6 +759,7 @@
 				1BDD585D1CD5865A00228EE7 /* Gradiante_Layer.swift */,
 				1B4721D31CD6842700216DC6 /* NS_URL.swift */,
 				1B757BFF1CE40DEF00B5DE51 /* HRToast+UIView.swift */,
+				1B78B3FE1CE96CE500B7DC7D /* UITextViewScroll.swift */,
 			);
 			name = util;
 			sourceTree = "<group>";
@@ -845,15 +857,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B75F4D61CEC0A7B009019BF /* LoginViewController.swift in Sources */,
 				1BC1723E1CE4CBD0006765D6 /* Anuncio.swift in Sources */,
+				1B75F4D31CEBF9F8009019BF /* ContactoViewController.swift in Sources */,
 				1B53F9391CDC702C007471CF /* PedidoViewController.swift in Sources */,
 				1BF976B21CD199AA0042C585 /* Producto.swift in Sources */,
+				1B8B34FB1CEABE230066E585 /* Contacto.swift in Sources */,
 				1BF9DC591CD467A7000609C3 /* CollectionViewCell.swift in Sources */,
 				1BF9DC4F1CD456FB000609C3 /* UIImage+Gif.swift in Sources */,
 				1B759EE21CDD61B100DF5F3B /* CollectionViewCellPedido.swift in Sources */,
 				1BA742321CD9162C00523F57 /* SideBarTableViewController.swift in Sources */,
 				1BF975D21CD15E410042C585 /* ContentViewController.swift in Sources */,
 				1B757C001CE40DEF00B5DE51 /* HRToast+UIView.swift in Sources */,
+				1B78B3FF1CE96CE800B7DC7D /* UITextViewScroll.swift in Sources */,
 				1B71521E1CE558DD00866F59 /* ViewController.swift in Sources */,
 				1B68C4BC1CDBCE5500709F4D /* ItemCarrito.swift in Sources */,
 				1BDD585E1CD5865A00228EE7 /* Gradiante_Layer.swift in Sources */,

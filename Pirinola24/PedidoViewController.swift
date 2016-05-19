@@ -46,14 +46,26 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        switch UIDevice.currentDevice().userInterfaceIdiom
+        {
+        case .Phone:
+            HRToastFontSize = 12.0
+            break
+            
+        case .Pad:
+            HRToastFontSize = 20.0
+            break
+            
+        default:
+            break
+        }
+        
         let background = CAGradientLayer().rojoDegradado()
         background.frame = CGRect(x: 0, y: 20, width: self.view.frame.width, height: self.tuPedidoLabel.frame.height)
         
         self.tuPedidoLabel.backgroundColor = UIColor.clearColor()
         self.tuPedidoLabel.font = UIFont(name: "Matura MT Script Capitals", size: AppUtil.sizeTituloSubcategoria)
-        
-        
-        
         self.view.layer.insertSublayer(background, atIndex: 0)
         
         let anchoM = self.view.frame.size.width - 50
@@ -274,12 +286,7 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
-    {
-        
-        //print("selecionamos"+listaProductos[indexPath.row].prodnombre!)
-        
-    }
+    
     
     
     
@@ -336,7 +343,7 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         
         fondoTrasparenteAlertView?.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         
-        alertView = UIView(frame: CGRect(x: 0 , y: (self.view.frame.height / 2) - 50, width: self.view.frame.width, height: 100))
+        alertView = UIView(frame: CGRect(x: 0 , y: (self.view.frame.height / 2) - 50, width: self.view.frame.width, height: self.view.frame.height * 0.2))
         
         alertView?.backgroundColor = UIColor.whiteColor()
         alertView?.layer.cornerRadius = 5
@@ -348,7 +355,7 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
     {
         mensaje = UILabel(frame: CGRect(x: (alertView!.frame.width / 2) - ((alertView!.frame.width * 0.55) / 2), y: alertView!.frame.height * 0.1, width: alertView!.frame.width * 0.55, height: alertView!.frame.width * 0.15))
         
-        mensaje?.font = UIFont(name: "Segoe Print", size:14)
+        
         mensaje?.text = "Deseas vaciar el pedido?"
         mensaje?.textColor = UIColor.redColor()
         
@@ -356,6 +363,22 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         iconoMensaje = UIImageView(frame: CGRect(x: (alertView!.frame.width / 2) - (alertView!.frame.width * 0.15) - ((alertView!.frame.width * 0.55) / 2), y: alertView!.frame.height * 0.1, width: alertView!.frame.width * 0.15, height: alertView!.frame.width * 0.15))
         
         iconoMensaje?.image = icono
+        
+        
+        
+        switch UIDevice.currentDevice().userInterfaceIdiom
+        {
+        case .Phone:
+            mensaje?.font = UIFont(name: "Segoe Print", size:14)
+            break
+            
+        case .Pad:
+            mensaje?.font = UIFont(name: "Segoe Print", size:25)
+            break
+            
+        default:
+            break
+        }
         
         alertView?.addSubview(iconoMensaje!)
         alertView?.addSubview(mensaje!)
@@ -374,7 +397,7 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         aceptar_button = UIButton(frame: CGRect(x: (alertView!.frame.width/2) + 5 , y: alertView!.frame.height - (alertView!.frame.height * 0.3) - 5  , width: alertView!.frame.width * 0.4 , height: alertView!.frame.height * 0.3))
         
         aceptar_button?.setTitle("Aceptar", forState: UIControlState.Normal)
-        aceptar_button?.titleLabel?.font = UIFont(name: "Matura MT Script Capitals", size: 16)
+        
         aceptar_button?.titleLabel?.textColor = UIColor.whiteColor()
         
         aceptar_button?.addTarget(self, action: #selector(aceptarVaciarPedido), forControlEvents: .TouchUpInside)
@@ -388,6 +411,25 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         aceptar_button?.layer.insertSublayer(fondobotonAceptar, atIndex: 0)
         alertView?.addSubview(aceptar_button!)
         cancelar_button?.layer.insertSublayer(fondobotonCancelar, atIndex: 0)
+        
+        switch UIDevice.currentDevice().userInterfaceIdiom
+        {
+        case .Phone:
+            aceptar_button?.titleLabel?.font = UIFont(name: "Matura MT Script Capitals", size: 16)
+            cancelar_button?.titleLabel?.font = UIFont(name: "Matura MT Script Capitals", size: 16)
+        break
+            
+        case .Pad:
+            aceptar_button?.titleLabel?.font = UIFont(name: "Matura MT Script Capitals", size: 26)
+            cancelar_button?.titleLabel?.font = UIFont(name: "Matura MT Script Capitals", size: 26)
+            break
+            
+        default:
+            break
+        }
+        
+        
+        
         
         alertView?.addSubview(cancelar_button!)
     }
@@ -425,6 +467,13 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         self.realizarPedido.removeFromSuperview()
         self.realizarPedido = nil
         
+        
+        UIView.hr_setToastThemeColor(color: UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1))
+        UIView.hr_setToastFontColor(color: UIColor.whiteColor())
+        
+        self.view.makeToast(message: "Se ha vaciado el pedido.", duration: 2, position: HRToastPositionCenter)
+        
+        
         administrarDrawerDespuesDeVaciarPedido()
     }
     
@@ -451,8 +500,6 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
     
     func back_to_previus_controller()
     {
-        
-        
         tuPedidoLabel.removeFromSuperview()
         botonAtras.removeFromSuperview()
         if botonMenuPrincipal != nil && botonMenuPrincipal.isDescendantOfView(self.view)
@@ -491,7 +538,8 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         tamBotoncelda = nil
         espacioBotonCelda = nil
         
-        navigationController?.popViewControllerAnimated(true)        
+        AppUtil.contadorUpdateCollectionview = 2
+        dismissViewControllerAnimated(true, completion: nil)
         
     }
     
@@ -537,6 +585,39 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         
     }
     
+    
+    func comprabarMinimoPedido() -> Bool
+    {
+        let valorDomicilio = AppUtil.listaSubcategorias[0].domicilio
+        
+        var valorT = valorDomicilio
+        for itemcarrito in AppUtil.listaCarro
+        {
+            valorT += (itemcarrito.cantidad * itemcarrito.precio)
+        }
+        return  valorT >= AppUtil.listaSubcategorias[0].minimopedido
+        
+    }
+    
+    
+    func realizar_pedido()
+    {
+        if comprabarMinimoPedido()
+        {
+             self.performSegueWithIdentifier("irLogin", sender: nil)    
+        }
+        else
+        {
+            let valorminimoPedido = AppUtil.listaSubcategorias[0].minimopedido
+            let formatter = NSNumberFormatter()
+            formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+            var stringMinimoPedido = formatter.stringFromNumber(valorminimoPedido)
+            stringMinimoPedido = stringMinimoPedido!.stringByReplacingOccurrencesOfString(",", withString: ".", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            UIView.hr_setToastThemeColor(color: UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1))
+            UIView.hr_setToastFontColor(color: UIColor.whiteColor())            
+            self.view.makeToast(message: "Valor minimo del pedido $" + stringMinimoPedido!, duration: 2, position: HRToastPositionCenter)
+        }
+    }
     // MARK: - funciones interfaza menu drawer
     
     
@@ -573,6 +654,13 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         back_to_previus_controller()
     }
     
+    
+    @IBAction func actionRealizarPedido(sender: AnyObject)
+    {
+        realizar_pedido()
+    }
+    
+    
     //MARK: - metodos de interface celda pedido
     
     func actualizarCollectionView()
@@ -604,5 +692,12 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
             self.totalValor.text = "$0"
         }
     }
+    
+    
+    deinit
+    {
+        debugPrint("se va a dealloc pedidoViewController")
+    }
+
     
 }

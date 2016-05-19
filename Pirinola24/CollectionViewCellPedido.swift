@@ -29,6 +29,27 @@ class CollectionViewCellPedido: UICollectionViewCell
     
     func iniciarBotones(widthBoton:CGFloat,ubicacionInicial:CGFloat , espacio: CGFloat)
     {
+        
+        var fontsize: CGFloat = 0.0
+        var fontsizeconteo : CGFloat = 0.0
+        switch UIDevice.currentDevice().userInterfaceIdiom
+        {
+        case .Phone:
+            fontsize = 15.0
+            fontsizeconteo = 12.0
+            break
+            
+        case .Pad:
+            fontsize = 30.0
+            fontsizeconteo = 24.0
+            break
+            
+        default:
+            break
+        }
+
+        
+        
         if self.agregarBtn == nil
         {
             self.agregarBtn = UIButton(type: .Custom)
@@ -37,6 +58,7 @@ class CollectionViewCellPedido: UICollectionViewCell
             self.agregarBtn!.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 187/255)
             self.agregarBtn!.addTarget(self, action: #selector(clickAgregar), forControlEvents: .TouchUpInside)
             self.agregarBtn!.setTitle("+", forState: UIControlState.Normal)
+            self.agregarBtn?.titleLabel?.font = UIFont(name: "Segoe Print", size: fontsize)
             self.agregarBtn!.setTitleColor(UIColor.yellowColor(), forState: UIControlState.Normal)
             
         }
@@ -48,6 +70,7 @@ class CollectionViewCellPedido: UICollectionViewCell
             self.conteo!.layer.cornerRadius = 0.5 * widthBoton
             self.conteo!.frame = CGRectMake(widthBoton + espacio, ubicacionInicial, widthBoton, widthBoton)
             self.conteo!.backgroundColor = UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 187/255)
+            self.conteo!.titleLabel?.font = UIFont(name: "Segoe Print", size: fontsizeconteo)
             self.conteo!.setTitleColor(UIColor.yellowColor(), forState:  UIControlState.Normal)
             
             
@@ -61,6 +84,7 @@ class CollectionViewCellPedido: UICollectionViewCell
             self.disminuirBtn!.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 187/255)
             self.disminuirBtn!.addTarget(self, action: #selector(clickDisminuir), forControlEvents: .TouchUpInside)
             self.disminuirBtn!.setTitle("-", forState: UIControlState.Normal)
+            self.disminuirBtn!.titleLabel?.font = UIFont(name: "Segoe Print", size: fontsize)
             self.disminuirBtn!.setTitleColor(UIColor.yellowColor(), forState: UIControlState.Normal)
             
         }
@@ -137,9 +161,10 @@ class CollectionViewCellPedido: UICollectionViewCell
     
     func reproducirSonidoClick()
     {
-        AppUtil.audioPlayer.numberOfLoops = 1
-        AppUtil.audioPlayer.prepareToPlay()
-        AppUtil.audioPlayer.play()
+        let audioPlayer =  try! AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("sonido_click", ofType: "wav")!))
+        audioPlayer.numberOfLoops = 1
+        audioPlayer.prepareToPlay()
+        audioPlayer.play()
     }
 
     

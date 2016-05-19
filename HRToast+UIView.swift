@@ -40,7 +40,7 @@ let HRToastImageViewHeight:  CGFloat  = 80.0
 // label setting
 let HRToastMaxWidth       :  CGFloat  = 0.8;      // 80% of parent view width
 let HRToastMaxHeight      :  CGFloat  = 0.8;
-let HRToastFontSize       :  CGFloat  = 16.0
+var HRToastFontSize       :  CGFloat  = 16.0
 let HRToastMaxTitleLines              = 0
 let HRToastMaxMessageLines            = 0
 

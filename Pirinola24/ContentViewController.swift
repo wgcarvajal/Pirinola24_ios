@@ -76,6 +76,21 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
     
      // MARK: - funciones de la logica de negocio
     
+    override func viewWillAppear(animated: Bool)
+    {
+        if(collectionView != nil)
+        {
+            if AppUtil.contadorUpdateCollectionview > 0
+            {
+                print("se actualizo la vista")
+                collectionView.reloadData()
+                AppUtil.contadorUpdateCollectionview -= 1
+            }
+            
+        }
+        
+    }
+    
     func iniciarVistaPubicitaria()
     {
         self.imagenpublicidad = UIImageView(frame : CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 95))
@@ -188,17 +203,11 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
 
                         
                     }
-                        
-                        
-                    
             },
             error: { (fault: Fault!) -> Void in
             print("Server reported an error: \(fault)")
                 
         })
-
-        
-        
     }
     
     func cargarDatos()
@@ -221,7 +230,7 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
     
         if self.tipoFrament == 1
         {
-            totalHeight = (self.view.frame.height / 2.5)
+            totalHeight = ((self.view.frame.height - 20 - 40 - 30) / 2.3)
             totalWidth = (self.view.frame.width / 2)
         }
     
@@ -229,7 +238,7 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         {
             if self.tipoFrament == 2
             {
-                totalHeight = (self.view.frame.height / 3)
+                totalHeight = ((self.view.frame.height - 20 - 40 - 30) / 2.8)
                 totalWidth = (self.view.frame.width / 3)
             }
             else
@@ -238,14 +247,15 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
                 totalWidth = (5.0)
             }
         }
-        self.anchoCelda = totalWidth-8
-        self.altoCelda = totalHeight-10
-        self.tamanoCelda = CGSizeMake(totalWidth-8, totalHeight-10)
+        self.anchoCelda = totalWidth - 15
+        self.altoCelda = totalHeight - 10
+        self.tamanoCelda = CGSizeMake(totalWidth - 15, totalHeight - 10)
     }
     
     func fijar_espacio_entre_celdas()
     {
-        self.espacioEntreceldas = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0)
+       
+        self.espacioEntreceldas = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
     }
     
     func fijar_tamano_boton_celda()
@@ -261,9 +271,6 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
             self.espacioBotonCelda = (self.anchoCelda / 8)-3
         }
     }
-    
-    
-    
     
      // MARK: - funciones del collectionview
     
@@ -353,14 +360,16 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         
     }
     
+    
+    
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
         
         
-        return 5
+        return 0
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 5
+        return 0
     }
     
     
@@ -383,11 +392,4 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.comunicacionControllerPrincipal!.irPedido()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        if collectionView != nil
-        {
-            collectionView.reloadData()
-        }
-        
-    }
 }

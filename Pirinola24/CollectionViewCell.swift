@@ -32,13 +32,32 @@ class CollectionViewCell: UICollectionViewCell
     
     func iniciarBotones(widthBoton:CGFloat,ubicacionInicial:CGFloat , espacio: CGFloat)
     {
-            print("entro")
+        
+            var fontsize: CGFloat = 0.0
+            var fontsizeconteo : CGFloat = 0.0
+            switch UIDevice.currentDevice().userInterfaceIdiom
+            {
+                case .Phone:
+                    fontsize = 15.0
+                    fontsizeconteo = 12.0
+                break
+            
+                case .Pad:
+                    fontsize = 30.0
+                    fontsizeconteo = 24.0
+                break
+            
+                default:
+                break
+        }
+        
             self.agregarBtn = UIButton(type: .Custom)
-            self.agregarBtn!.layer.cornerRadius = 0.5 * widthBoton
             self.agregarBtn!.frame = CGRectMake(0, ubicacionInicial, widthBoton, widthBoton)
+            self.agregarBtn!.layer.cornerRadius = 0.5 * widthBoton
             self.agregarBtn!.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 187/255)
             self.agregarBtn!.addTarget(self, action: #selector(clickAgregar), forControlEvents: .TouchUpInside)
             self.agregarBtn!.setTitle("+", forState: UIControlState.Normal)
+            self.agregarBtn?.titleLabel?.font = UIFont(name: "Segoe Print", size: fontsize)
             self.agregarBtn!.setTitleColor(UIColor.yellowColor(), forState: UIControlState.Normal)
             addSubview(self.agregarBtn!)
         
@@ -48,6 +67,7 @@ class CollectionViewCell: UICollectionViewCell
             self.conteo!.layer.cornerRadius = 0.5 * widthBoton
             self.conteo!.frame = CGRectMake(widthBoton + espacio, ubicacionInicial, widthBoton, widthBoton)
             self.conteo!.backgroundColor = UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 187/255)
+            self.conteo!.titleLabel?.font = UIFont(name: "Segoe Print", size: fontsizeconteo)
             self.conteo!.setTitleColor(UIColor.yellowColor(), forState:  UIControlState.Normal)
             addSubview(self.conteo!)
             
@@ -58,6 +78,7 @@ class CollectionViewCell: UICollectionViewCell
             self.disminuirBtn!.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 187/255)
             self.disminuirBtn!.addTarget(self, action: #selector(clickDisminuir), forControlEvents: .TouchUpInside)
             self.disminuirBtn!.setTitle("-", forState: UIControlState.Normal)
+            self.disminuirBtn!.titleLabel?.font = UIFont(name: "Segoe Print", size: fontsize)
             self.disminuirBtn!.setTitleColor(UIColor.yellowColor(), forState: UIControlState.Normal)
             addSubview(self.disminuirBtn!)
             

@@ -37,7 +37,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, Comunica
         
         let background = CAGradientLayer().amarilloDegradado()
         
-        background.frame = self.view.bounds
+        background.frame = CGRect(x: 0, y: 20, width: self.view.frame.width, height: self.view.frame.height - 20)
         
         self.view.layer.insertSublayer(background, atIndex: 0)
         self.calcularTamanos()
@@ -110,7 +110,6 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, Comunica
                 self.imageViewIntro?.removeFromSuperview()
                 self.imageViewIntro = nil
                 self.imagenIntro = nil
-                self.creandoDialogDescripcionProducto()
                 self.loadDatosRemotos()
             }
         }
@@ -339,9 +338,19 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, Comunica
     
     //MARK: - funciones logica de negocio
     
+    
+    
+    func irAcontacto()
+    {
+        
+         self.performSegueWithIdentifier("irContacto", sender: nil)
+        
+        
+    }
+    
     func irApedido()
     {
-        self.performSegueWithIdentifier("irPedido", sender: self)
+        self.performSegueWithIdentifier("irPedido", sender: nil)
     }
     
     
@@ -399,6 +408,14 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, Comunica
         self.fondoTrasparenteAlertView.alpha = 0
         
     }
+    func eliminandoDialogDescripcionProducto()
+    {
+        self.alertView = nil
+        self.tituProducto = nil
+        self.cerrar_button = nil
+        self.descripcion = nil
+        self.fondoTrasparenteAlertView = nil
+    }
     
     func onClick_cerrar()
     {
@@ -415,6 +432,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, Comunica
         }){ (Bool) -> Void in
             
             self.fondoTrasparenteAlertView.removeFromSuperview()
+            self.eliminandoDialogDescripcionProducto()
             
         }
         
@@ -422,6 +440,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, Comunica
     
     func mostrarDescripcionProducto(nombreProducto: String, descripcionProducto: String)
     {
+        self.creandoDialogDescripcionProducto()
         self.tituProducto.text = nombreProducto
         self.descripcion.text = descripcionProducto
         self.view.addSubview(fondoTrasparenteAlertView)
@@ -447,11 +466,19 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, Comunica
                 sideBar.showSideBar(false)
                 irApedido()
             break
+            case 2:
+                sideBar.showSideBar(false)
+                irAcontacto()
+            break
             default:
             break
         }
     }
     
+    
+    override func viewWillAppear(animated: Bool) {
+        print("buenas")
+    }
     
 }
 
