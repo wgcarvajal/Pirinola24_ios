@@ -33,6 +33,7 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>odstemplik.otf</string>
 		<string>urwbookmanl.ttf</string>
 		<string>Stackyard.ttf</string>
 		<string>Segoe_Print.ttf</string>

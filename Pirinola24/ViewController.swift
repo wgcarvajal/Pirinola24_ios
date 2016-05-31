@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPageViewControllerDataSource, ComunicacionControllerPrincipal, SideBarDelegate
+class ViewController: UIViewController, UIPageViewControllerDataSource, ComunicacionControllerPrincipal, ComunicacionPedidoControllerPrincipalController, SideBarDelegate
 {
     var pageViewController : UIPageViewController!
     var pageTitles : NSArray!
@@ -30,6 +30,8 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, Comunica
     var mensajeSinConexion : UILabel?
     var btnVolverACargarVista : UIButton?
     
+    
+    
     override func viewDidLoad()
     {
         
@@ -42,6 +44,16 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, Comunica
         self.view.layer.insertSublayer(background, atIndex: 0)
         self.calcularTamanos()
         self.animacionPantallaInicial()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if(segue.identifier == "irPedido")
+        {
+            let vc = segue.destinationViewController as! PedidoViewController
+            vc.comunicacionPedidoController_PrincipalController = self
+        }
+        
     }
     
     func inicializarMensajeSinconexion()
@@ -125,14 +137,14 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, Comunica
                 
                 print("es iphone")
                 AppUtil.sizeTituloSubcategoria = 21.0
-                AppUtil.sizeOpcionMenu = 21.0
+                AppUtil.sizeOpcionMenu = 17.0
                 AppUtil.altoCeldaOpcionMenu = 40.0
             
             break
         
             case .Pad:
                 AppUtil.sizeTituloSubcategoria = 30.0
-                AppUtil.sizeOpcionMenu = 45.0
+                AppUtil.sizeOpcionMenu = 35.0
                 AppUtil.altoCeldaOpcionMenu = 70.0
 
             break
@@ -193,9 +205,52 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, Comunica
                 queryProducto.find(dataQueryProducto, response:  { (result: BackendlessCollection!) -> Void in
                     
                     AppUtil.data = result.getCurrentPage() as! [Producto]
-                     self.mostrarPagerView()
-                    self.presentWindow!.hideToastActivity()
-                    self.presentWindow = nil
+                    
+                    if self.backendless.userService.currentUser != nil
+                    {
+                        self.backendless.userService.isValidUserToken(
+                            { ( result : AnyObject!) -> () in
+                                print("isValidUserToken (ASYNC): \(result.boolValue)")
+                                
+                                let anchoM = self.view.frame.size.width - 50
+                                let altoL = ((self.view.frame.size.width - 50)/3) + 30
+                                
+                                self.mostrarPagerView()
+                                if result.boolValue == true
+                                {
+                                    self.sideBar = SideBar(sourceView: self.view, menuItems: ["Logo", "Tu Pedido", "Contáctenos","Cerrar Sesión"], anchoMenu: anchoM, altoEspacioLogo: altoL)
+                                }
+                                else
+                                {
+                                    self.sideBar = SideBar(sourceView: self.view, menuItems: ["Logo", "Tu Pedido", "Contáctenos"], anchoMenu: anchoM, altoEspacioLogo: altoL)
+                                    self.backendless.userService.setStayLoggedIn(false)
+                                    self.backendless.userService.logout()
+                                }
+                                self.sideBar.delegate = self
+                                self.presentWindow!.hideToastActivity()
+                                self.presentWindow = nil
+                            },
+                            error: { ( fault : Fault!) -> () in
+                                print("Server reported an error (ASYNC): \(fault)")
+                                self.presentWindow!.hideToastActivity()
+                                self.presentWindow = nil
+                                self.inicializarMensajeSinconexion()
+                            } 
+                        )
+                    }
+                    else
+                    {
+                        
+                        self.mostrarPagerView()
+                        let anchoM = self.view.frame.size.width - 50
+                        let altoL = ((self.view.frame.size.width - 50)/3) + 30
+                        self.sideBar = SideBar(sourceView: self.view, menuItems: ["Logo", "Tu Pedido", "Contáctenos"], anchoMenu: anchoM, altoEspacioLogo: altoL)
+                        self.sideBar.delegate = self
+                        self.presentWindow!.hideToastActivity()
+                        self.presentWindow = nil
+                    }
+                    
+                    
                     
                     },
                     error: { (fault: Fault!) -> Void in
@@ -238,13 +293,9 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, Comunica
         
         self.pageViewController.view.frame = CGRectMake(0, 0, self.pageViewController.view.frame.width, self.view.frame.height)
         
-        let anchoM = self.view.frame.size.width - 50
-        let altoL = ((self.view.frame.size.width - 50)/3) + 30
         
         
-        sideBar = SideBar(sourceView: self.view, menuItems: ["Logo", "Tu Pedido", "Contáctenos"], anchoMenu: anchoM, altoEspacioLogo: altoL)
         
-        sideBar.delegate = self
         
     }
     
@@ -338,7 +389,58 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, Comunica
     
     //MARK: - funciones logica de negocio
     
-    
+    func cerrarSession()
+    {
+        
+        UIView.hr_setToastThemeColor(color: UIColor.whiteColor())
+        UIView.hr_setToastFontColor(color: UIColor.blackColor())
+        presentWindow  = UIApplication.sharedApplication().keyWindow
+        
+        fondoTrasparenteAlertView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        
+        fondoTrasparenteAlertView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        
+        self.view.addSubview(fondoTrasparenteAlertView)
+        presentWindow!.makeToastActivity(message: "Cerrando sesión...")
+        
+        backendless.userService.logout(
+            { ( user : AnyObject!) -> () in
+                print("User logged out.")
+                
+                self.presentWindow!.hideToastActivity()
+                self.presentWindow = nil
+                self.fondoTrasparenteAlertView.removeFromSuperview()
+                self.fondoTrasparenteAlertView = nil
+                
+                
+                
+                self.sideBar.sideBarTableViewController.tableData = ["Logo", "Tu Pedido", "Contáctenos"]
+                self.sideBar.sideBarTableViewController.tableView.reloadData()
+                
+                UIView.hr_setToastThemeColor(color: UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1))
+                UIView.hr_setToastFontColor(color: UIColor.whiteColor())
+                
+                self.view.makeToast(message: "Sesión cerrada.", duration: 2, position: HRToastPositionCenter)
+                
+            },
+            error: { ( fault : Fault!) -> () in
+                
+                print("Server reported an error: \(fault)")
+                
+                self.presentWindow!.hideToastActivity()
+                self.presentWindow = nil
+                self.fondoTrasparenteAlertView.removeFromSuperview()
+                self.fondoTrasparenteAlertView = nil
+                
+                UIView.hr_setToastThemeColor(color: UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1))
+                UIView.hr_setToastFontColor(color: UIColor.whiteColor())
+                
+                self.view.makeToast(message: "Compruebe su conexiòn a internet", duration: 2, position: HRToastPositionCenter)
+                
+                
+        })
+        
+    }
     
     func irAcontacto()
     {
@@ -470,6 +572,12 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, Comunica
                 sideBar.showSideBar(false)
                 irAcontacto()
             break
+            
+            case 3:
+                sideBar.showSideBar(false)
+                cerrarSession()
+            break
+            
             default:
             break
         }
@@ -481,7 +589,19 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, Comunica
     }
     
     
+    // MARK: - funciones interfaz de comunicacion con pedido controller
     
+    func seInicioSecion()
+    {
+        self.sideBar.sideBarTableViewController.tableData = ["Logo", "Tu Pedido", "Contáctenos", "Cerrar Sesión"]
+        self.sideBar.sideBarTableViewController.tableView.reloadData()
+        
+    }
     
+    func seCerroSecion()
+    {
+        self.sideBar.sideBarTableViewController.tableData = ["Logo", "Tu Pedido", "Contáctenos"]
+        self.sideBar.sideBarTableViewController.tableView.reloadData()
+    }
 }
 

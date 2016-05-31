@@ -39,12 +39,12 @@ class CollectionViewCell: UICollectionViewCell
             {
                 case .Phone:
                     fontsize = 15.0
-                    fontsizeconteo = 12.0
+                    fontsizeconteo = 20.0
                 break
             
                 case .Pad:
                     fontsize = 30.0
-                    fontsizeconteo = 24.0
+                    fontsizeconteo = 32.0
                 break
             
                 default:
@@ -67,7 +67,7 @@ class CollectionViewCell: UICollectionViewCell
             self.conteo!.layer.cornerRadius = 0.5 * widthBoton
             self.conteo!.frame = CGRectMake(widthBoton + espacio, ubicacionInicial, widthBoton, widthBoton)
             self.conteo!.backgroundColor = UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 187/255)
-            self.conteo!.titleLabel?.font = UIFont(name: "Segoe Print", size: fontsizeconteo)
+            self.conteo!.titleLabel?.font = UIFont(name: "odstemplik", size: fontsizeconteo)
             self.conteo!.setTitleColor(UIColor.yellowColor(), forState:  UIControlState.Normal)
             addSubview(self.conteo!)
             

@@ -22,7 +22,7 @@
                     <navigationItem key="navigationItem" id="mF0-aG-ruU"/>
                     <connections>
                         <segue destination="Srm-fu-1oh" kind="presentation" identifier="irPedido" animates="NO" modalTransitionStyle="crossDissolve" id="LcX-fu-T0N"/>
-                        <segue destination="NDH-Dc-LkW" kind="presentation" identifier="irContacto" modalTransitionStyle="crossDissolve" id="qOU-Po-d3V"/>
+                        <segue destination="NDH-Dc-LkW" kind="presentation" identifier="irContacto" modalTransitionStyle="crossDissolve" id="Rod-au-uYF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -235,7 +235,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tkA-rU-ag3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2584" y="925"/>
+            <point key="canvasLocation" x="2541" y="925"/>
         </scene>
         <!--Content View Controller-->
         <scene sceneID="sIH-bV-SKk">

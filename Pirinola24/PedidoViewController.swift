@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol ComunicacionPedidoControllerPrincipalController
+{
+    func seInicioSecion()
+    func seCerroSecion()
+}
 
-class PedidoViewController: UIViewController , SideBarDelegate , UICollectionViewDelegate, UICollectionViewDataSource , ComunicacionControladorPedido
+class PedidoViewController: UIViewController , SideBarDelegate , UICollectionViewDelegate, UICollectionViewDataSource , ComunicacionControladorPedido , ComunicacionPedidoControllerLoginController
 {
 
     var sideBar : SideBar = SideBar()
@@ -31,6 +36,9 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
     var espacioEntreceldas : UIEdgeInsets?
     var tamBotoncelda : CGFloat?
     var espacioBotonCelda : CGFloat?
+    
+    var presentWindow : UIWindow?
+    var comunicacionPedidoController_PrincipalController : ComunicacionPedidoControllerPrincipalController?
     
     
     //dialgo Vaciar pedido
@@ -315,15 +323,20 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
     }
     
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if(segue.identifier == "irLogin")
+        {
+            let vc = segue.destinationViewController as! LoginViewController
+            vc.comunicacionPedidoControllerLoginController = self
+        }
+        
     }
-    */
+        
+     
+
     
      // MARK: - funciones Logica de negocio
     
@@ -539,6 +552,7 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         espacioBotonCelda = nil
         
         AppUtil.contadorUpdateCollectionview = 2
+        comunicacionPedidoController_PrincipalController = nil
         dismissViewControllerAnimated(true, completion: nil)
         
     }
@@ -579,8 +593,6 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         {
             self.realizarPedido.hidden = true
             self.totalValor.text = "$0"
-            
-            
         }
         
     }
@@ -618,6 +630,60 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
             self.view.makeToast(message: "Valor minimo del pedido $" + stringMinimoPedido!, duration: 2, position: HRToastPositionCenter)
         }
     }
+    
+    func cerrarSesion()
+    {
+        
+        UIView.hr_setToastThemeColor(color: UIColor.whiteColor())
+        UIView.hr_setToastFontColor(color: UIColor.blackColor())
+        presentWindow  = UIApplication.sharedApplication().keyWindow
+        
+        fondoTrasparenteAlertView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        
+        fondoTrasparenteAlertView!.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        
+        self.view.addSubview(fondoTrasparenteAlertView!)
+        presentWindow!.makeToastActivity(message: "Cerrando sesión...")
+        
+        let backendless = Backendless.sharedInstance()
+        backendless.userService.logout(
+            { ( user : AnyObject!) -> () in
+                print("User logged out.")
+                
+                self.presentWindow!.hideToastActivity()
+                self.presentWindow = nil
+                self.fondoTrasparenteAlertView!.removeFromSuperview()
+                self.fondoTrasparenteAlertView = nil
+                
+                
+                
+                self.sideBar.sideBarTableViewController.tableData = ["Logo", "Tu Pedido", "Contáctenos"]
+                self.sideBar.sideBarTableViewController.tableView.reloadData()
+                
+                UIView.hr_setToastThemeColor(color: UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1))
+                UIView.hr_setToastFontColor(color: UIColor.whiteColor())
+                
+                self.view.makeToast(message: "Sesión cerrada.", duration: 2, position: HRToastPositionCenter)
+                self.comunicacionPedidoController_PrincipalController?.seCerroSecion()
+            },
+            error: { ( fault : Fault!) -> () in
+                
+                print("Server reported an error: \(fault)")
+                
+                self.presentWindow!.hideToastActivity()
+                self.presentWindow = nil
+                self.fondoTrasparenteAlertView!.removeFromSuperview()
+                self.fondoTrasparenteAlertView = nil
+                
+                UIView.hr_setToastThemeColor(color: UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1))
+                UIView.hr_setToastFontColor(color: UIColor.whiteColor())
+                
+                self.view.makeToast(message: "Compruebe su conexiòn a internet", duration: 2, position: HRToastPositionCenter)
+                
+                
+        })
+        
+    }
     // MARK: - funciones interfaza menu drawer
     
     
@@ -630,10 +696,24 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
             break
             
             case 2:
+                
                 sideBar.showSideBar(false)
-                self.crearMostrarDialogVaciarPedido()
+                if AppUtil.listaCarro.count > 0
+                {
+                    
+                    self.crearMostrarDialogVaciarPedido()
+                }
+                else
+                {
+                    cerrarSesion()
+                }
+                
             break
         
+            case 3:
+                sideBar.showSideBar(false)
+                cerrarSesion()
+            break
             default:
                 
             break
@@ -693,6 +773,16 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         }
     }
     
+    
+    // MARK: - funciones interfaz de comunicacion con login controller
+    
+    func seInicioSecion()
+    {
+        self.sideBar.sideBarTableViewController.tableData = ["Logo", "Atras", "Vaciar Pedido" , "Cerrar Sesión"]
+        self.sideBar.sideBarTableViewController.tableView.reloadData()        
+        comunicacionPedidoController_PrincipalController?.seInicioSecion()
+        
+    }
     
     deinit
     {

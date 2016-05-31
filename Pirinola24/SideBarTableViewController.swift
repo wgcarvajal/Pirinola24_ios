@@ -54,7 +54,7 @@ class SideBarTableViewController: UITableViewController {
         
         if(indexPath.row == 0)
         {
-            let logo = UIImage(named: "pirinola_icono.png")
+            let logo = UIImage(named: "pirinola_icono")
             
             let logoView = UIImageView(image: logo)
             
