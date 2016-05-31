@@ -13,7 +13,7 @@ protocol ComunicacionPedidoControllerLoginController
     func seInicioSecion()
 }
 
-class LoginViewController: UIViewController ,UITextFieldDelegate
+class LoginViewController: UIViewController ,UITextFieldDelegate , ComunicacionLoginControllerRegistroController
 {
     var tituloLabel : UILabel?
     var backgroundTitulo: CAGradientLayer?
@@ -87,6 +87,18 @@ class LoginViewController: UIViewController ,UITextFieldDelegate
         crearVistas()
         
     }
+    // MARK: - Navigation
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == "irRegistrarse"
+        {
+            let vc = segue.destinationViewController as! RegistrarseViewController
+            vc.comunicacionLoginControllerRegistroController = self
+        }
+    }
+    
     // MARK: - Armando la interfaz
     
     func crearVistas()
@@ -743,7 +755,7 @@ class LoginViewController: UIViewController ,UITextFieldDelegate
     
     func actionRegistrarse(sender: AnyObject)
     {
-        
+        irRegistrarse()
     }
     
     func actionIniciarFacebook(sender: AnyObject)
@@ -779,6 +791,10 @@ class LoginViewController: UIViewController ,UITextFieldDelegate
     
     
     // MARK: - funciones logicaNegocio
+    func irRegistrarse()
+    {
+        self.performSegueWithIdentifier("irRegistrarse", sender: nil)
+    }
     
     func enviarCorreo()
     {
@@ -962,6 +978,16 @@ class LoginViewController: UIViewController ,UITextFieldDelegate
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         let result = emailTest.evaluateWithObject(testStr)
         return result
+    }
+    
+    // MARK: - funciones comunicacionRegistroController
+    
+    func seRegistro()
+    {
+        UIView.hr_setToastThemeColor(color: UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1))
+        UIView.hr_setToastFontColor(color: UIColor.whiteColor())
+        
+        self.view.makeToast(message: "Gracias por registrarse, ya puedes iniciar sesión con tu cuenta.", duration: 4, position: HRToastPositionCenter)
     }
 
 }

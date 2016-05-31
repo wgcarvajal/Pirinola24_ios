@@ -30,6 +30,7 @@
 		1B75F4D61CEC0A7B009019BF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B75F4D51CEC0A7B009019BF /* LoginViewController.swift */; };
 		1B78671D1CE3B3BD00053359 /* pirinola_introgif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1B78671C1CE3B3BD00053359 /* pirinola_introgif.gif */; };
 		1B78B3FF1CE96CE800B7DC7D /* UITextViewScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B78B3FE1CE96CE500B7DC7D /* UITextViewScroll.swift */; };
+		1B7C79771CFD293800EB2A01 /* RegistrarseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C79761CFD293800EB2A01 /* RegistrarseViewController.swift */; };
 		1B84894E1CDE729A00FD00F6 /* sonido_click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1B84894D1CDE729A00FD00F6 /* sonido_click.wav */; };
 		1B8B34FB1CEABE230066E585 /* Contacto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8B34FA1CEABE230066E585 /* Contacto.swift */; };
 		1B8B71A91CFCDFB400ADB35A /* odstemplik.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1B8B71A81CFCDFB400ADB35A /* odstemplik.otf */; };
@@ -93,6 +94,7 @@
 		1B75F4D51CEC0A7B009019BF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1B78671C1CE3B3BD00053359 /* pirinola_introgif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = pirinola_introgif.gif; sourceTree = "<group>"; };
 		1B78B3FE1CE96CE500B7DC7D /* UITextViewScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextViewScroll.swift; sourceTree = "<group>"; };
+		1B7C79761CFD293800EB2A01 /* RegistrarseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrarseViewController.swift; sourceTree = "<group>"; };
 		1B84894D1CDE729A00FD00F6 /* sonido_click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sonido_click.wav; sourceTree = "<group>"; };
 		1B8B34FA1CEABE230066E585 /* Contacto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacto.swift; sourceTree = "<group>"; };
 		1B8B71A81CFCDFB400ADB35A /* odstemplik.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = odstemplik.otf; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				1B0F28191CD15C24007A5485 /* AppDelegate.swift */,
 				1B75F4D11CEBF9F8009019BF /* ContactoViewController.swift */,
 				1B75F4D51CEC0A7B009019BF /* LoginViewController.swift */,
+				1B7C79761CFD293800EB2A01 /* RegistrarseViewController.swift */,
 				1B0F281B1CD15C24007A5485 /* ViewController.swift */,
 				1BA7422F1CD9162C00523F57 /* SideBar.swift */,
 				1BA742301CD9162C00523F57 /* SideBarTableViewController.swift */,
@@ -885,6 +888,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B7C79771CFD293800EB2A01 /* RegistrarseViewController.swift in Sources */,
 				1B75F4D61CEC0A7B009019BF /* LoginViewController.swift in Sources */,
 				1BC1723E1CE4CBD0006765D6 /* Anuncio.swift in Sources */,
 				1B75F4D31CEBF9F8009019BF /* ContactoViewController.swift in Sources */,

@@ -8,11 +8,13 @@
 
 import UIKit
 
-class ContactoViewController: UIViewController , UITextFieldDelegate , UITextViewDelegate{
+class ContactoViewController: UIViewController , UITextFieldDelegate , UITextViewDelegate
+{
     
     
     var contactenosLabel: UILabel!
     var botonAtras: UIButton!
+    var imagenBtnAtras : UIImage!
     var background : CAGradientLayer!
     var backgroundButonEnviar: CAGradientLayer!
     var backgroundCorreoTextField: CAGradientLayer!
@@ -37,9 +39,6 @@ class ContactoViewController: UIViewController , UITextFieldDelegate , UITextVie
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        
-        
         switch UIDevice.currentDevice().userInterfaceIdiom
         {
         case .Phone:
@@ -54,23 +53,13 @@ class ContactoViewController: UIViewController , UITextFieldDelegate , UITextVie
             break
         }
         
-        crearVistaAsyncronicamente()
+        self.crearVista()
         
         
         // Do any additional setup after loading the view.
     }
     
-    func crearVistaAsyncronicamente()
-    {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
-        {
-            dispatch_async(dispatch_get_main_queue())
-            {
-               self.crearVista()
-            }
-        }
-        
-    }
+    
     
     
     
@@ -151,7 +140,8 @@ class ContactoViewController: UIViewController , UITextFieldDelegate , UITextVie
     {
         botonAtras  = UIButton()
         botonAtras.frame = CGRect(x: 10, y: 20 + (self.contactenosLabel!.frame.height / 2) - 13, width: 24 , height: 26)
-        botonAtras.setBackgroundImage(UIImage(named : "flecha_atras"), forState: UIControlState.Normal)
+        imagenBtnAtras = UIImage(named : "flecha_atras")
+        botonAtras.setBackgroundImage(imagenBtnAtras, forState: UIControlState.Normal)
         botonAtras.addTarget(nil, action: #selector(actionAtras), forControlEvents: .TouchUpInside)
     }
     func crearImagenLogo()
@@ -159,7 +149,7 @@ class ContactoViewController: UIViewController , UITextFieldDelegate , UITextVie
         contenidoheigth = scrollview.frame.height * 0.04
         imagenLogo = UIImage(named: "pirinola_icono")
         logoImageView = UIImageView()
-        logoImageView.frame = CGRect(x: (scrollview!.frame.width / 2) - ((scrollview.frame.width * 0.25) / 2) , y: contenidoheigth , width: scrollview.frame.width * 0.25, height: scrollview.frame.width * 0.2)
+        logoImageView.frame = CGRect(x: (scrollview!.frame.width / 2) - ((scrollview.frame.width * 0.25) / 2) , y: contenidoheigth , width: scrollview.frame.width * 0.2, height: scrollview.frame.width * 0.16)
         logoImageView.image = imagenLogo
         contenidoheigth = contenidoheigth + scrollview.frame.width * 0.2
     }
@@ -582,6 +572,7 @@ class ContactoViewController: UIViewController , UITextFieldDelegate , UITextVie
         self.backgroundButonEnviar = nil
         self.logoImageView = nil
         self.imagenLogo = nil
+        self.imagenBtnAtras = nil
         self.nombreTextField = nil
         self.mensajeTextView = nil
         self.contenidoheigth = nil

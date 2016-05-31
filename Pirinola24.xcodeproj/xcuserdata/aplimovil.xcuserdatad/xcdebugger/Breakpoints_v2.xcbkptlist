@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pirinola24/ContactoViewController.swift"
-            timestampString = "485477826.927113"
+            timestampString = "486398210.104869"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "724"
-            endingLineNumber = "724">
+            startingLineNumber = "715"
+            endingLineNumber = "715">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -216,11 +216,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pirinola24/ContactoViewController.swift"
-            timestampString = "485477826.927113"
+            timestampString = "486398210.104869"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "709"
-            endingLineNumber = "709">
+            startingLineNumber = "700"
+            endingLineNumber = "700">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -230,11 +230,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pirinola24/ContactoViewController.swift"
-            timestampString = "485477826.927113"
+            timestampString = "486398210.104869"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1062"
-            endingLineNumber = "1062">
+            startingLineNumber = "1053"
+            endingLineNumber = "1053">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -244,11 +244,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pirinola24/ContactoViewController.swift"
-            timestampString = "485477826.927113"
+            timestampString = "486398210.104869"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "890"
-            endingLineNumber = "890">
+            startingLineNumber = "881"
+            endingLineNumber = "881">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -274,11 +274,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pirinola24/ContactoViewController.swift"
-            timestampString = "485477826.927113"
+            timestampString = "486398210.104869"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "976"
-            endingLineNumber = "976">
+            startingLineNumber = "967"
+            endingLineNumber = "967">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -320,11 +320,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pirinola24/LoginViewController.swift"
-            timestampString = "486342419.118703"
+            timestampString = "486405792.102683"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "788"
-            endingLineNumber = "788"
+            startingLineNumber = "804"
+            endingLineNumber = "804"
             landmarkName = "enviarCorreo()"
             landmarkType = "5">
          </BreakpointContent>
@@ -336,11 +336,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pirinola24/LoginViewController.swift"
-            timestampString = "486344266.714387"
+            timestampString = "486405792.102683"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "825"
-            endingLineNumber = "825"
+            startingLineNumber = "841"
+            endingLineNumber = "841"
             landmarkName = "enviarCorreo()"
             landmarkType = "5">
          </BreakpointContent>
@@ -352,11 +352,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pirinola24/LoginViewController.swift"
-            timestampString = "486344302.296978"
+            timestampString = "486405792.102683"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "824"
-            endingLineNumber = "824"
+            startingLineNumber = "840"
+            endingLineNumber = "840"
             landmarkName = "enviarCorreo()"
             landmarkType = "5">
          </BreakpointContent>
