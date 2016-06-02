@@ -157,6 +157,7 @@ class RegistrarseViewController: UIViewController , UITextFieldDelegate{
         let backendless = Backendless.sharedInstance()
         self.view.addSubview(fondoTrasparenteAlertview)
         presentWindow.makeToastActivity(message: "Registrando ...")
+        
         backendless.userService.registering(user,
                 response: { (registeredUser : BackendlessUser!) -> () in
                     print("User has been registered (ASYNC): \(registeredUser)")

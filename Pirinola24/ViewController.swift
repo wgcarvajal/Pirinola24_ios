@@ -403,6 +403,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, Comunica
         self.view.addSubview(fondoTrasparenteAlertView)
         presentWindow!.makeToastActivity(message: "Cerrando sesión...")
         
+                
         backendless.userService.logout(
             { ( user : AnyObject!) -> () in
                 print("User logged out.")
@@ -422,6 +423,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, Comunica
                 
                 self.view.makeToast(message: "Sesión cerrada.", duration: 2, position: HRToastPositionCenter)
                 
+                self.backendless.userService.setStayLoggedIn(false)
             },
             error: { ( fault : Fault!) -> () in
                 

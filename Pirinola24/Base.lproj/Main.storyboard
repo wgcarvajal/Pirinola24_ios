@@ -29,6 +29,24 @@
             </objects>
             <point key="canvasLocation" x="1922" y="195"/>
         </scene>
+        <!--Registrado View Controller-->
+        <scene sceneID="Q0x-iW-Aee">
+            <objects>
+                <viewController id="Squ-GK-N2W" customClass="RegistradoViewController" customModule="Pirinola24" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="piP-if-74h"/>
+                        <viewControllerLayoutGuide type="bottom" id="Q1S-ka-RWS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uUc-Hx-X91">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tMZ-HA-6sp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="560" y="1632"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="yb0-jd-pky">
             <objects>
@@ -44,11 +62,30 @@
                     </view>
                     <connections>
                         <segue destination="Gbc-Dd-UC2" kind="presentation" identifier="irRegistrarse" modalTransitionStyle="crossDissolve" id="RTb-1m-MW4"/>
+                        <segue destination="rIO-tT-ra8" kind="presentation" identifier="irNoRegistrado" modalTransitionStyle="crossDissolve" id="e7M-pb-Gts"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SC3-x7-DJS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1252" y="1632"/>
+        </scene>
+        <!--No Registrado View Controller-->
+        <scene sceneID="Gtp-jO-mr9">
+            <objects>
+                <viewController id="rIO-tT-ra8" customClass="NoRegistradoViewController" customModule="Pirinola24" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Tc3-Bj-JqX"/>
+                        <viewControllerLayoutGuide type="bottom" id="xR9-6b-trc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="X6X-uh-eu1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kn6-M2-XT9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1252" y="2361"/>
         </scene>
         <!--Pedido View Controller-->
         <scene sceneID="TbW-aH-w9j">
@@ -208,11 +245,12 @@
                         <outlet property="totalValor" destination="C8c-wg-8dW" id="Lz8-ub-hkP"/>
                         <outlet property="tuPedidoLabel" destination="kEG-DL-Jma" id="MpU-Yu-NSX"/>
                         <segue destination="xum-Bb-mjZ" kind="presentation" identifier="irLogin" modalTransitionStyle="crossDissolve" id="xhU-18-Abw"/>
+                        <segue destination="Squ-GK-N2W" kind="presentation" identifier="irRegistrado" modalTransitionStyle="crossDissolve" id="Hu8-aY-o3r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9W-Nv-RRl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1252" y="925"/>
+            <point key="canvasLocation" x="1234" y="807"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="17H-KZ-dr9">

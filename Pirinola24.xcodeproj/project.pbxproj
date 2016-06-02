@@ -14,6 +14,8 @@
 		1B4721D41CD6842700216DC6 /* NS_URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4721D31CD6842700216DC6 /* NS_URL.swift */; };
 		1B53F9391CDC702C007471CF /* PedidoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B53F9381CDC702C007471CF /* PedidoViewController.swift */; };
 		1B68C4BC1CDBCE5500709F4D /* ItemCarrito.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B68C4BB1CDBCE5500709F4D /* ItemCarrito.swift */; };
+		1B68D1FC1CFE192500AC151A /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B68D1FA1CFE192500AC151A /* FBSDKCoreKit.framework */; };
+		1B68D1FD1CFE192500AC151A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B68D1FB1CFE192500AC151A /* FBSDKLoginKit.framework */; };
 		1B6DEEC71CEE2DA200E9436A /* icono_add_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B6DEEC61CEE2DA200E9436A /* icono_add_user.png */; };
 		1B6DEEC91CEE2EE400E9436A /* icono_facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B6DEEC81CEE2EE400E9436A /* icono_facebook.png */; };
 		1B6DEECB1CEE355900E9436A /* icono_continuar_no_registrado.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B6DEECA1CEE355900E9436A /* icono_continuar_no_registrado.png */; };
@@ -37,8 +39,13 @@
 		1B9D8DC41CD1D3D100BB7AD0 /* matura_mt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B9D8DC31CD1D3D100BB7AD0 /* matura_mt.ttf */; };
 		1BA742311CD9162C00523F57 /* SideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA7422F1CD9162C00523F57 /* SideBar.swift */; };
 		1BA742321CD9162C00523F57 /* SideBarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA742301CD9162C00523F57 /* SideBarTableViewController.swift */; };
+		1BBF41941CFF38C2002AE017 /* RegistradoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF41931CFF38C2002AE017 /* RegistradoViewController.swift */; };
+		1BBF41961CFF46CD002AE017 /* NoRegistradoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF41951CFF46CD002AE017 /* NoRegistradoViewController.swift */; };
 		1BC1723E1CE4CBD0006765D6 /* Anuncio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC1723D1CE4CBD0006765D6 /* Anuncio.swift */; };
 		1BC172401CE4E875006765D6 /* logo_pirinola.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BC1723F1CE4E875006765D6 /* logo_pirinola.png */; };
+		1BC66A6A1CFF783A00A770C2 /* flecha_abajo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BC66A691CFF783A00A770C2 /* flecha_abajo.png */; };
+		1BC66A6C1CFF785E00A770C2 /* DKDropMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC66A6B1CFF785E00A770C2 /* DKDropMenu.swift */; };
+		1BC8291C1CFFAFC7003665DF /* Ciudad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC8291B1CFFAFC7003665DF /* Ciudad.swift */; };
 		1BD3F9C51CDFBF8C005F6A84 /* Segoe_Print.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3F9C41CDFBF8C005F6A84 /* Segoe_Print.ttf */; };
 		1BDD585E1CD5865A00228EE7 /* Gradiante_Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDD585D1CD5865A00228EE7 /* Gradiante_Layer.swift */; };
 		1BF05CD81CD94BC6008FA820 /* pirinola_icono.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BF05CD71CD94BC6008FA820 /* pirinola_icono.png */; };
@@ -66,6 +73,7 @@
 		1BF9DC551CD45DC6000609C3 /* menuprinciapal.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BF9DC541CD45DC6000609C3 /* menuprinciapal.png */; };
 		1BF9DC571CD46179000609C3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BF9DC561CD46179000609C3 /* Images.xcassets */; };
 		1BF9DC591CD467A7000609C3 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF9DC581CD467A7000609C3 /* CollectionViewCell.swift */; };
+		1BFBC97C1CFFEF0A00163513 /* Formapago.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFBC97B1CFFEF0A00163513 /* Formapago.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +87,8 @@
 		1B4721D31CD6842700216DC6 /* NS_URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NS_URL.swift; sourceTree = "<group>"; };
 		1B53F9381CDC702C007471CF /* PedidoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PedidoViewController.swift; sourceTree = "<group>"; };
 		1B68C4BB1CDBCE5500709F4D /* ItemCarrito.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCarrito.swift; sourceTree = "<group>"; };
+		1B68D1FA1CFE192500AC151A /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		1B68D1FB1CFE192500AC151A /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		1B6DEEC61CEE2DA200E9436A /* icono_add_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icono_add_user.png; sourceTree = "<group>"; };
 		1B6DEEC81CEE2EE400E9436A /* icono_facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icono_facebook.png; sourceTree = "<group>"; };
 		1B6DEECA1CEE355900E9436A /* icono_continuar_no_registrado.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icono_continuar_no_registrado.png; sourceTree = "<group>"; };
@@ -101,8 +111,13 @@
 		1B9D8DC31CD1D3D100BB7AD0 /* matura_mt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = matura_mt.ttf; sourceTree = "<group>"; };
 		1BA7422F1CD9162C00523F57 /* SideBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBar.swift; sourceTree = "<group>"; };
 		1BA742301CD9162C00523F57 /* SideBarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewController.swift; sourceTree = "<group>"; };
+		1BBF41931CFF38C2002AE017 /* RegistradoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistradoViewController.swift; sourceTree = "<group>"; };
+		1BBF41951CFF46CD002AE017 /* NoRegistradoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoRegistradoViewController.swift; sourceTree = "<group>"; };
 		1BC1723D1CE4CBD0006765D6 /* Anuncio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Anuncio.swift; sourceTree = "<group>"; };
 		1BC1723F1CE4E875006765D6 /* logo_pirinola.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_pirinola.png; sourceTree = "<group>"; };
+		1BC66A691CFF783A00A770C2 /* flecha_abajo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flecha_abajo.png; sourceTree = "<group>"; };
+		1BC66A6B1CFF785E00A770C2 /* DKDropMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKDropMenu.swift; sourceTree = "<group>"; };
+		1BC8291B1CFFAFC7003665DF /* Ciudad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ciudad.swift; sourceTree = "<group>"; };
 		1BD3F9C41CDFBF8C005F6A84 /* Segoe_Print.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Segoe_Print.ttf; sourceTree = "<group>"; };
 		1BDD585D1CD5865A00228EE7 /* Gradiante_Layer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gradiante_Layer.swift; sourceTree = "<group>"; };
 		1BF05CD71CD94BC6008FA820 /* pirinola_icono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pirinola_icono.png; sourceTree = "<group>"; };
@@ -300,6 +315,7 @@
 		1BF9DC541CD45DC6000609C3 /* menuprinciapal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuprinciapal.png; sourceTree = "<group>"; };
 		1BF9DC561CD46179000609C3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1BF9DC581CD467A7000609C3 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		1BFBC97B1CFFEF0A00163513 /* Formapago.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formapago.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,9 +333,11 @@
 				1BF976AF1CD1911A0042C585 /* libx264.a in Frameworks */,
 				1BF976AD1CD191190042C585 /* MediaLibiOS.a in Frameworks */,
 				1BF975D41CD190CF0042C585 /* SystemConfiguration.framework in Frameworks */,
+				1B68D1FC1CFE192500AC151A /* FBSDKCoreKit.framework in Frameworks */,
 				1BF976A51CD191190042C585 /* backendless.a in Frameworks */,
 				1BF976AA1CD191190042C585 /* libavformat.a in Frameworks */,
 				1BF976A61CD191190042C585 /* CommLibiOS.a in Frameworks */,
+				1B68D1FD1CFE192500AC151A /* FBSDKLoginKit.framework in Frameworks */,
 				1BF976A71CD191190042C585 /* libavcodec.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +348,8 @@
 		1B0F280D1CD15C23007A5485 = {
 			isa = PBXGroup;
 			children = (
+				1B68D1FA1CFE192500AC151A /* FBSDKCoreKit.framework */,
+				1B68D1FB1CFE192500AC151A /* FBSDKLoginKit.framework */,
 				1BF9DC4D1CD456FB000609C3 /* SwiftGifCommon */,
 				1B9D8DC21CD1D38900BB7AD0 /* Ressources */,
 				1BF976B51CD1A55D0042C585 /* util */,
@@ -358,6 +378,8 @@
 				1B75F4D11CEBF9F8009019BF /* ContactoViewController.swift */,
 				1B75F4D51CEC0A7B009019BF /* LoginViewController.swift */,
 				1B7C79761CFD293800EB2A01 /* RegistrarseViewController.swift */,
+				1BBF41931CFF38C2002AE017 /* RegistradoViewController.swift */,
+				1BBF41951CFF46CD002AE017 /* NoRegistradoViewController.swift */,
 				1B0F281B1CD15C24007A5485 /* ViewController.swift */,
 				1BA7422F1CD9162C00523F57 /* SideBar.swift */,
 				1BA742301CD9162C00523F57 /* SideBarTableViewController.swift */,
@@ -379,6 +401,7 @@
 			children = (
 				1BF9DC521CD45DB6000609C3 /* carrocompras.png */,
 				1B6FB24A1CED71AC005933D2 /* icono_password.png */,
+				1BC66A691CFF783A00A770C2 /* flecha_abajo.png */,
 				1B6DEEC81CEE2EE400E9436A /* icono_facebook.png */,
 				1B6DEEC61CEE2DA200E9436A /* icono_add_user.png */,
 				1B6DEECA1CEE355900E9436A /* icono_continuar_no_registrado.png */,
@@ -772,6 +795,8 @@
 				1B68C4BB1CDBCE5500709F4D /* ItemCarrito.swift */,
 				1BC1723D1CE4CBD0006765D6 /* Anuncio.swift */,
 				1B8B34FA1CEABE230066E585 /* Contacto.swift */,
+				1BC8291B1CFFAFC7003665DF /* Ciudad.swift */,
+				1BFBC97B1CFFEF0A00163513 /* Formapago.swift */,
 			);
 			name = modelo;
 			sourceTree = "<group>";
@@ -779,6 +804,7 @@
 		1BF976B51CD1A55D0042C585 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				1BC66A6B1CFF785E00A770C2 /* DKDropMenu.swift */,
 				1BF976B61CD1A5840042C585 /* AppUtil.swift */,
 				1BDD585D1CD5865A00228EE7 /* Gradiante_Layer.swift */,
 				1B4721D31CD6842700216DC6 /* NS_URL.swift */,
@@ -857,6 +883,7 @@
 			files = (
 				1B745D7D1CE1B6C90007DB44 /* urwbookmanl.ttf in Resources */,
 				1B6DEECB1CEE355900E9436A /* icono_continuar_no_registrado.png in Resources */,
+				1BC66A6A1CFF783A00A770C2 /* flecha_abajo.png in Resources */,
 				1B0F28241CD15C24007A5485 /* LaunchScreen.storyboard in Resources */,
 				1BC172401CE4E875006765D6 /* logo_pirinola.png in Resources */,
 				1B78671D1CE3B3BD00053359 /* pirinola_introgif.gif in Resources */,
@@ -892,14 +919,19 @@
 				1B75F4D61CEC0A7B009019BF /* LoginViewController.swift in Sources */,
 				1BC1723E1CE4CBD0006765D6 /* Anuncio.swift in Sources */,
 				1B75F4D31CEBF9F8009019BF /* ContactoViewController.swift in Sources */,
+				1BBF41941CFF38C2002AE017 /* RegistradoViewController.swift in Sources */,
 				1B53F9391CDC702C007471CF /* PedidoViewController.swift in Sources */,
+				1BBF41961CFF46CD002AE017 /* NoRegistradoViewController.swift in Sources */,
 				1BF976B21CD199AA0042C585 /* Producto.swift in Sources */,
 				1B8B34FB1CEABE230066E585 /* Contacto.swift in Sources */,
+				1BC66A6C1CFF785E00A770C2 /* DKDropMenu.swift in Sources */,
 				1BF9DC591CD467A7000609C3 /* CollectionViewCell.swift in Sources */,
 				1BF9DC4F1CD456FB000609C3 /* UIImage+Gif.swift in Sources */,
 				1B759EE21CDD61B100DF5F3B /* CollectionViewCellPedido.swift in Sources */,
+				1BC8291C1CFFAFC7003665DF /* Ciudad.swift in Sources */,
 				1BA742321CD9162C00523F57 /* SideBarTableViewController.swift in Sources */,
 				1BF975D21CD15E410042C585 /* ContentViewController.swift in Sources */,
+				1BFBC97C1CFFEF0A00163513 /* Formapago.swift in Sources */,
 				1B757C001CE40DEF00B5DE51 /* HRToast+UIView.swift in Sources */,
 				1B78B3FF1CE96CE800B7DC7D /* UITextViewScroll.swift in Sources */,
 				1B71521E1CE558DD00866F59 /* ViewController.swift in Sources */,
@@ -1024,6 +1056,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Pirinola24/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1043,6 +1079,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Pirinola24/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

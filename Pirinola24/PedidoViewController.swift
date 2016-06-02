@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 protocol ComunicacionPedidoControllerPrincipalController
 {
     func seInicioSecion()
@@ -39,6 +38,9 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
     
     var presentWindow : UIWindow?
     var comunicacionPedidoController_PrincipalController : ComunicacionPedidoControllerPrincipalController?
+    
+    
+    var irRegistrado : Int = 0
     
     
     //dialgo Vaciar pedido
@@ -124,6 +126,16 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         self.fijar_tamano_boton_celda()
         
     
+    }
+    
+    override func viewWillAppear(animated: Bool)
+    {
+        if irRegistrado == 1
+        {
+            irRegistrado = 0
+            self.performSegueWithIdentifier("irRegistrado", sender: nil)
+        }
+        
     }
     
     func buscarUsuarioLogueado()
@@ -616,7 +628,15 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
     {
         if comprabarMinimoPedido()
         {
-             self.performSegueWithIdentifier("irLogin", sender: nil)    
+            if Backendless.sharedInstance().userService.currentUser == nil
+            {
+                self.performSegueWithIdentifier("irLogin", sender: nil)
+            }
+            else
+            {
+                self.performSegueWithIdentifier("irRegistrado", sender: nil)
+            }
+            
         }
         else
         {
@@ -656,8 +676,18 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
                 self.fondoTrasparenteAlertView = nil
                 
                 
+                if AppUtil.listaCarro.count > 0
+                {
+                    self.sideBar.sideBarTableViewController.tableData = ["Logo", "Atras", "Vaciar Pedido"]
+                }
+                else
+                {
+                    self.sideBar.sideBarTableViewController.tableData = ["Logo", "Atras"]
+                    self.botonMenuPrincipal.hidden = true
+                    self.botonAtras.hidden = false
+                }
                 
-                self.sideBar.sideBarTableViewController.tableData = ["Logo", "Tu Pedido", "Contáctenos"]
+                
                 self.sideBar.sideBarTableViewController.tableView.reloadData()
                 
                 UIView.hr_setToastThemeColor(color: UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1))
@@ -665,6 +695,8 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
                 
                 self.view.makeToast(message: "Sesión cerrada.", duration: 2, position: HRToastPositionCenter)
                 self.comunicacionPedidoController_PrincipalController?.seCerroSecion()
+                backendless.userService.setStayLoggedIn(false)
+                
             },
             error: { ( fault : Fault!) -> () in
                 
@@ -781,6 +813,7 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         self.sideBar.sideBarTableViewController.tableData = ["Logo", "Atras", "Vaciar Pedido" , "Cerrar Sesión"]
         self.sideBar.sideBarTableViewController.tableView.reloadData()        
         comunicacionPedidoController_PrincipalController?.seInicioSecion()
+        irRegistrado = 1
         
     }
     

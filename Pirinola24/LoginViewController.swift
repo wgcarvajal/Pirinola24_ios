@@ -8,6 +8,8 @@
 
 import UIKit
 
+import FBSDKLoginKit
+
 protocol ComunicacionPedidoControllerLoginController
 {
     func seInicioSecion()
@@ -66,6 +68,7 @@ class LoginViewController: UIViewController ,UITextFieldDelegate , ComunicacionL
     var backgroundCancelarEnviarCorreo: CAGradientLayer!
     var presentWindow : UIWindow!
     
+    let backendless = Backendless.sharedInstance()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -760,12 +763,12 @@ class LoginViewController: UIViewController ,UITextFieldDelegate , ComunicacionL
     
     func actionIniciarFacebook(sender: AnyObject)
     {
-        
+        iniciarFacebook()
     }
     
     func actionContinuarNoRegistrado(sender : AnyObject)
     {
-        
+        irNoRegistrado()
     }
     
     // MARK: - fuciones texfield delegate
@@ -791,9 +794,81 @@ class LoginViewController: UIViewController ,UITextFieldDelegate , ComunicacionL
     
     
     // MARK: - funciones logicaNegocio
+    
+    func iniciarFacebook()
+    {
+        
+        let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
+        fbLoginManager.logInWithReadPermissions(["public_profile","email"], fromViewController: self) { (result, error) -> Void in
+            if (error == nil){
+                
+                if FBSDKAccessToken.currentAccessToken() != nil
+                {
+                    self.autenticacionFacebookBackendless()
+                }
+                
+                
+            }
+        }
+    }
+    
+    func autenticacionFacebookBackendless()
+    {
+        UIView.hr_setToastThemeColor(color: UIColor.whiteColor())
+        UIView.hr_setToastFontColor(color: UIColor.blackColor())
+        presentWindow  = UIApplication.sharedApplication().keyWindow
+        
+        fondoTrasparenteAlertview = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        
+        fondoTrasparenteAlertview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        let backendless = Backendless.sharedInstance()
+        let token = FBSDKAccessToken.currentAccessToken()
+        let fieldsMapping = [
+            "name": "name",
+            "email": "emailFacebook"
+        ]
+        self.view.addSubview(fondoTrasparenteAlertview)
+        presentWindow.makeToastActivity(message: "Iniciando ...")
+        
+        backendless.userService.loginWithFacebookSDK(
+            token,
+            fieldsMapping: fieldsMapping,
+            response: { (user: BackendlessUser!) -> Void in
+                print("user: \(user)")
+                
+                self.presentWindow.hideToastActivity()
+                self.presentWindow = nil
+                self.fondoTrasparenteAlertview.removeFromSuperview()
+                self.fondoTrasparenteAlertview = nil
+                self.comunicacionPedidoControllerLoginController?.seInicioSecion()
+                backendless.userService.setStayLoggedIn(true)
+                FBSDKLoginManager().logOut()
+                self.atras()
+            },
+            error: { (fault: Fault!) -> Void in
+                print("Server reported an error: \(fault)")
+                
+                UIView.hr_setToastThemeColor(color: UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1))
+                UIView.hr_setToastFontColor(color: UIColor.whiteColor())
+                self.presentWindow.hideToastActivity()
+                self.presentWindow = nil
+                self.fondoTrasparenteAlertview.removeFromSuperview()
+                self.fondoTrasparenteAlertview = nil
+                
+                self.view.makeToast(message: "Compruebe su conexiòn a internet", duration: 2, position: HRToastPositionCenter)
+                
+                FBSDKLoginManager().logOut()
+        })
+    }
+    
     func irRegistrarse()
     {
         self.performSegueWithIdentifier("irRegistrarse", sender: nil)
+    }
+    
+    func irNoRegistrado()
+    {
+        self.performSegueWithIdentifier("irNoRegistrado", sender: nil)
     }
     
     func enviarCorreo()
@@ -989,5 +1064,7 @@ class LoginViewController: UIViewController ,UITextFieldDelegate , ComunicacionL
         
         self.view.makeToast(message: "Gracias por registrarse, ya puedes iniciar sesión con tu cuenta.", duration: 4, position: HRToastPositionCenter)
     }
+    
+   
 
 }
