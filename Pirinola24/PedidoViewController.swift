@@ -52,10 +52,12 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
     var mensaje:UILabel?
     var iconoMensaje: UIImageView?
     
+    var backgroundconfirmarPedido : CAGradientLayer!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
         switch UIDevice.currentDevice().userInterfaceIdiom
         {
@@ -134,6 +136,7 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         {
             irRegistrado = 0
             self.performSegueWithIdentifier("irRegistrado", sender: nil)
+            
         }
         
     }
@@ -260,6 +263,90 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         
     }
     
+    func crearVentanaConfirmacionPedido()
+    {
+        fondoTrasparenteAlertView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        
+        fondoTrasparenteAlertView?.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        
+        alertView = UIView(frame: CGRect(x: self.view.frame.width * 0.03 , y: self.view.frame.height * 0.30, width: self.view.frame.width * 0.94, height: self.view.frame.height * 0.35))
+        
+        backgroundconfirmarPedido = CAGradientLayer().amarilloDegradado()
+        backgroundconfirmarPedido.frame = CGRect(x: 0 , y: 0 , width: self.view.frame.width * 0.94, height: self.view.frame.height * 0.35)
+        
+        
+        alertView?.layer.addSublayer(backgroundconfirmarPedido)
+        
+        
+        let icono = UIImage(named: "pirinola_icono")
+        iconoMensaje = UIImageView(frame: CGRect(x: alertView!.frame.width * 0.05  , y: alertView!.frame.width * 0.05  , width: alertView!.frame.height * 0.4, height: alertView!.frame.height * 0.3))
+        
+        iconoMensaje?.image = icono
+        
+        
+        
+        mensaje = UILabel(frame: CGRect(x: (alertView!.frame.width * 0.05) * 2 + iconoMensaje!.frame.width, y: 0, width: alertView!.frame.width - ((alertView!.frame.width * 0.05) * 3 + iconoMensaje!.frame.width), height: alertView!.frame.height * 0.75))
+        
+        mensaje?.text = "Hemos recibido su pedido, en contados minutos te llamaremos para confirmarlo. ¡...Gracias por elegirnos....!"
+        
+        mensaje?.textColor = UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1)
+        
+        
+        switch UIDevice.currentDevice().userInterfaceIdiom
+        {
+        case .Phone:
+            mensaje?.font = UIFont(name: "Segoe Print", size:14)
+            break
+            
+        case .Pad:
+            mensaje?.font = UIFont(name: "Segoe Print", size:25)
+            break
+            
+        default:
+            break
+        }
+
+        mensaje?.numberOfLines = 10
+        
+        
+        aceptar_button = UIButton(frame: CGRect(x: alertView!.frame.width / 2 - (alertView!.frame.width * 0.3) / 2, y: alertView!.frame.height - (alertView!.frame.height * 0.05) - alertView!.frame.height * 0.15  , width: alertView!.frame.width * 0.3, height: alertView!.frame.height * 0.15))
+        
+        
+        
+        
+        
+        let fondobotonAceptar = CAGradientLayer().rojoDegradado()
+        fondobotonAceptar.frame = CGRect(x: 0, y: 0, width: alertView!.frame.width * 0.3, height: alertView!.frame.height * 0.15)
+        
+        aceptar_button!.layer.insertSublayer(fondobotonAceptar, atIndex:  0)
+        
+        aceptar_button?.setTitle("Aceptar", forState: UIControlState.Normal)
+        aceptar_button?.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        
+        switch UIDevice.currentDevice().userInterfaceIdiom
+        {
+        case .Phone:
+            aceptar_button?.titleLabel?.font = UIFont(name: "Matura MT Script Capitals", size: 16)
+            break
+            
+        case .Pad:
+            aceptar_button?.titleLabel?.font = UIFont(name: "Matura MT Script Capitals", size: 26)
+            break
+            
+        default:
+            break
+        }
+        
+        aceptar_button?.addTarget(self, action: #selector(actionAceptarConfirmarPedido), forControlEvents: .TouchUpInside)
+        
+        alertView?.addSubview(iconoMensaje!)
+        alertView?.addSubview(mensaje!)
+        alertView?.addSubview(aceptar_button!)
+        fondoTrasparenteAlertView?.addSubview(self.alertView!)
+        self.view.addSubview(fondoTrasparenteAlertView!)
+        
+    }
+    
     
     // MARK: - funciones del collectionview
     
@@ -351,6 +438,8 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
 
     
      // MARK: - funciones Logica de negocio
+    
+    
     
     func crearMostrarDialogVaciarPedido()
     {
@@ -499,6 +588,16 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         self.view.makeToast(message: "Se ha vaciado el pedido.", duration: 2, position: HRToastPositionCenter)
         
         
+        administrarDrawerDespuesDeVaciarPedido()
+    }
+    
+    func vaciarPedido()
+    {
+        AppUtil.listaCarro.removeAll()
+        self.collectionView.reloadData()
+        self.totalValor.text = "$0"
+        self.realizarPedido.removeFromSuperview()
+        self.realizarPedido = nil
         administrarDrawerDespuesDeVaciarPedido()
     }
     
@@ -772,6 +871,23 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         realizar_pedido()
     }
     
+    func actionAceptarConfirmarPedido(sender : AnyObject)
+    {
+        fondoTrasparenteAlertView?.removeFromSuperview()
+        alertView?.removeFromSuperview()
+        iconoMensaje?.removeFromSuperview()
+        mensaje?.removeFromSuperview()
+        aceptar_button?.removeFromSuperview()
+        backgroundconfirmarPedido.removeFromSuperlayer()
+        
+        fondoTrasparenteAlertView = nil
+        alertView = nil
+        iconoMensaje = nil
+        mensaje = nil
+        aceptar_button = nil
+        backgroundconfirmarPedido = nil
+        back_to_previus_controller()
+    }
     
     //MARK: - metodos de interface celda pedido
     
@@ -816,6 +932,16 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         irRegistrado = 1
         
     }
+    
+    func seRealizoPedido()
+    {
+        print("Gracias por realizar el pedido")
+        vaciarPedido()
+        crearVentanaConfirmacionPedido()
+    }
+    
+    
+    // MARK: - Funcion deinit
     
     deinit
     {

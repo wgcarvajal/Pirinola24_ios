@@ -8,7 +8,12 @@
 
 import UIKit
 
-class NoRegistradoViewController: UIViewController , DKDropMenuDelegate
+protocol ComunicacionLoginControllerNoRegistradoController
+{
+    func seRealizoPedido()
+}
+
+class NoRegistradoViewController: UIViewController , DKDropMenuDelegate , UITextFieldDelegate , UITextViewDelegate
 {
     var fondoTrasparenteAlertview : UIView!
     var presentWindow : UIWindow!
@@ -25,7 +30,34 @@ class NoRegistradoViewController: UIViewController , DKDropMenuDelegate
     var imagenSpinnerCiudad : UIImage!
     var iconoSpinnerCiudad : UIImageView!
     
+    var backgroundNombreTextField: CAGradientLayer!
+    var nombreTextField : UITextField!
+    
+    var backgroundDireccionTextField: CAGradientLayer!
+    var direccionTextField : UITextField!
+    
+    var backgroundBarrioTextField: CAGradientLayer!
+    var barrioTextField : UITextField!
+    
+    var backgroundTelefonoTextField: CAGradientLayer!
+    var telefonoTextField : UITextField!
+    
+    
+    var backgroundSpinnerFormaPago : CAGradientLayer!
+    var spinnerFormaPago : DKDropMenu!
+    var imagenSpinnerFormaPago : UIImage!
+    var iconoSpinnerFormaPago : UIImageView!
+    
+    
+    var backgroundObservacionesTextView : CAGradientLayer!
+    var observacionesTextView : UITextView!
+    var placeholderObservacionesTextField : UILabel!
+    
+    var backgroundButonEnviarPedido : CAGradientLayer!
+    var botonEnviarPedido : UIButton!
+    
     var listaCiudades : Array<Ciudad>!
+    var listaFormaPago : Array<Formapago>!
     
     var scrollview: UIScrollView!
     
@@ -37,6 +69,7 @@ class NoRegistradoViewController: UIViewController , DKDropMenuDelegate
     var volverCargarVistaBtn : UIButton!
     
     
+    var comunicacionLoginControllerNoRegistradoController:ComunicacionLoginControllerNoRegistradoController!
     let backendless = Backendless.sharedInstance()
     
     override func viewDidLoad() {
@@ -153,14 +186,14 @@ class NoRegistradoViewController: UIViewController , DKDropMenuDelegate
         let tamanoBaseHeight = self.view.frame.height - 60
         let puntoInicialX = (self.view.frame.width / 2) - ((self.view.frame.width * 0.9) / 2)
         let puntoInicialY = 60 + logoImageView.frame.height + (self.view.frame.height * 0.03) * 2
-        spinnerCiudad = DKDropMenu(frame : CGRect(x: puntoInicialX, y: puntoInicialY, width: self.view.frame.width * 0.9, height: tamanoBaseHeight * 0.06))
+        spinnerCiudad = DKDropMenu(frame : CGRect(x: puntoInicialX, y: puntoInicialY, width: self.view.frame.width * 0.9, height: tamanoBaseHeight * 0.05))
         
         spinnerCiudad.addItems(listaCiu)
         
         backgroundSpinnerCiudad = CAGradientLayer().amarilloDegradado()
-        backgroundSpinnerCiudad.frame = CGRect(x: puntoInicialX, y: puntoInicialY, width: self.view.frame.width * 0.9, height: tamanoBaseHeight * 0.06)
+        backgroundSpinnerCiudad.frame = CGRect(x: puntoInicialX, y: puntoInicialY, width: self.view.frame.width * 0.9, height: tamanoBaseHeight * 0.05)
         imagenSpinnerCiudad = UIImage(named: "flecha_abajo")
-        iconoSpinnerCiudad = UIImageView(frame: CGRect(x: spinnerCiudad.frame.width - spinnerCiudad.frame.height * 0.5 - spinnerCiudad.frame.height * 0.25 , y: spinnerCiudad.frame.height * 0.25, width: spinnerCiudad.frame.height * 0.5, height: spinnerCiudad.frame.height * 0.5))
+        iconoSpinnerCiudad = UIImageView(frame: CGRect(x: spinnerCiudad.frame.width - spinnerCiudad.frame.height * 0.4 - spinnerCiudad.frame.height * 0.25 , y: spinnerCiudad.frame.height * 0.30, width: spinnerCiudad.frame.height * 0.4, height: spinnerCiudad.frame.height * 0.4))
         
         iconoSpinnerCiudad.image = imagenSpinnerCiudad
         
@@ -181,7 +214,7 @@ class NoRegistradoViewController: UIViewController , DKDropMenuDelegate
         default:
             break
         }
-        spinnerCiudad.itemHeight = tamanoBaseHeight * 0.06
+        spinnerCiudad.itemHeight = tamanoBaseHeight * 0.05
         
         self.view.layer.addSublayer(backgroundSpinnerCiudad)
         self.view.addSubview(spinnerCiudad)
@@ -190,16 +223,383 @@ class NoRegistradoViewController: UIViewController , DKDropMenuDelegate
     func crearScrollView()
     {
         let tamanoBaseHeight = self.view.frame.height - 60
-        let puntoInicial = 60 + logoImageView.frame.height + (self.view.frame.height * 0.03) * 3 + (tamanoBaseHeight * 0.06)
+        let puntoInicial = 60 + logoImageView.frame.height + (self.view.frame.height * 0.03) * 2 + (tamanoBaseHeight * 0.05) + self.view.frame.height * 0.03
         
-        let altura = self.view.frame.height - (60 + logoImageView.frame.height + (self.view.frame.height * 0.03) * 3 + tamanoBaseHeight * 0.06 )
+        let altura = self.view.frame.height - (60 + logoImageView.frame.height + (self.view.frame.height * 0.03) * 2 + tamanoBaseHeight * 0.05 +  self.view.frame.height * 0.03)
         scrollview = UIScrollView()
         scrollview.frame = CGRect(x: 0, y: puntoInicial, width: self.view.frame.width, height: altura )
         
-        scrollview.backgroundColor = UIColor.blueColor()
     }
     
     
+    func crearFormulario()
+    {
+        
+        eliminarScrollView()
+        crearScrollView()
+        crearCajaTextoNombre()
+        crearCajaTextoDireccion()
+        crearCajaTextoBarrio()
+        crearCajaTextoTelfono()
+        crearSpinnerFormaPago()
+        crearCajaTextoObservaciones()
+        
+        scrollview.layer.addSublayer(backgroundSpinnerFormaPago)
+        scrollview.addSubview(spinnerFormaPago)
+        spinnerCiudad.removeFromSuperview()
+        backgroundSpinnerCiudad.removeFromSuperlayer()
+        
+        
+        
+        
+        self.view.addSubview(scrollview)
+        self.view.layer.addSublayer(backgroundSpinnerCiudad)
+        self.view.addSubview(spinnerCiudad)
+        
+        crearBotonEnviarPedido()
+        
+        if contenidoheigth > scrollview.frame.height
+        {
+            scrollview.contentSize = CGSize(width: scrollview.frame.width, height: contenidoheigth)
+        }
+        else
+        {
+            scrollview.contentSize = CGSize(width: scrollview.frame.width, height: scrollview.frame.height)
+        }
+    }
+    
+    func eliminarVistaScrollView()
+    {
+        if scrollview != nil
+        {
+            backgroundNombreTextField.removeFromSuperlayer()
+            nombreTextField.removeFromSuperview()
+            
+            backgroundDireccionTextField.removeFromSuperlayer()
+            direccionTextField.removeFromSuperview()
+            
+            backgroundBarrioTextField.removeFromSuperlayer()
+            barrioTextField.removeFromSuperview()
+            
+            backgroundTelefonoTextField.removeFromSuperlayer()
+            telefonoTextField.removeFromSuperview()
+            
+            
+            spinnerFormaPago.removeFromSuperview()
+            backgroundSpinnerFormaPago.removeFromSuperlayer()
+            iconoSpinnerFormaPago.removeFromSuperview()
+            
+            observacionesTextView.removeFromSuperview()
+            placeholderObservacionesTextField.removeFromSuperview()
+            backgroundObservacionesTextView.removeFromSuperlayer()
+            
+            botonEnviarPedido.removeFromSuperview()
+            backgroundButonEnviarPedido.removeFromSuperlayer()
+            
+            scrollview.removeFromSuperview()
+            
+            imagenSpinnerFormaPago = nil
+            iconoSpinnerFormaPago = nil
+            backgroundSpinnerFormaPago = nil
+            spinnerFormaPago.delegate = nil
+            spinnerFormaPago = nil
+            
+            
+            scrollview = nil
+            backgroundNombreTextField = nil
+            nombreTextField.delegate = nil
+            nombreTextField = nil
+            backgroundDireccionTextField = nil
+            direccionTextField.delegate = nil
+            direccionTextField = nil
+            backgroundBarrioTextField = nil
+            barrioTextField.delegate = nil
+            barrioTextField = nil
+            backgroundTelefonoTextField = nil
+            telefonoTextField.delegate = nil
+            telefonoTextField = nil
+            
+            observacionesTextView.delegate = nil
+            observacionesTextView = nil
+            placeholderObservacionesTextField = nil
+            backgroundObservacionesTextView = nil
+            
+            botonEnviarPedido = nil
+            backgroundButonEnviarPedido = nil
+            
+        }
+    }
+    
+    func crearCajaTextoNombre()
+    {
+        let tamanoBaseHeight = self.view.frame.height - 60
+        let puntoInicialX = scrollview.frame.width * 0.05
+        contenidoheigth = 0.0
+        nombreTextField = UITextField()
+        nombreTextField.frame = CGRect(x: puntoInicialX, y: self.contenidoheigth, width: scrollview.frame.width * 0.9, height: tamanoBaseHeight * 0.05)
+        
+        backgroundNombreTextField = CAGradientLayer().amarilloDegradado()
+        backgroundNombreTextField.frame = CGRect(x:0 , y: 0 , width: scrollview.frame.width * 0.9 , height: tamanoBaseHeight * 0.05)
+        nombreTextField.layer.insertSublayer(backgroundNombreTextField, atIndex: 0)
+        
+        
+        nombreTextField.textAlignment = NSTextAlignment.Center
+        
+        
+        nombreTextField.textColor = UIColor.redColor()
+        nombreTextField.keyboardType = UIKeyboardType.Alphabet
+        
+        nombreTextField.delegate = self
+        
+        switch UIDevice.currentDevice().userInterfaceIdiom
+        {
+        case .Phone:
+            let placeholderCorreo = NSAttributedString(string: "Nombre", attributes: [NSForegroundColorAttributeName : UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1), NSFontAttributeName : UIFont(name: "Segoe Print",size: 12)!])
+            nombreTextField.attributedPlaceholder = placeholderCorreo
+            nombreTextField.font = UIFont(name: "Segoe Print",size: 12)
+            break
+            
+        case .Pad:
+            let placeholderCorreo = NSAttributedString(string: "Nombre", attributes: [NSForegroundColorAttributeName : UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1), NSFontAttributeName : UIFont(name: "Segoe Print",size: 22)!])
+            nombreTextField.attributedPlaceholder = placeholderCorreo
+            nombreTextField.font = UIFont(name: "Segoe Print",size: 22)
+            break
+            
+        default:
+            break
+        }
+        
+        scrollview.addSubview(nombreTextField)
+        contenidoheigth = self.contenidoheigth + tamanoBaseHeight * 0.05
+        
+    }
+    
+    func crearCajaTextoDireccion()
+    {
+        let tamanoBaseHeight = self.view.frame.height - 60
+        let puntoInicialX = scrollview.frame.width * 0.05
+        contenidoheigth = contenidoheigth + tamanoBaseHeight * 0.03
+        direccionTextField = UITextField()
+        direccionTextField.frame = CGRect(x: puntoInicialX, y: self.contenidoheigth, width: scrollview.frame.width * 0.9, height: tamanoBaseHeight * 0.05)
+        
+        backgroundDireccionTextField = CAGradientLayer().amarilloDegradado()
+        backgroundDireccionTextField.frame = CGRect(x:0 , y: 0 , width: scrollview.frame.width * 0.9 , height: tamanoBaseHeight * 0.05)
+        direccionTextField.layer.insertSublayer(backgroundDireccionTextField, atIndex: 0)
+        direccionTextField.textAlignment = NSTextAlignment.Center
+        
+        
+        direccionTextField.textColor = UIColor.redColor()
+        direccionTextField.keyboardType = UIKeyboardType.Alphabet
+        
+        direccionTextField.delegate = self
+        
+        switch UIDevice.currentDevice().userInterfaceIdiom
+        {
+        case .Phone:
+            let placeholderCorreo = NSAttributedString(string: "Dirección", attributes: [NSForegroundColorAttributeName : UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1), NSFontAttributeName : UIFont(name: "Segoe Print",size: 12)!])
+            direccionTextField.attributedPlaceholder = placeholderCorreo
+            direccionTextField.font = UIFont(name: "Segoe Print",size: 12)
+            break
+            
+        case .Pad:
+            let placeholderCorreo = NSAttributedString(string: "Dirección", attributes: [NSForegroundColorAttributeName : UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1), NSFontAttributeName : UIFont(name: "Segoe Print",size: 22)!])
+            direccionTextField.attributedPlaceholder = placeholderCorreo
+            direccionTextField.font = UIFont(name: "Segoe Print",size: 22)
+            break
+            
+        default:
+            break
+        }
+        
+        scrollview.addSubview(direccionTextField)
+        contenidoheigth = self.contenidoheigth + tamanoBaseHeight * 0.05
+        
+    }
+    
+    func crearCajaTextoBarrio()
+    {
+        let tamanoBaseHeight = self.view.frame.height - 60
+        let puntoInicialX = scrollview.frame.width * 0.05
+        contenidoheigth = contenidoheigth + tamanoBaseHeight * 0.03
+        barrioTextField = UITextField()
+        barrioTextField.frame = CGRect(x: puntoInicialX, y: self.contenidoheigth, width: scrollview.frame.width * 0.9, height: tamanoBaseHeight * 0.05)
+        
+        backgroundBarrioTextField = CAGradientLayer().amarilloDegradado()
+        backgroundBarrioTextField.frame = CGRect(x:0 , y: 0 , width: scrollview.frame.width * 0.9 , height: tamanoBaseHeight * 0.05)
+        barrioTextField.layer.insertSublayer(backgroundBarrioTextField, atIndex: 0)
+        barrioTextField.textAlignment = NSTextAlignment.Center
+        
+        
+        barrioTextField.textColor = UIColor.redColor()
+        barrioTextField.keyboardType = UIKeyboardType.Alphabet
+        
+        barrioTextField.delegate = self
+        
+        switch UIDevice.currentDevice().userInterfaceIdiom
+        {
+        case .Phone:
+            let placeholderCorreo = NSAttributedString(string: "Barrio", attributes: [NSForegroundColorAttributeName : UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1), NSFontAttributeName : UIFont(name: "Segoe Print",size: 12)!])
+            barrioTextField.attributedPlaceholder = placeholderCorreo
+            barrioTextField.font = UIFont(name: "Segoe Print",size: 12)
+            break
+            
+        case .Pad:
+            let placeholderCorreo = NSAttributedString(string: "Barrio", attributes: [NSForegroundColorAttributeName : UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1), NSFontAttributeName : UIFont(name: "Segoe Print",size: 22)!])
+            barrioTextField.attributedPlaceholder = placeholderCorreo
+            barrioTextField.font = UIFont(name: "Segoe Print",size: 22)
+            break
+            
+        default:
+            break
+        }
+        
+        scrollview.addSubview(barrioTextField)
+        contenidoheigth = self.contenidoheigth + tamanoBaseHeight * 0.05
+        
+    }
+    
+    func crearCajaTextoTelfono()
+    {
+        let tamanoBaseHeight = self.view.frame.height - 60
+        let puntoInicialX = scrollview.frame.width * 0.05
+        contenidoheigth = contenidoheigth + tamanoBaseHeight * 0.03
+        telefonoTextField = UITextField()
+        telefonoTextField.frame = CGRect(x: puntoInicialX, y: self.contenidoheigth, width: scrollview.frame.width * 0.9, height: tamanoBaseHeight * 0.05)
+        
+        backgroundTelefonoTextField = CAGradientLayer().amarilloDegradado()
+        backgroundTelefonoTextField.frame = CGRect(x:0 , y: 0 , width: scrollview.frame.width * 0.9 , height: tamanoBaseHeight * 0.05)
+        telefonoTextField.layer.insertSublayer(backgroundTelefonoTextField, atIndex: 0)
+        telefonoTextField.textAlignment = NSTextAlignment.Center
+        
+        
+        telefonoTextField.textColor = UIColor.redColor()
+        telefonoTextField.keyboardType = UIKeyboardType.PhonePad
+        
+        telefonoTextField.delegate = self
+        
+        switch UIDevice.currentDevice().userInterfaceIdiom
+        {
+        case .Phone:
+            let placeholderCorreo = NSAttributedString(string: "Teléfono", attributes: [NSForegroundColorAttributeName : UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1), NSFontAttributeName : UIFont(name: "Segoe Print",size: 12)!])
+            telefonoTextField.attributedPlaceholder = placeholderCorreo
+            telefonoTextField.font = UIFont(name: "Segoe Print",size: 12)
+            break
+            
+        case .Pad:
+            let placeholderCorreo = NSAttributedString(string: "Teléfono", attributes: [NSForegroundColorAttributeName : UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1), NSFontAttributeName : UIFont(name: "Segoe Print",size: 22)!])
+            telefonoTextField.attributedPlaceholder = placeholderCorreo
+            telefonoTextField.font = UIFont(name: "Segoe Print",size: 22)
+            break
+            
+        default:
+            break
+        }
+        
+        scrollview.addSubview(telefonoTextField)
+        contenidoheigth = self.contenidoheigth + tamanoBaseHeight * 0.05
+        
+    }
+
+    
+    func crearSpinnerFormaPago()
+    {
+        var formapago  = Array <String>()
+        formapago.append("Seleccione forma de pago")
+        
+        for fp in self.listaFormaPago
+        {
+            
+            formapago.append(fp.nombre!)
+        }
+        
+        let tamanoBaseHeight = self.view.frame.height - 60
+        let puntoInicialX = scrollview.frame.width * 0.05
+        contenidoheigth = contenidoheigth + tamanoBaseHeight * 0.03
+        spinnerFormaPago = DKDropMenu(frame : CGRect(x: puntoInicialX, y: contenidoheigth, width: scrollview.frame.width * 0.9, height: tamanoBaseHeight * 0.05))
+        
+        spinnerFormaPago.addItems(formapago)
+        
+        backgroundSpinnerFormaPago = CAGradientLayer().amarilloDegradado()
+        backgroundSpinnerFormaPago.frame = CGRect(x: puntoInicialX, y: contenidoheigth, width: scrollview.frame.width * 0.9, height: tamanoBaseHeight * 0.05)
+        imagenSpinnerFormaPago = UIImage(named: "flecha_abajo")
+        iconoSpinnerFormaPago = UIImageView(frame: CGRect(x: spinnerFormaPago.frame.width - spinnerFormaPago.frame.height * 0.4 - spinnerFormaPago.frame.height * 0.25 , y: spinnerFormaPago.frame.height * 0.30, width: spinnerFormaPago.frame.height * 0.4, height: spinnerFormaPago.frame.height * 0.4))
+        
+        iconoSpinnerFormaPago.image = imagenSpinnerFormaPago
+        
+        spinnerFormaPago.backgroundColor = UIColor.clearColor()
+        spinnerFormaPago.delegate = self
+        spinnerFormaPago.addSubview(iconoSpinnerFormaPago)
+        
+        switch UIDevice.currentDevice().userInterfaceIdiom
+        {
+        case .Phone:
+            spinnerFormaPago.tamanoLetra = 12.0
+            break
+            
+        case .Pad:
+            spinnerFormaPago.tamanoLetra = 22.0
+            break
+            
+        default:
+            break
+        }
+        spinnerFormaPago.itemHeight = tamanoBaseHeight * 0.05
+        contenidoheigth = contenidoheigth + tamanoBaseHeight * 0.05
+        
+    }
+    
+    func crearCajaTextoObservaciones()
+    {
+        let tamanoBaseHeight = self.view.frame.height - 60
+        let puntoInicialX = scrollview.frame.width * 0.05
+        contenidoheigth = contenidoheigth + tamanoBaseHeight * 0.03
+        observacionesTextView = UITextView()
+        observacionesTextView.frame = CGRect(x: puntoInicialX, y: contenidoheigth, width: scrollview.frame.width * 0.9, height: tamanoBaseHeight * 0.15)
+        
+        observacionesTextView.contentSize.height = tamanoBaseHeight * 0.2
+        
+        backgroundObservacionesTextView = CAGradientLayer().amarilloDegradado()
+        backgroundObservacionesTextView.frame = CGRect(x:0 , y: 0 , width: scrollview.frame.width * 0.9 , height: tamanoBaseHeight * 0.2 * 2)
+        observacionesTextView.layer.insertSublayer(backgroundObservacionesTextView, atIndex: 0)
+        observacionesTextView.textAlignment = NSTextAlignment.Center
+        
+        observacionesTextView.textColor = UIColor.redColor()
+        observacionesTextView.delegate = self
+        
+        
+        placeholderObservacionesTextField = UILabel()
+        placeholderObservacionesTextField.frame = CGRect(x: 0, y: 10, width: observacionesTextView.frame.width, height: observacionesTextView.frame.height * 0.7)
+        
+        placeholderObservacionesTextField.numberOfLines = 3
+        
+        placeholderObservacionesTextField.textAlignment = NSTextAlignment.Center
+        placeholderObservacionesTextField.textColor = UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1)
+        placeholderObservacionesTextField.text = "Observaciones (opcional) \n ejemplo : Traer Cambio."
+        
+        
+        
+        switch UIDevice.currentDevice().userInterfaceIdiom
+        {
+        case .Phone:
+            observacionesTextView.font = UIFont(name: "Segoe Print",size: 12)
+            placeholderObservacionesTextField.font = UIFont(name: "Segoe Print",size: 12)
+            break
+            
+        case .Pad:
+            observacionesTextView.font = UIFont(name: "Segoe Print",size: 22)
+            placeholderObservacionesTextField.font = UIFont(name: "Segoe Print",size: 22)
+            break
+            
+        default:
+            break
+        }
+        observacionesTextView.scrollToBotom()
+        observacionesTextView.addSubview(placeholderObservacionesTextField)
+        contenidoheigth = contenidoheigth + tamanoBaseHeight * 0.15
+        
+        scrollview.addSubview(observacionesTextView)
+    }
+
     
     
     func crearMensajeCompruebeConexion()
@@ -244,6 +644,41 @@ class NoRegistradoViewController: UIViewController , DKDropMenuDelegate
         self.view.addSubview(volverCargarVistaBtn)
     }
     
+    func crearBotonEnviarPedido()
+    {
+        let tamanoBaseHeight = self.view.frame.height - 60
+        let puntoInicialX = scrollview.frame.width * 0.05
+        contenidoheigth = contenidoheigth + tamanoBaseHeight * 0.04
+        botonEnviarPedido = UIButton()
+        botonEnviarPedido.frame = CGRect(x: puntoInicialX, y: contenidoheigth, width: scrollview.frame.width * 0.9, height: tamanoBaseHeight * 0.06)
+        botonEnviarPedido.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        botonEnviarPedido.setTitle("Enviar Pedido", forState: UIControlState.Normal)
+        
+        backgroundButonEnviarPedido = CAGradientLayer().rojoDegradado()
+        backgroundButonEnviarPedido.frame = CGRect(x: puntoInicialX, y: contenidoheigth, width: scrollview.frame.width * 0.9, height: tamanoBaseHeight * 0.06)
+        
+        switch UIDevice.currentDevice().userInterfaceIdiom
+        {
+        case .Phone:
+            botonEnviarPedido.titleLabel?.font = UIFont(name: "Matura MT Script Capitals", size: 14)
+            break
+            
+        case .Pad:
+            botonEnviarPedido.titleLabel?.font = UIFont(name: "Matura MT Script Capitals", size: 24)
+            break
+            
+        default:
+            break
+        }
+        
+        
+        scrollview.layer.addSublayer(backgroundButonEnviarPedido)
+        
+        botonEnviarPedido.addTarget(nil, action: #selector(actionEnviarPedido), forControlEvents: .TouchUpInside)
+        scrollview.addSubview(botonEnviarPedido!)
+        self.contenidoheigth = self.contenidoheigth + scrollview.frame.height * 0.06
+    }
+    
     // MARK: - eventos Click
     
     func actionAtras(sender: AnyObject)
@@ -255,7 +690,35 @@ class NoRegistradoViewController: UIViewController , DKDropMenuDelegate
         volverCargarVista()
     }
     
+    func actionEnviarPedido(sender: AnyObject)
+    {
+        enviarPedido()
+    }
+    
     // MARK: - logica de negocio
+    
+    func enviarPedido()
+    {
+        UIView.hr_setToastThemeColor(color: UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1))
+        UIView.hr_setToastFontColor(color: UIColor.whiteColor())
+        
+        if nombreTextField.text!.isEmpty || direccionTextField.text!.isEmpty || barrioTextField.text!.isEmpty || telefonoTextField.text!.isEmpty
+        {
+            self.view.makeToast(message: "Todos los campos son obligatorios menos el de observaciones.", duration: 2, position: HRToastPositionCenter)
+        }
+        else
+        {
+            if spinnerFormaPago.selectedIndice == 0
+            {
+                self.view.makeToast(message: "Seleccione una forma de pago.", duration: 2, position: HRToastPositionCenter)
+            }
+            else
+            {
+                enviarPedidoBackendless()
+            }
+        }
+        
+    }
     
     func atras()
     {
@@ -330,24 +793,6 @@ class NoRegistradoViewController: UIViewController , DKDropMenuDelegate
         
         fondoTrasparenteAlertview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         
-        
-        
-       /* BackendlessDataQuery dataQueryformapago= new BackendlessDataQuery();
-        List<String>formapagoSelect=new ArrayList<>();
-        formapagoSelect.add("objectId");
-        formapagoSelect.add("nombre");
-        formapagoSelect.add("abreviatura");
-        dataQueryformapago.setProperties(formapagoSelect);
-        dataQueryformapago.setWhereClause("activado = TRUE AND ciudad='"+ciudadid+"'");
-        pd = ProgressDialog.show(this, getResources().getString(R.string.txt_cargando_vista), getResources().getString(R.string.por_favor_espere), true, false);
-        
-        final Context context= this;
-        Backendless.Persistence.of(Formapago.class).find(dataQueryformapago, new AsyncCallback<BackendlessCollection<Formapago>>() {
-        @Override
-        public void handleResponse(final BackendlessCollection<Formapago> fp) {*/
-        
-        
-        
         var formapagoSelect = Array<String>()
         formapagoSelect.append("objectId")
         formapagoSelect.append("nombre")
@@ -370,7 +815,11 @@ class NoRegistradoViewController: UIViewController , DKDropMenuDelegate
             self.presentWindow = nil
             self.fondoTrasparenteAlertview = nil
             
-            }, error: { (fault: Fault!) -> Void in
+            self.listaFormaPago = result.getCurrentPage() as! [Formapago]
+            
+            self.crearFormulario()
+            
+        }, error: { (fault: Fault!) -> Void in
                 
                 self.presentWindow.hideToastActivity()
                 self.presentWindow = nil
@@ -381,6 +830,143 @@ class NoRegistradoViewController: UIViewController , DKDropMenuDelegate
                 self.eliminarScrollView()
                 self.crearMensajeCompruebeConexion()
                 
+        })
+    }
+    
+    func enviarPedidoBackendless()
+    {
+        UIView.hr_setToastThemeColor(color: UIColor.whiteColor())
+        UIView.hr_setToastFontColor(color: UIColor.blackColor())
+        presentWindow  = UIApplication.sharedApplication().keyWindow
+        
+        fondoTrasparenteAlertview = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        
+        fondoTrasparenteAlertview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        
+        let pedido = Pedido()
+        pedido.peddireccion = direccionTextField.text! + " " + barrioTextField.text!
+        pedido.pedformapago = listaFormaPago[spinnerFormaPago.selectedIndice! - 1].abreviatura
+        pedido.pedtelefono = telefonoTextField.text!
+        pedido.pedpersonanombre = nombreTextField.text!
+        pedido.pedobservaciones = observacionesTextView.text!
+       
+       
+        pedido.ciudad = listaCiudades[spinnerCiudad.selectedIndice! - 1].objectId
+        
+        let dataQueryPedido = backendless.data.of(Pedido.ofClass())
+        
+        self.view.addSubview(fondoTrasparenteAlertview)
+        presentWindow.makeToastActivity(message: "Enviando ...")
+        
+        dataQueryPedido.save(
+            pedido,
+            response: { (result: AnyObject!) -> Void in
+                
+                let obj = result as! Pedido
+                print("Contact has been saved: \(obj.objectId)")
+                
+                
+                
+                var recipients = Array<String>()
+                recipients.append(self.listaCiudades[self.spinnerCiudad.selectedIndice! - 1].email!)
+                
+                let asunto = "Nuevo pedido"
+                let fp = self.listaFormaPago[self.spinnerFormaPago.selectedIndice! - 1].nombre!
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                dateFormatter.timeZone = NSTimeZone(name: "America/Bogota")
+                
+                var mailBody = "<h1>Nuevo pedido</h1>"
+                mailBody += "<b>Fecha y hora : </b>" + dateFormatter.stringFromDate(obj.created!) + "<br>"
+                mailBody += "<b>Nombre cliente : </b>" + obj.pedpersonanombre! + "<br>"
+                mailBody += "<b>Teléfono : </b>" + obj.pedtelefono! + "<br>"
+                mailBody += "<b>Dirección : </b>" + obj.peddireccion! + "<br>"
+                mailBody += "<b>Ciudad : </b>" + self.listaCiudades[self.spinnerCiudad.selectedIndice! - 1].nombre!
+                mailBody += "<br>" + "<b>Forma de Pago : </b>" + fp + "<br>"
+                mailBody += "<b>Observaciones : </b>" + obj.pedobservaciones! + "<br><br><br>"
+                mailBody += "<table border='1'><tr><th>Producto</th><th>cantidad</th><th>Precio</th>"
+                mailBody += "<th>Total</th></tr>"
+                
+                
+                var totalPedido = 0;
+                
+                for itemcar in AppUtil.listaCarro
+                {
+                    let itempedido = Itempedido()
+                    itempedido.pedido = obj.objectId
+                    itempedido.producto = itemcar.objectId
+                    itempedido.itemcantidad = itemcar.cantidad
+                    
+                    let dataQueryItemPedido = self.backendless.data.of(Itempedido.ofClass())
+                    
+                    dataQueryItemPedido.save(
+                        itempedido,
+                        response: { (result: AnyObject!) -> Void in
+                            
+                        },
+                        error: { (fault: Fault!) -> Void in
+                            
+                    })
+                    
+                    var producto = Producto()
+                    
+                    for  p in AppUtil.data
+                    {
+                        if p.objectId == itemcar.objectId
+                        {
+                            producto = p
+                            break
+                        }
+                    }
+                    let total = producto.precio * itemcar.cantidad
+                    totalPedido = totalPedido + total
+                    mailBody += "<tr>"
+                    mailBody += "<td>" + producto.prodnombre! + "</td>"
+                    mailBody += "<td>" + String(itemcar.cantidad) + "</td>"
+                    mailBody += "<td>" + String(producto.precio) + "</td>"
+                    mailBody += "<td>" + String(total) + "</td></tr>"
+                    
+                }
+                
+                mailBody += "</table><h2>Costo domicilio :  </h2>" + String(AppUtil.listaSubcategorias[0].domicilio)
+                mailBody += "<h2>Subtotal :  </h2>" + String(totalPedido)
+                mailBody += "<h2>Total Pedido:</h2>" + String(totalPedido + AppUtil.listaSubcategorias[0].domicilio);
+                
+                
+                self.backendless.messagingService.sendHTMLEmail(asunto, body: mailBody, to: recipients, response: { (result: AnyObject!) -> Void in
+                    
+                        print("mensaje enviado")
+                    
+                    
+                    
+                    }, error: { (fault : Fault!) -> Void in
+                
+                            print("error : \(fault.message)")
+                
+                    })
+                
+                self.presentWindow.hideToastActivity()
+                self.presentWindow = nil
+                self.fondoTrasparenteAlertview.removeFromSuperview()
+                self.fondoTrasparenteAlertview = nil
+                
+                self.comunicacionLoginControllerNoRegistradoController.seRealizoPedido()
+                
+                self.atras()
+                
+            },
+            error: { (fault: Fault!) -> Void in
+                print("fServer reported an error: \(fault)")
+                
+                self.presentWindow.hideToastActivity()
+                self.presentWindow = nil
+                self.fondoTrasparenteAlertview.removeFromSuperview()
+                self.fondoTrasparenteAlertview = nil
+                
+                UIView.hr_setToastThemeColor(color: UIColor(red: 3/255, green: 58/255, blue: 15/255, alpha: 1))
+                UIView.hr_setToastFontColor(color: UIColor.whiteColor())
+                
+                self.view.makeToast(message: "Compruebe su conexión a internet.", duration: 2, position: HRToastPositionCenter)                
         })
     }
     
@@ -411,7 +997,7 @@ class NoRegistradoViewController: UIViewController , DKDropMenuDelegate
     }
     func eliminarScrollView()
     {
-        
+        eliminarVistaScrollView()
     }
     // MARK: DKDropMenuDelegate
     func itemSelectedWithIndex(index: Int, name: String , dKDropMenu : DKDropMenu) {
@@ -423,7 +1009,7 @@ class NoRegistradoViewController: UIViewController , DKDropMenuDelegate
             {
                 spinnerCiudad.removeFromSuperview()
                 backgroundSpinnerCiudad.removeFromSuperlayer()
-                scrollview.removeFromSuperview()
+                eliminarScrollView()
                 
                 self.view.layer.addSublayer(backgroundSpinnerCiudad)
                 self.view.addSubview(spinnerCiudad)
@@ -432,21 +1018,6 @@ class NoRegistradoViewController: UIViewController , DKDropMenuDelegate
             else
             {
                 cargarFormaPagoBackendless(listaCiudades[index - 1].objectId!)
-                
-                /*if scrollview != nil && scrollview.isDescendantOfView(self.view)
-                {
-                    scrollview.removeFromSuperview()
-                    scrollview = nil
-                }
-                
-                spinnerCiudad.removeFromSuperview()
-                backgroundSpinnerCiudad.removeFromSuperlayer()
-                
-                crearScrollView()
-                self.view.addSubview(scrollview)
-                self.view.layer.addSublayer(backgroundSpinnerCiudad)
-                self.view.addSubview(spinnerCiudad)*/
-                
                 
             }
         }
@@ -467,17 +1038,122 @@ class NoRegistradoViewController: UIViewController , DKDropMenuDelegate
             
             if(!spinnerCiudad.collapsed)
             {
-                backgroundSpinnerCiudad.frame = CGRect(x: puntoInicialX, y: puntoInicialY, width: self.view.frame.width * 0.9, height: tamanoBaseHeight * 0.06 * conteoCiudades)
+                backgroundSpinnerCiudad.frame = CGRect(x: puntoInicialX, y: puntoInicialY, width: self.view.frame.width * 0.9, height: tamanoBaseHeight * 0.05 * conteoCiudades)
             }
             else
             {
-                backgroundSpinnerCiudad.frame = CGRect(x: puntoInicialX, y: puntoInicialY, width: self.view.frame.width * 0.9, height: tamanoBaseHeight * 0.06)
+                backgroundSpinnerCiudad.frame = CGRect(x: puntoInicialX, y: puntoInicialY, width: self.view.frame.width * 0.9, height: tamanoBaseHeight * 0.05)
             }
             
         }
+        else
+        {
+            
+            if dKDropMenu == spinnerFormaPago
+            {
+                let tamanoBaseHeight = self.view.frame.height - 60
+                
+                
+                let conteoFormaPago = CGFloat(listaFormaPago.count + 1)
+                
+                
+                if(!spinnerFormaPago.collapsed)
+                {
+                    backgroundSpinnerFormaPago.frame = CGRect(x: spinnerFormaPago.frame.origin.x, y: spinnerFormaPago.frame.origin.y, width: self.view.frame.width * 0.9, height: tamanoBaseHeight * 0.05 * conteoFormaPago)
+                }
+                else
+                {
+                    backgroundSpinnerFormaPago.frame = CGRect(x: spinnerFormaPago.frame.origin.x, y: spinnerFormaPago.frame.origin.y, width: self.view.frame.width * 0.9, height: tamanoBaseHeight * 0.05)
+                }
+                
+            }
+            
+        }
+    }
+    
+    //MARK: - funciones textfield delegate
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        
+        let limite = scrollview.frame.height - 250
+        let posicionYfinalCajatexto = textField.frame.origin.y + textField.frame.height
+        
+        if posicionYfinalCajatexto > limite
+        {
+            scrollview.setContentOffset(CGPointMake(0, posicionYfinalCajatexto  - limite),animated: true)
+        }
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        scrollview.setContentOffset(CGPointMake(0, 0),animated: true)
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        let length = (textField.text!.utf16).count + (string.utf16).count - range.length
+        
+        /*if textField == claveTextField || textField == repetirClaveTextField
+        {
+            return length <= 20
+        }*/
+        
+        return length <= 70
         
     }
     
+    
+    //MARK: - funciones TextView Delegate
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return true
+        }
+        
+        let length = (textView.text!.utf16).count + (text.utf16).count - range.length
+        
+        return length <= 200
+        
+    }
+    
+    func textViewDidBeginEditing(textView: UITextView)
+    {
+        let limite = scrollview.frame.height - 250
+        let posicionYfinalCajatexto = textView.frame.origin.y + textView.frame.height
+        
+        if posicionYfinalCajatexto > limite
+        {
+            
+            scrollview.setContentOffset(CGPointMake(0, posicionYfinalCajatexto  - limite),animated: true)
+        }
+    }
+    
+    func textViewDidEndEditing(textView: UITextView)
+    {
+        scrollview.setContentOffset(CGPointMake(0, 0),animated: true)
+        
+    }
+    
+    func textViewDidChange(textView: UITextView)
+    {
+        let espacing = NSCharacterSet.whitespaceAndNewlineCharacterSet()
+        if !observacionesTextView.text.stringByTrimmingCharactersInSet(espacing).isEmpty
+        {
+            placeholderObservacionesTextField.hidden = true
+        }
+        else
+        {
+            placeholderObservacionesTextField.hidden = false
+        }
+        
+        
+    }
     
     
     //MARK: - funcion dinit
@@ -509,6 +1185,20 @@ class NoRegistradoViewController: UIViewController , DKDropMenuDelegate
             spinnerCiudad.delegate = nil
             spinnerCiudad = nil
         }
+        
+        if mensajeCompruebeConexionLabel != nil
+        {
+            mensajeCompruebeConexionLabel.removeFromSuperview()
+            backgroundVolverCargarVistaBtn.removeFromSuperlayer()
+            volverCargarVistaBtn.removeFromSuperview()
+            
+            volverCargarVistaBtn = nil
+            backgroundVolverCargarVistaBtn = nil
+            mensajeCompruebeConexionLabel = nil
+        }
+        
+        eliminarVistaScrollView()
+        comunicacionLoginControllerNoRegistradoController = nil
         
         self.view.removeFromSuperview()
         debugPrint("se va a dealloc NoRegistradoViewController")

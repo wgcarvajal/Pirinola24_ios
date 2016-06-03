@@ -118,11 +118,6 @@ class RegistradoViewController: UIViewController
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
-    
-    
-    
-    
     //MARK: - funcion dinit
     
     deinit

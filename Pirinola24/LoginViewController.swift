@@ -13,9 +13,10 @@ import FBSDKLoginKit
 protocol ComunicacionPedidoControllerLoginController
 {
     func seInicioSecion()
+    func seRealizoPedido()
 }
 
-class LoginViewController: UIViewController ,UITextFieldDelegate , ComunicacionLoginControllerRegistroController
+class LoginViewController: UIViewController ,UITextFieldDelegate , ComunicacionLoginControllerRegistroController , ComunicacionLoginControllerNoRegistradoController
 {
     var tituloLabel : UILabel?
     var backgroundTitulo: CAGradientLayer?
@@ -68,6 +69,8 @@ class LoginViewController: UIViewController ,UITextFieldDelegate , ComunicacionL
     var backgroundCancelarEnviarCorreo: CAGradientLayer!
     var presentWindow : UIWindow!
     
+    var pedidoRealizado : Int = 0
+    
     let backendless = Backendless.sharedInstance()
 
     override func viewDidLoad() {
@@ -90,6 +93,17 @@ class LoginViewController: UIViewController ,UITextFieldDelegate , ComunicacionL
         crearVistas()
         
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        if pedidoRealizado == 1
+        {
+            pedidoRealizado = 0
+            
+            comunicacionPedidoControllerLoginController?.seRealizoPedido()
+            atras()
+        }
+    }
     // MARK: - Navigation
     
     
@@ -99,6 +113,14 @@ class LoginViewController: UIViewController ,UITextFieldDelegate , ComunicacionL
         {
             let vc = segue.destinationViewController as! RegistrarseViewController
             vc.comunicacionLoginControllerRegistroController = self
+        }
+        else
+        {
+            if  segue.identifier == "irNoRegistrado"
+            {
+                let vc = segue.destinationViewController as! NoRegistradoViewController
+                vc.comunicacionLoginControllerNoRegistradoController = self
+            }
         }
     }
     
@@ -188,10 +210,10 @@ class LoginViewController: UIViewController ,UITextFieldDelegate , ComunicacionL
         let puntoInicialX = (scrollview!.frame.width / 2) - ((scrollview!.frame.width * 0.9) / 2)
         contenidoheigth = self.contenidoheigth! + scrollview!.frame.height * 0.04
         correoTextField = UITextField()
-        correoTextField!.frame = CGRect(x: puntoInicialX, y: self.contenidoheigth!, width: scrollview!.frame.width * 0.9, height: scrollview!.frame.height * 0.06)
+        correoTextField!.frame = CGRect(x: puntoInicialX, y: self.contenidoheigth!, width: scrollview!.frame.width * 0.9, height: scrollview!.frame.height * 0.05)
         
         backgroundCorreoTextField = CAGradientLayer().amarilloDegradado()
-        backgroundCorreoTextField!.frame = CGRect(x:0 , y: 0 , width: scrollview!.frame.width * 0.9 , height: scrollview!.frame.height * 0.06)
+        backgroundCorreoTextField!.frame = CGRect(x:0 , y: 0 , width: scrollview!.frame.width * 0.9 , height: scrollview!.frame.height * 0.05)
         correoTextField!.layer.insertSublayer(backgroundCorreoTextField!, atIndex: 0)
         correoTextField!.textAlignment = NSTextAlignment.Center
         
@@ -228,7 +250,7 @@ class LoginViewController: UIViewController ,UITextFieldDelegate , ComunicacionL
         }
         
         scrollview?.addSubview(correoTextField!)
-        contenidoheigth = self.contenidoheigth! + scrollview!.frame.height * 0.06
+        contenidoheigth = self.contenidoheigth! + scrollview!.frame.height * 0.05
         
     }
     
@@ -237,10 +259,10 @@ class LoginViewController: UIViewController ,UITextFieldDelegate , ComunicacionL
         let puntoInicialX = (scrollview!.frame.width / 2) - ((scrollview!.frame.width * 0.9) / 2)
         contenidoheigth = self.contenidoheigth! + scrollview!.frame.height * 0.02
         claveTextField = UITextField()
-        claveTextField!.frame = CGRect(x: puntoInicialX, y: self.contenidoheigth!, width: scrollview!.frame.width * 0.9, height: scrollview!.frame.height * 0.06)
+        claveTextField!.frame = CGRect(x: puntoInicialX, y: self.contenidoheigth!, width: scrollview!.frame.width * 0.9, height: scrollview!.frame.height * 0.05)
         
         backgroundClaveTextField = CAGradientLayer().amarilloDegradado()
-        backgroundClaveTextField!.frame = CGRect(x:0 , y: 0 , width: scrollview!.frame.width * 0.9 , height: scrollview!.frame.height * 0.06)
+        backgroundClaveTextField!.frame = CGRect(x:0 , y: 0 , width: scrollview!.frame.width * 0.9 , height: scrollview!.frame.height * 0.05)
         claveTextField!.layer.insertSublayer(backgroundClaveTextField!, atIndex: 0)
         claveTextField!.textAlignment = NSTextAlignment.Center
         
@@ -280,7 +302,7 @@ class LoginViewController: UIViewController ,UITextFieldDelegate , ComunicacionL
         }
         
         scrollview?.addSubview(claveTextField!)
-        contenidoheigth = self.contenidoheigth! + scrollview!.frame.height * 0.06
+        contenidoheigth = self.contenidoheigth! + scrollview!.frame.height * 0.05
         
     }
     
@@ -1065,6 +1087,10 @@ class LoginViewController: UIViewController ,UITextFieldDelegate , ComunicacionL
         self.view.makeToast(message: "Gracias por registrarse, ya puedes iniciar sesión con tu cuenta.", duration: 4, position: HRToastPositionCenter)
     }
     
-   
-
+   // MARK: - funciones comunicacionNoRegistradoController
+    
+    func seRealizoPedido()
+    {
+        pedidoRealizado = 1
+    }
 }

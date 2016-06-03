@@ -36,7 +36,6 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, Comunica
     {
         
         super.viewDidLoad()
-        
         let background = CAGradientLayer().amarilloDegradado()
         
         background.frame = CGRect(x: 0, y: 20, width: self.view.frame.width, height: self.view.frame.height - 20)
