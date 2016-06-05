@@ -13,7 +13,7 @@ protocol ComunicacionPedidoControllerPrincipalController
     func seCerroSecion()
 }
 
-class PedidoViewController: UIViewController , SideBarDelegate , UICollectionViewDelegate, UICollectionViewDataSource , ComunicacionControladorPedido , ComunicacionPedidoControllerLoginController
+class PedidoViewController: UIViewController , SideBarDelegate , UICollectionViewDelegate, UICollectionViewDataSource , ComunicacionControladorPedido , ComunicacionPedidoControllerLoginController ,ComunicacionPedidoControllerListaCiudadesController
 {
 
     var sideBar : SideBar = SideBar()
@@ -40,7 +40,7 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
     var comunicacionPedidoController_PrincipalController : ComunicacionPedidoControllerPrincipalController?
     
     
-    var irRegistrado : Int = 0
+    var irListaCiudades : Int = 0
     
     
     //dialgo Vaciar pedido
@@ -132,10 +132,10 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
     
     override func viewWillAppear(animated: Bool)
     {
-        if irRegistrado == 1
+        if irListaCiudades == 1
         {
-            irRegistrado = 0
-            self.performSegueWithIdentifier("irRegistrado", sender: nil)
+            irListaCiudades = 0
+            self.performSegueWithIdentifier("irListaCiudades", sender: nil)
             
         }
         
@@ -431,12 +431,17 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
             let vc = segue.destinationViewController as! LoginViewController
             vc.comunicacionPedidoControllerLoginController = self
         }
+        else
+        {
+            if(segue.identifier == "irListaCiudades")
+            {
+                let vc = segue.destinationViewController as! ListaCiudadesViewController
+                vc.comunicacionPedidoControllerListaCiudadesController = self
+            }
+        }
+        
         
     }
-        
-     
-
-    
      // MARK: - funciones Logica de negocio
     
     
@@ -733,7 +738,7 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
             }
             else
             {
-                self.performSegueWithIdentifier("irRegistrado", sender: nil)
+                self.performSegueWithIdentifier("irListaCiudades", sender: nil)
             }
             
         }
@@ -929,7 +934,7 @@ class PedidoViewController: UIViewController , SideBarDelegate , UICollectionVie
         self.sideBar.sideBarTableViewController.tableData = ["Logo", "Atras", "Vaciar Pedido" , "Cerrar Sesión"]
         self.sideBar.sideBarTableViewController.tableView.reloadData()        
         comunicacionPedidoController_PrincipalController?.seInicioSecion()
-        irRegistrado = 1
+        irListaCiudades = 1
         
     }
     

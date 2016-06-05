@@ -13,6 +13,8 @@
 		1B0F28241CD15C24007A5485 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B0F28221CD15C24007A5485 /* LaunchScreen.storyboard */; };
 		1B4721D41CD6842700216DC6 /* NS_URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4721D31CD6842700216DC6 /* NS_URL.swift */; };
 		1B53F9391CDC702C007471CF /* PedidoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B53F9381CDC702C007471CF /* PedidoViewController.swift */; };
+		1B6387DE1D0388E500640747 /* btn_mas.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B6387DD1D0388E500640747 /* btn_mas.png */; };
+		1B6460121D022BA500B4DA63 /* flecha_derecha_redonda.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B6460111D022BA500B4DA63 /* flecha_derecha_redonda.png */; };
 		1B68C4BC1CDBCE5500709F4D /* ItemCarrito.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B68C4BB1CDBCE5500709F4D /* ItemCarrito.swift */; };
 		1B68D1FC1CFE192500AC151A /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B68D1FA1CFE192500AC151A /* FBSDKCoreKit.framework */; };
 		1B68D1FD1CFE192500AC151A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B68D1FB1CFE192500AC151A /* FBSDKLoginKit.framework */; };
@@ -41,6 +43,8 @@
 		1B9D8DC41CD1D3D100BB7AD0 /* matura_mt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B9D8DC31CD1D3D100BB7AD0 /* matura_mt.ttf */; };
 		1BA742311CD9162C00523F57 /* SideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA7422F1CD9162C00523F57 /* SideBar.swift */; };
 		1BA742321CD9162C00523F57 /* SideBarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA742301CD9162C00523F57 /* SideBarTableViewController.swift */; };
+		1BBD94521D036D93002809AC /* Direccion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD94511D036D93002809AC /* Direccion.swift */; };
+		1BBD94541D036F2B002809AC /* Telefono.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD94531D036F2B002809AC /* Telefono.swift */; };
 		1BBF41941CFF38C2002AE017 /* RegistradoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF41931CFF38C2002AE017 /* RegistradoViewController.swift */; };
 		1BBF41961CFF46CD002AE017 /* NoRegistradoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF41951CFF46CD002AE017 /* NoRegistradoViewController.swift */; };
 		1BC1723E1CE4CBD0006765D6 /* Anuncio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC1723D1CE4CBD0006765D6 /* Anuncio.swift */; };
@@ -51,6 +55,7 @@
 		1BD3F9C51CDFBF8C005F6A84 /* Segoe_Print.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3F9C41CDFBF8C005F6A84 /* Segoe_Print.ttf */; };
 		1BDD585E1CD5865A00228EE7 /* Gradiante_Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDD585D1CD5865A00228EE7 /* Gradiante_Layer.swift */; };
 		1BF05CD81CD94BC6008FA820 /* pirinola_icono.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BF05CD71CD94BC6008FA820 /* pirinola_icono.png */; };
+		1BF1390F1D02011D00F14AC6 /* ListaCiudadesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1390E1D02011D00F14AC6 /* ListaCiudadesViewController.swift */; };
 		1BF975D21CD15E410042C585 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF975D11CD15E410042C585 /* ContentViewController.swift */; };
 		1BF975D41CD190CF0042C585 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BF975D31CD190CF0042C585 /* SystemConfiguration.framework */; };
 		1BF975D61CD190E60042C585 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BF975D51CD190E60042C585 /* libsqlite3.tbd */; };
@@ -88,6 +93,8 @@
 		1B0F28251CD15C24007A5485 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B4721D31CD6842700216DC6 /* NS_URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NS_URL.swift; sourceTree = "<group>"; };
 		1B53F9381CDC702C007471CF /* PedidoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PedidoViewController.swift; sourceTree = "<group>"; };
+		1B6387DD1D0388E500640747 /* btn_mas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_mas.png; sourceTree = "<group>"; };
+		1B6460111D022BA500B4DA63 /* flecha_derecha_redonda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flecha_derecha_redonda.png; sourceTree = "<group>"; };
 		1B68C4BB1CDBCE5500709F4D /* ItemCarrito.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCarrito.swift; sourceTree = "<group>"; };
 		1B68D1FA1CFE192500AC151A /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		1B68D1FB1CFE192500AC151A /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -115,6 +122,8 @@
 		1B9D8DC31CD1D3D100BB7AD0 /* matura_mt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = matura_mt.ttf; sourceTree = "<group>"; };
 		1BA7422F1CD9162C00523F57 /* SideBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBar.swift; sourceTree = "<group>"; };
 		1BA742301CD9162C00523F57 /* SideBarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewController.swift; sourceTree = "<group>"; };
+		1BBD94511D036D93002809AC /* Direccion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direccion.swift; sourceTree = "<group>"; };
+		1BBD94531D036F2B002809AC /* Telefono.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Telefono.swift; sourceTree = "<group>"; };
 		1BBF41931CFF38C2002AE017 /* RegistradoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistradoViewController.swift; sourceTree = "<group>"; };
 		1BBF41951CFF46CD002AE017 /* NoRegistradoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoRegistradoViewController.swift; sourceTree = "<group>"; };
 		1BC1723D1CE4CBD0006765D6 /* Anuncio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Anuncio.swift; sourceTree = "<group>"; };
@@ -125,6 +134,7 @@
 		1BD3F9C41CDFBF8C005F6A84 /* Segoe_Print.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Segoe_Print.ttf; sourceTree = "<group>"; };
 		1BDD585D1CD5865A00228EE7 /* Gradiante_Layer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gradiante_Layer.swift; sourceTree = "<group>"; };
 		1BF05CD71CD94BC6008FA820 /* pirinola_icono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pirinola_icono.png; sourceTree = "<group>"; };
+		1BF1390E1D02011D00F14AC6 /* ListaCiudadesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListaCiudadesViewController.swift; sourceTree = "<group>"; };
 		1BF975D11CD15E410042C585 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		1BF975D31CD190CF0042C585 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1BF975D51CD190E60042C585 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -382,6 +392,7 @@
 				1B75F4D11CEBF9F8009019BF /* ContactoViewController.swift */,
 				1B75F4D51CEC0A7B009019BF /* LoginViewController.swift */,
 				1B7C79761CFD293800EB2A01 /* RegistrarseViewController.swift */,
+				1BF1390E1D02011D00F14AC6 /* ListaCiudadesViewController.swift */,
 				1BBF41931CFF38C2002AE017 /* RegistradoViewController.swift */,
 				1BBF41951CFF46CD002AE017 /* NoRegistradoViewController.swift */,
 				1B0F281B1CD15C24007A5485 /* ViewController.swift */,
@@ -404,7 +415,9 @@
 			isa = PBXGroup;
 			children = (
 				1BF9DC521CD45DB6000609C3 /* carrocompras.png */,
+				1B6387DD1D0388E500640747 /* btn_mas.png */,
 				1B6FB24A1CED71AC005933D2 /* icono_password.png */,
+				1B6460111D022BA500B4DA63 /* flecha_derecha_redonda.png */,
 				1BC66A691CFF783A00A770C2 /* flecha_abajo.png */,
 				1B6DEEC81CEE2EE400E9436A /* icono_facebook.png */,
 				1B6DEEC61CEE2DA200E9436A /* icono_add_user.png */,
@@ -803,6 +816,8 @@
 				1BFBC97B1CFFEF0A00163513 /* Formapago.swift */,
 				1B7646E31D01071D004969B2 /* Pedido.swift */,
 				1B7646E51D0107CA004969B2 /* Itempedido.swift */,
+				1BBD94511D036D93002809AC /* Direccion.swift */,
+				1BBD94531D036F2B002809AC /* Telefono.swift */,
 			);
 			name = modelo;
 			sourceTree = "<group>";
@@ -887,6 +902,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B6387DE1D0388E500640747 /* btn_mas.png in Resources */,
 				1B745D7D1CE1B6C90007DB44 /* urwbookmanl.ttf in Resources */,
 				1B6DEECB1CEE355900E9436A /* icono_continuar_no_registrado.png in Resources */,
 				1BC66A6A1CFF783A00A770C2 /* flecha_abajo.png in Resources */,
@@ -909,6 +925,7 @@
 				1B9D8DC41CD1D3D100BB7AD0 /* matura_mt.ttf in Resources */,
 				1B6FB24B1CED71AC005933D2 /* icono_password.png in Resources */,
 				1B759EE01CDD51F600DF5F3B /* flecha_atras.png in Resources */,
+				1B6460121D022BA500B4DA63 /* flecha_derecha_redonda.png in Resources */,
 				1BF9DC531CD45DB6000609C3 /* carrocompras.png in Resources */,
 				1B6DEEC71CEE2DA200E9436A /* icono_add_user.png in Resources */,
 			);
@@ -921,10 +938,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BBD94521D036D93002809AC /* Direccion.swift in Sources */,
 				1B7C79771CFD293800EB2A01 /* RegistrarseViewController.swift in Sources */,
 				1B7646E61D0107CA004969B2 /* Itempedido.swift in Sources */,
 				1B75F4D61CEC0A7B009019BF /* LoginViewController.swift in Sources */,
 				1BC1723E1CE4CBD0006765D6 /* Anuncio.swift in Sources */,
+				1BBD94541D036F2B002809AC /* Telefono.swift in Sources */,
 				1B75F4D31CEBF9F8009019BF /* ContactoViewController.swift in Sources */,
 				1B7646E41D01071D004969B2 /* Pedido.swift in Sources */,
 				1BBF41941CFF38C2002AE017 /* RegistradoViewController.swift in Sources */,
@@ -937,6 +956,7 @@
 				1BF9DC4F1CD456FB000609C3 /* UIImage+Gif.swift in Sources */,
 				1B759EE21CDD61B100DF5F3B /* CollectionViewCellPedido.swift in Sources */,
 				1BC8291C1CFFAFC7003665DF /* Ciudad.swift in Sources */,
+				1BF1390F1D02011D00F14AC6 /* ListaCiudadesViewController.swift in Sources */,
 				1BA742321CD9162C00523F57 /* SideBarTableViewController.swift in Sources */,
 				1BF975D21CD15E410042C585 /* ContentViewController.swift in Sources */,
 				1BFBC97C1CFFEF0A00163513 /* Formapago.swift in Sources */,

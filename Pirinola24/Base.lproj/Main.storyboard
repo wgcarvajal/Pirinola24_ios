@@ -29,10 +29,10 @@
             </objects>
             <point key="canvasLocation" x="1922" y="195"/>
         </scene>
-        <!--Registrado View Controller-->
+        <!--Lista Ciudades View Controller-->
         <scene sceneID="Q0x-iW-Aee">
             <objects>
-                <viewController id="Squ-GK-N2W" customClass="RegistradoViewController" customModule="Pirinola24" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Squ-GK-N2W" customClass="ListaCiudadesViewController" customModule="Pirinola24" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="piP-if-74h"/>
                         <viewControllerLayoutGuide type="bottom" id="Q1S-ka-RWS"/>
@@ -42,10 +42,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="O34-Vy-gTA" kind="presentation" identifier="irRegistrado" modalTransitionStyle="crossDissolve" id="pHW-I6-eyK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tMZ-HA-6sp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="560" y="1632"/>
+        </scene>
+        <!--Registrado View Controller-->
+        <scene sceneID="yzL-EA-nb1">
+            <objects>
+                <viewController id="O34-Vy-gTA" customClass="RegistradoViewController" customModule="Pirinola24" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gX2-hV-jf9"/>
+                        <viewControllerLayoutGuide type="bottom" id="bkO-gK-xhO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3yu-3l-MfN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cxF-PM-luy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="560" y="2369"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="yb0-jd-pky">
@@ -245,7 +266,7 @@
                         <outlet property="totalValor" destination="C8c-wg-8dW" id="Lz8-ub-hkP"/>
                         <outlet property="tuPedidoLabel" destination="kEG-DL-Jma" id="MpU-Yu-NSX"/>
                         <segue destination="xum-Bb-mjZ" kind="presentation" identifier="irLogin" modalTransitionStyle="crossDissolve" id="xhU-18-Abw"/>
-                        <segue destination="Squ-GK-N2W" kind="presentation" identifier="irRegistrado" modalTransitionStyle="crossDissolve" id="Hu8-aY-o3r"/>
+                        <segue destination="Squ-GK-N2W" kind="presentation" identifier="irListaCiudades" modalTransitionStyle="crossDissolve" id="Hu8-aY-o3r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9W-Nv-RRl" userLabel="First Responder" sceneMemberID="firstResponder"/>

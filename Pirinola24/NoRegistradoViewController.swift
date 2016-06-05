@@ -745,7 +745,7 @@ class NoRegistradoViewController: UIViewController , DKDropMenuDelegate , UIText
         
         let dataQueryCiudad = BackendlessDataQuery()
         dataQueryCiudad.properties = ciudadSelect
-        
+        dataQueryCiudad.whereClause = "activado = TRUE"
         
         let queryCiudad = backendless.data.of(Ciudad.ofClass())
         
